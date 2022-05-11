@@ -17,7 +17,6 @@ public class IMat extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-
         ResourceBundle bundle = java.util.ResourceBundle.getBundle("imat/resources/IMat");
 
         Parent root = FXMLLoader.load(getClass().getResource("imat.fxml"), bundle);
@@ -27,11 +26,6 @@ public class IMat extends Application {
         stage.setTitle(bundle.getString("application.name"));
         stage.setScene(scene);
         stage.show();
-
-        stage.setMinWidth(872);
-        stage.setMinHeight(540);
-        stage.setWidth(872);
-        stage.setHeight(540);
     }
 
     /**
