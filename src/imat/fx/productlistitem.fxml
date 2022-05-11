@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane maxHeight="100.0" maxWidth="800.0" minHeight="100.0" minWidth="800.0" prefHeight="100.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField alignment="CENTER" layoutX="131.0" layoutY="38.0" minWidth="450.0" promptText="Sök ny produkt...">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextField>
+      <TextField layoutX="39.0" layoutY="38.0" minWidth="50.0" prefWidth="50.0" />
+      <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="17.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/minus-button.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="95.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/plusgreen.png" />
+         </image>
+      </ImageView>
+      <Rectangle fill="#eef7ff" height="90.0" layoutX="595.0" layoutY="5.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="776.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/close.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="600.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/cucumber.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="690.0" layoutY="21.0" prefHeight="17.0" prefWidth="71.0" text="Softis gurga" />
+      <Label layoutX="690.0" layoutY="60.0" prefHeight="17.0" prefWidth="71.0" text="1000 kr/kg" />
+      <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="136.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/plus.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
