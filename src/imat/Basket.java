@@ -21,6 +21,8 @@ import se.chalmers.cse.dat216.project.ShoppingItem;
 import se.chalmers.cse.dat216.project.Customer;
 import se.chalmers.cse.dat216.project.CreditCard;
 
+//import imat.ProductItem;
+
 public class Basket extends AnchorPane{
     
     private Controller parentController;
@@ -31,6 +33,12 @@ public class Basket extends AnchorPane{
     @FXML private Label basketName;
     @FXML private Button newBasketButton;
     @FXML private FlowPane productList;
+    @FXML private Button amountButtons;
+
+    @FXML
+    public void buttonToAmount () {
+        amountButtons.toFront();
+    }
 
     private Map<String, ProductItem> productListMap = new HashMap<String, ProductItem>();
     public Basket(){
