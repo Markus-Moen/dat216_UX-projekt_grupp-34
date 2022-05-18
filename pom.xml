@@ -30,6 +30,11 @@
             <artifactId>zip4j</artifactId>
             <version>2.10.0</version>
         </dependency>
+        <dependency>
+            <groupId>io.vavr</groupId>
+            <artifactId>vavr</artifactId>
+            <version>0.9.0</version>
+        </dependency>
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -45,6 +50,7 @@
         </dependency>
 
 
+
         <!-- Illegal Maven tech -->
         <dependency>
             <groupId>se.chalmers.cse.dat216.project</groupId>
@@ -52,6 +58,12 @@
             <version>.</version>
             <scope>system</scope>
             <systemPath>${basedir}/lib/imatbackend.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
