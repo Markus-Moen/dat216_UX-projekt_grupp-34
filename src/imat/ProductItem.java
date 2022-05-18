@@ -23,10 +23,8 @@ public class ProductItem extends AnchorPane {
     @FXML private Label productItemCost;
     @FXML private TextField productItemAmount;
 
-
-
     public ProductItem(ShoppingItem shoppingItem, Controller controller){
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("product.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fx/product.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 

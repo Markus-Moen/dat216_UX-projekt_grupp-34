@@ -12,11 +12,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static imat.Controller.getId2prodListItem;
-
 public class ProductBrowse extends AnchorPane {
     @FXML FlowPane productFlowPane;
-    private Map<Integer, ProductListItem> productListItemMap = new HashMap<Integer, ProductListItem>();
+    private Map<Integer, ProductItem> productListItemMap = new HashMap<Integer, ProductItem>();
 
     public ProductBrowse(){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fx/productbrowse.fxml"));
@@ -29,12 +27,12 @@ public class ProductBrowse extends AnchorPane {
         }
     }
 
-    private void updateRecipeList(@Nullable Controller.ProductFilter productFilter){
+    private void updateRecipeList(@Nullable ProductFilter productFilter){
         var ids = Controller.getFilteredProductIds(productFilter);
 
         productFlowPane.getChildren().clear();
         for(Integer i : ids){
-            ProductListItem productListItem = getId2prodListItem().get(i);
+            ProductItem productListItem = Controller.getProdListItem(i);
             productFlowPane.getChildren().add(productListItem);
         }
     }

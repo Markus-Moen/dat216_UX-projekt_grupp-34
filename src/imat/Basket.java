@@ -26,8 +26,6 @@ import se.chalmers.cse.dat216.project.CreditCard;
 public class Basket extends AnchorPane{
     
     private Controller parentController;
-    
-    public static IMatDataHandler imat;
     private ShoppingCart basket;
 
     @FXML private Label basketName;
@@ -36,26 +34,16 @@ public class Basket extends AnchorPane{
     @FXML private Button amountButtons;
     @FXML private Button mySavedBasketsButton;
 
-    @FXML
-    public void buttonToAmount () {
+    @FXML public void buttonToAmount() {
         amountButtons.toFront();
     }
 
-    private Map<String, ProductItem> productListMap = new HashMap<String, ProductItem>();
     public Basket(){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fx/basket.fxml"));
-
         try {
             fxmlLoader.load();
         } catch (IOException exception) {
             throw new RuntimeException(exception);
-        }
-
-        imat = IMatDataHandler.getInstance();
-        for (Product product : imat.getProducts()) {
-            ShoppingItem shoppingItem = new ShoppingItem(product, 0);
-            ProductItem productItem = new ProductItem(shoppingItem, parentController);
-            productListMap.put(product.getName(), productItem);
         }
         newBasket();
     }
@@ -69,7 +57,7 @@ public class Basket extends AnchorPane{
         basketName.setText(name);
     } 
     private void openBasket(){ // need a name?
-        basket = imat.getShoppingCart(); //donno what cart this gets?
+        basket = Controller.getShoppingCart(); //donno what cart this gets?
     }
     private void saveBasket(String name){
         setBasketName(name);
@@ -96,9 +84,10 @@ public class Basket extends AnchorPane{
     }
     private void updateBasket(){
         productList.getChildren().clear();
-        List<ShoppingItem> products = basket.getItems();
-        for (ShoppingItem product : products) {
-            productList.getChildren().add(productListMap.get(product.getProduct()));
+        List<ShoppingItem> basketItems = basket.getItems();
+        for (ShoppingItem product : basketItems) {
+            int prodId = product.getProduct().getProductId();
+            productList.getChildren().add(Controller.getProdListItem(prodId));
         }
 
     }
