@@ -59,6 +59,32 @@ public class Basket extends AnchorPane{
     private void setBasketName(String name){
         basketName.setText(name);
     } 
+    private void openBasket(){ // need a name?
+        basket = imat.getShoppingCart(); //donno what cart this gets?
+    }
+    private void saveBasket(String name){
+        setBasketName(name);
+        //save shoppingcart somehow
+    }
+    private void addItemToBasket(ShoppingItem item){
+        basket.addItem(item);
+        updateBasket();
+    }
+    private void removeItemFromBasket(ShoppingItem item){
+        basket.removeItem(item);
+        updateBasket();
+    }
+    private void changeAmount(ShoppingItem item, Double newAmount){
+        item.setAmount(newAmount);
+    }
+    private void removeOne(ShoppingItem item){
+        double amount = item.getAmount();
+        changeAmount(item, amount - 1);
+    }
+    private void addOne(ShoppingItem item){
+        double amount = item.getAmount();
+        changeAmount(item, amount + 1);
+    }
     private void updateBasket(){
         productList.getChildren().clear();
         List<ShoppingItem> products = basket.getItems();
