@@ -10,7 +10,7 @@
       <StackPane fx:id="stackPane" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane fx:id="historyPane" />
-            <AnchorPane fx:id="savedBasketsPane" prefHeight="200.0" prefWidth="200.0" />
+            <AnchorPane fx:id="savedBasketsPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0000FF;" />
             <AnchorPane fx:id="checkoutPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ff0000;" />
             <AnchorPane fx:id="basketPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00ff00;" />
          </children>
