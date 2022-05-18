@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import imat.basket.Basket;
 import imat.checkout.Checkout;
+import imat.productlist.ProductItem;
 import io.vavr.Tuple2;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,23 +31,47 @@ public class Controller implements Initializable {
 
     public static String cartNamePath;
 
-
     @FXML public AnchorPane basketPane;
     @FXML public AnchorPane savedBasketsPane;
     @FXML public AnchorPane checkoutPane;
     @FXML public AnchorPane historyPane;
-
     @FXML public StackPane stackPane;
 
+    public Basket basket;
+    public Checkout checkout;
 
-    public List<Product> getAllProducts(){
+    public static ShoppingCart getCart(){
+        return imat.getShoppingCart();
+    }
+    public static List<Product> getAllProducts(){
         return prods;
     }
-    public ProductItem getProdListItem(int i){
+    public static ProductItem getProdListItem(int i){
         return id2prodListItem.get(i);
     }
 
-    public void saveCartData(){
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        imat = IMatDataHandler.getInstance();
+        cartNamePath = imat.imatDirectory()+"/exCartData.json";
+        prods = imat.getProducts();
+        System.out.println(prods.size()+" products loaded");
+        loadCartData();
+
+        System.out.println(basketPane);
+        basket = new Basket(this);
+        checkout = new Checkout(this);
+        basketPane.getChildren().add(basket.getAnchor());
+        checkoutPane.getChildren().add(checkout.getAnchor());
+
+        id2prodListItem = new HashMap<>();
+        for(Product p : getAllProducts()){
+            ProductItem productItem = new ProductItem(new ShoppingItem(p), basket);
+            id2prodListItem.put(p.getProductId(), productItem);
+        }
+    }
+
+    public static void saveCartData(){
         File cartDataFile = new File(cartNamePath);
 
         ObjectMapper mapper = new ObjectMapper();
@@ -65,7 +90,7 @@ public class Controller implements Initializable {
         }
     }
 
-    public void loadCartData(){
+    public static void loadCartData(){
         Path cartDataFile = new File(cartNamePath).toPath();
         String jsonInput = null;
         try {
@@ -83,10 +108,7 @@ public class Controller implements Initializable {
         }
     }
 
-    public ShoppingCart getShoppingCart() {
-        return imat.getShoppingCart();
-    }
-    public List<Integer> getFilteredProductIds(ProductFilter productOrder){
+    public static List<Integer> getFilteredProductIds(ProductFilter productOrder){
         var matchFunc = new Function<Product, Tuple2<Integer, Product>>(){
             @Override
             public Tuple2<Integer, Product> apply(Product product) {
@@ -104,26 +126,5 @@ public class Controller implements Initializable {
                 .map(x -> x._2);
         Stream<Integer> intOrder = filteredAndOrdered.map(Product::getProductId);
         return intOrder.collect(Collectors.toList());
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        imat = IMatDataHandler.getInstance();
-        cartNamePath = imat.imatDirectory()+"/exCartData.json";
-        prods = imat.getProducts();
-        System.out.println(prods.size()+" products loaded");
-        loadCartData();
-
-        for(Product p : getAllProducts()){
-            ProductItem productItem = new ProductItem(new ShoppingItem(p), this);
-        }
-
-        System.out.println(basketPane);
-        basketPane = new Basket(this);
-        checkoutPane = new Checkout(this);
-
-        stackPane.getChildren().add(basketPane);
-        basketPane.toFront();
-        System.out.println(basketPane);
     }
 }

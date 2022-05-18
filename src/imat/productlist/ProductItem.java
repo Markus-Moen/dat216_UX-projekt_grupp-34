@@ -1,6 +1,8 @@
-package imat;
+package imat.productlist;
 
+import imat.Controller;
 import imat.basket.Basket;
+import imat.checkout.Checkout;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -14,7 +16,7 @@ import se.chalmers.cse.dat216.project.ShoppingItem;
 import java.io.IOException;
 
 public class ProductItem extends AnchorPane {
-    private Controller parentController;
+    private Basket basket;
     private ShoppingItem shoppingItem;
     
     @FXML private ImageView productItemImage;
@@ -22,21 +24,18 @@ public class ProductItem extends AnchorPane {
     @FXML private Label productItemCost;
     @FXML private TextField productItemAmount;
 
+    public ProductItem(ShoppingItem shoppingItem, Basket basket){
+        this.shoppingItem = shoppingItem;
+        this.basket = basket;
 
-
-    public ProductItem(ShoppingItem shoppingItem, Controller controller){
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fx/product.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("product.fxml"));
         //fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
-
         try {
             fxmlLoader.load();
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-
-        this.shoppingItem = shoppingItem;
-        this.parentController = controller;
 
         Product product = shoppingItem.getProduct();
         Image img = new Image("file:" + product.getImageName());
@@ -45,18 +44,17 @@ public class ProductItem extends AnchorPane {
         productItemCost.setText(Double.toString(product.getPrice()) + " kr/kg");
         productItemAmount.setText(Double.toString(shoppingItem.getAmount()));
     }
-    @FXML protected void removeItemFromBasket(ShoppingItem item){
-        parentController.getShoppingCart().removeItem(item);
-        ((Basket)(parentController.basketPane)).updateBasket();
+    private void removeItemFromBasket(ShoppingItem item){
+        basket.removeItemFromBasket(item);
     }
-    @FXML private void changeAmount(ShoppingItem item, Double newAmount){
+    private void changeAmount(ShoppingItem item, Double newAmount){
         item.setAmount(newAmount);
     }
-    @FXML protected void removeOne(ShoppingItem item){
+    private void removeOne(ShoppingItem item){
         double amount = item.getAmount();
         changeAmount(item, amount - 1);
     }
-    @FXML protected void addOne(ShoppingItem item){
+    private void addOne(ShoppingItem item){
         double amount = item.getAmount();
         changeAmount(item, amount + 1);
     }

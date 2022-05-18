@@ -2,7 +2,6 @@ package imat;
 
 
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -29,7 +28,7 @@ public class IMat extends Application {
 
         maybeInitializeDB();
 
-        Parent root = FXMLLoader.load(getClass().getResource("fx/imat.fxml"), bundle);
+        Parent root = FXMLLoader.load(getClass().getResource("imat.fxml"), bundle);
 
         Scene scene = new Scene(root, 800, 500);
         stage.setTitle(bundle.getString("application.name"));

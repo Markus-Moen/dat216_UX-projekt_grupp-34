@@ -2,15 +2,13 @@ package imat.browse;
 
 import imat.Controller;
 import imat.ProductFilter;
-import imat.ProductItem;
+import imat.productlist.ProductItem;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import org.jetbrains.annotations.Nullable;
-import se.chalmers.cse.dat216.project.Product;
 
-import javax.swing.text.html.ListView;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
