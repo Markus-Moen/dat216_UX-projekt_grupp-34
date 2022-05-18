@@ -91,5 +91,8 @@ public class Controller implements Initializable {
         for(Product p : Controller.getAllProducts()){
             ProductListItem productItem = new ProductListItem(p, this);
         }
+
+
+
     }
 }

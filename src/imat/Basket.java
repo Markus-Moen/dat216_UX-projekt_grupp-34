@@ -34,6 +34,7 @@ public class Basket extends AnchorPane{
     @FXML private Button newBasketButton;
     @FXML private FlowPane productList;
     @FXML private Button amountButtons;
+    @FXML private Button mySavedBasketsButton;
 
     @FXML
     public void buttonToAmount () {
@@ -99,6 +100,10 @@ public class Basket extends AnchorPane{
         for (ShoppingItem product : products) {
             productList.getChildren().add(productListMap.get(product.getProduct()));
         }
+
+    }
+
+    private void mySavedBasketsButtonClicked() {
 
     }
 
