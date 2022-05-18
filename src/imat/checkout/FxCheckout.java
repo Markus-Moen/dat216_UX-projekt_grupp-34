@@ -54,13 +54,20 @@ public class FxCheckout extends AnchorPane implements Anchorable, Initializable 
 
         imat = IMatDataHandler.getInstance();
 
-        wizardArr = new AnchorPane[] {addressPane, deliveryPane, paymentPane, donePane};
-        wizardPosition = 0;
-
         customer = imat.getCustomer();
         card = imat.getCreditCard();
 
-        nameField.setText("RuneSlayerF69420");
+        openCheckout();
+
+        wizardArr = new AnchorPane[] {addressPane, deliveryPane, paymentPane, donePane};
+
+        //nameField.setText("RuneSlayerF69420");
+    }
+
+    public void openCheckout(){
+        fillFields();
+        wizardPosition = 0;
+        addressPane.toFront();
     }
 
     private void fillFields(){
@@ -71,18 +78,35 @@ public class FxCheckout extends AnchorPane implements Anchorable, Initializable 
 
         nameField.setText(card.getHoldersName());
         cardNumberField.setText(card.getCardNumber());
-        cardMonthField.setText(Integer.toString(card.getValidMonth()));
-        cardYearField.setText(Integer.toString(card.getValidYear()));
-        cardVerificationField.setText(Integer.toString(card.getVerificationCode()));
+
+        int temp;
+        temp = card.getValidMonth();
+        if (temp != -1){
+            cardMonthField.setText(Integer.toString(temp));
+        }
+
+        temp = card.getValidYear();
+        if (temp != -1){
+            cardYearField.setText(Integer.toString(temp));
+        }
+
+        temp = card.getVerificationCode();
+        if (temp != -1){
+            cardVerificationField.setText(Integer.toString(temp));
+        }
     }
 
     @FXML protected void wizardNext(){
         switch(wizardPosition) {
-            case 2:
-                buy();
+            case 0:
+                customerData();
                 break;
             case 1:
                 // code block
+                break;
+            case 2:
+                cardData();
+                buy();
                 break;
             default:
                 // code block
@@ -107,9 +131,18 @@ public class FxCheckout extends AnchorPane implements Anchorable, Initializable 
     @FXML private void cardData(){
         card.setHoldersName(nameField.getText());
         card.setCardNumber(cardNumberField.getText());
-        card.setValidMonth(Integer.parseInt(cardMonthField.getText()));
-        card.setValidYear(Integer.parseInt(cardYearField.getText()));
-        card.setVerificationCode(Integer.parseInt(cardVerificationField.getText()));
+        card.setValidMonth(maybeParseInt(cardMonthField.getText()));
+        card.setValidYear(maybeParseInt(cardYearField.getText()));
+        card.setVerificationCode(maybeParseInt(cardVerificationField.getText()));
+    }
+
+    public static int maybeParseInt(String str) {
+        try {
+            int i = Integer.parseInt(str);
+            return i;
+        } catch(NumberFormatException e){
+            return -1;
+        }
     }
 
     @FXML protected void buy(){

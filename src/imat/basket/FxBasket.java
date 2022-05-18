@@ -74,6 +74,7 @@ public class FxBasket extends AnchorPane implements Anchorable, Initializable {
     }
 
     @FXML protected void onButtonToCheckout(){
+        parentFx.fxCheckout.openCheckout();
         parentFx.checkoutPane.toFront();
     }
     @FXML protected void onButtonToSavedCarts(){

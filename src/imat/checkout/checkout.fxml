@@ -29,12 +29,12 @@
                            <children>
                               <StackPane prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <AnchorPane fx:id="donePane" prefHeight="200.0" prefWidth="200.0" />
+                                    <AnchorPane fx:id="donePane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: ffffff;" />
                                     <AnchorPane fx:id="deliveryPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: eeeeee;">
                                        <children>
                                           <Label layoutX="165.0" layoutY="71.0" text="Välj Leveranstid!" />
-                                          <Button layoutX="159.0" layoutY="187.0" mnemonicParsing="false" onMouseClicked="#wizardBack" text="Oh shit go back" />
-                                          <Button layoutX="386.0" layoutY="187.0" mnemonicParsing="false" onMouseClicked="#wizardNext" text="Nästa" />
+                                          <Button layoutX="159.0" layoutY="187.0" mnemonicParsing="false" onAction="#wizardBack" text="Tillbaka" />
+                                          <Button layoutX="386.0" layoutY="187.0" mnemonicParsing="false" onAction="#wizardNext" text="Nästa" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane fx:id="addressPane" prefHeight="754.0" prefWidth="780.0" style="-fx-background-color: ffffff;">
@@ -52,7 +52,7 @@
                                           <TextField fx:id="phoneNumberField" layoutX="122.0" layoutY="352.0" />
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane fx:id="paymenyPane" onMouseClicked="#pay" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: EEEEEE;">
+                                    <AnchorPane fx:id="paymentPane" onMouseClicked="#pay" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: EEEEEE;">
                                        <children>
                                           <Label layoutX="156.0" layoutY="36.0" text="Betalningsuppgifter" AnchorPane.leftAnchor="156.0" AnchorPane.rightAnchor="156.0" AnchorPane.topAnchor="35.0" />
                                           <Label layoutX="43.0" layoutY="103.0" text="Namn:" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="65.0" />
