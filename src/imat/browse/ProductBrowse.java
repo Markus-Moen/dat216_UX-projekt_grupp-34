@@ -1,8 +1,8 @@
 package imat.browse;
 
-import imat.Controller;
+import imat.FxRoot;
 import imat.ProductFilter;
-import imat.productlist.ProductItem;
+import imat.productlist.FxProductItem;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -14,9 +14,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProductBrowse extends AnchorPane {
-    Controller parentController;
+    FxRoot parentFx;
     @FXML FlowPane productFlowPane;
-    private Map<Integer, ProductItem> productListItemMap = new HashMap<Integer, ProductItem>();
+    private Map<Integer, FxProductItem> productListItemMap = new HashMap<Integer, FxProductItem>();
 
     public ProductBrowse(){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fx/productbrowse.fxml"));
@@ -30,11 +30,11 @@ public class ProductBrowse extends AnchorPane {
     }
 
     private void updateRecipeList(@Nullable ProductFilter productFilter){
-        var ids = parentController.getFilteredProductIds(productFilter);
+        var ids = parentFx.getFilteredProductIds(productFilter);
 
         productFlowPane.getChildren().clear();
         for(Integer i : ids){
-            ProductItem productListItem = parentController.getProdListItem(i);
+            FxProductItem productListItem = parentFx.getProdListItem(i);
             productFlowPane.getChildren().add(productListItem);
         }
     }

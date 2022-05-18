@@ -1,8 +1,6 @@
 package imat.productlist;
 
-import imat.Controller;
-import imat.basket.Basket;
-import imat.checkout.Checkout;
+import imat.basket.FxBasket;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -15,8 +13,8 @@ import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import java.io.IOException;
 
-public class ProductItem extends AnchorPane {
-    private Basket basket;
+public class FxProductItem extends AnchorPane {
+    private FxBasket fxBasket;
     private ShoppingItem shoppingItem;
     
     @FXML private ImageView productItemImage;
@@ -24,12 +22,11 @@ public class ProductItem extends AnchorPane {
     @FXML private Label productItemCost;
     @FXML private TextField productItemAmount;
 
-    public ProductItem(ShoppingItem shoppingItem, Basket basket){
+    public FxProductItem(ShoppingItem shoppingItem, FxBasket fxBasket){
         this.shoppingItem = shoppingItem;
-        this.basket = basket;
+        this.fxBasket = fxBasket;
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("product.fxml"));
-        //fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
         try {
             fxmlLoader.load();
@@ -45,7 +42,7 @@ public class ProductItem extends AnchorPane {
         productItemAmount.setText(Double.toString(shoppingItem.getAmount()));
     }
     private void removeItemFromBasket(ShoppingItem item){
-        basket.removeItemFromBasket(item);
+        fxBasket.removeItemFromBasket(item);
     }
     private void changeAmount(ShoppingItem item, Double newAmount){
         item.setAmount(newAmount);

@@ -1,15 +1,13 @@
 package imat.checkout;
 
 import imat.Anchorable;
-import imat.Controller;
-import javafx.beans.value.ChangeListener;
+import imat.FxRoot;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TextField;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,9 +16,9 @@ import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Customer;
 import se.chalmers.cse.dat216.project.CreditCard;
 
-public class Checkout extends AnchorPane implements Anchorable, Initializable {
+public class FxCheckout extends AnchorPane implements Anchorable, Initializable {
     private AnchorPane anchorPane;
-    private Controller parentController;
+    private FxRoot parentFx;
 
     private int wizardPosition;
     private AnchorPane[] wizardArr;
@@ -43,12 +41,9 @@ public class Checkout extends AnchorPane implements Anchorable, Initializable {
     @FXML private TextField cardYearField;
     @FXML private TextField cardVerificationField;
 
-    public Checkout(Controller parentController) {
-        this.parentController = parentController;
+    public FxCheckout(FxRoot parentFx) {
+        this.parentFx = parentFx;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("checkout.fxml"));
-        //fxmlLoader.setController(null);
-        //fxmlLoader.setController(this);
-        fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
         try {
@@ -125,7 +120,7 @@ public class Checkout extends AnchorPane implements Anchorable, Initializable {
     }
 
     @FXML protected void onButtonBack(){
-        parentController.basketPane.toFront();
+        parentFx.basketPane.toFront();
     }
 
     @Override

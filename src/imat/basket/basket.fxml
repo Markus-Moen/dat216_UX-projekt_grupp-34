@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.StackPane?>
 
-<fx:root maxHeight="500.0" maxWidth="800.0" minHeight="500.0" minWidth="800.0" prefHeight="500.0" prefWidth="800.0" type="AnchorPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="500.0" maxWidth="800.0" minHeight="500.0" minWidth="800.0" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <SplitPane dividerPositions="0.1391" orientation="VERTICAL" prefHeight="500.0" prefWidth="801.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
                   <Button fx:id="newBasketButton" layoutX="7.0" layoutY="8.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" text="Ny varukorg" wrapText="true" />
-                  <Button fx:id="mySavedBasketsButton" layoutX="701.0" layoutY="8.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="95.0" text="Mina sparade varukorgar" wrapText="true" />
+                  <Button fx:id="mySavedBasketsButton" layoutX="701.0" layoutY="8.0" mnemonicParsing="false" onMouseClicked="#onButtonToSavedCarts" prefHeight="50.0" prefWidth="95.0" text="Mina sparade varukorgar" wrapText="true" />
                   <Button fx:id="shopingHistoryButton" layoutX="604.0" layoutY="8.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="95.0" text="Inköpshistorik" wrapText="true" />
                   <Label fx:id="basketName" layoutX="386.0" layoutY="25.0" text="soup" />
                </children>
@@ -72,4 +72,4 @@
          </children>
       </StackPane>
    </children>
-</fx:root>
+</AnchorPane>

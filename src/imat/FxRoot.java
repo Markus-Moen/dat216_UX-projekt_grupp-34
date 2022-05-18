@@ -3,9 +3,10 @@ package imat;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import imat.basket.Basket;
-import imat.checkout.Checkout;
-import imat.productlist.ProductItem;
+import imat.basket.FxBasket;
+import imat.checkout.FxCheckout;
+import imat.productlist.FxProductItem;
+import imat.savedcarts.FxSavedCarts;
 import io.vavr.Tuple2;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,10 +24,10 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Controller implements Initializable {
+public class FxRoot implements Initializable {
     private static IMatDataHandler imat;
     private static List<Product> prods;
-    private static HashMap<Integer, ProductItem> id2prodListItem;
+    private static HashMap<Integer, FxProductItem> id2prodListItem;
     private static HashMap<String, Integer> savedCartName2id;
 
     public static String cartNamePath;
@@ -37,8 +38,9 @@ public class Controller implements Initializable {
     @FXML public AnchorPane historyPane;
     @FXML public StackPane stackPane;
 
-    public Basket basket;
-    public Checkout checkout;
+    public FxBasket fxBasket;
+    public FxCheckout fxCheckout;
+    public FxSavedCarts fxSavedCarts;
 
     public static ShoppingCart getCart(){
         return imat.getShoppingCart();
@@ -46,7 +48,7 @@ public class Controller implements Initializable {
     public static List<Product> getAllProducts(){
         return prods;
     }
-    public static ProductItem getProdListItem(int i){
+    public static FxProductItem getProdListItem(int i){
         return id2prodListItem.get(i);
     }
 
@@ -59,15 +61,17 @@ public class Controller implements Initializable {
         loadCartData();
 
         System.out.println(basketPane);
-        basket = new Basket(this);
-        checkout = new Checkout(this);
-        basketPane.getChildren().add(basket.getAnchor());
-        checkoutPane.getChildren().add(checkout.getAnchor());
+        fxBasket = new FxBasket(this);
+        fxCheckout = new FxCheckout(this);
+        fxSavedCarts = new FxSavedCarts(this);
+        basketPane.getChildren().add(fxBasket.getAnchor());
+        checkoutPane.getChildren().add(fxCheckout.getAnchor());
+        savedBasketsPane.getChildren().add(fxSavedCarts.getAnchor());
 
         id2prodListItem = new HashMap<>();
         for(Product p : getAllProducts()){
-            ProductItem productItem = new ProductItem(new ShoppingItem(p), basket);
-            id2prodListItem.put(p.getProductId(), productItem);
+            FxProductItem fxProductItem = new FxProductItem(new ShoppingItem(p), fxBasket);
+            id2prodListItem.put(p.getProductId(), fxProductItem);
         }
     }
 

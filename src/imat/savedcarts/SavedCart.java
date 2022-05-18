@@ -1,11 +1,8 @@
-package imat.cartmenu;
+package imat.savedcarts;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 
-public class ItemCart {
-
+public class SavedCart extends AnchorPane {
     private String name;
     private String date;
 
@@ -24,5 +21,4 @@ public class ItemCart {
     public void setDate(String date) {
         this.date = date;
     }
-
 }
