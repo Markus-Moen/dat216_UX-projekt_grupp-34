@@ -1,8 +1,10 @@
 package imat;
 
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.TextField;
 
 import java.awt.*;
 import java.io.IOException;
@@ -71,6 +73,16 @@ public class Checkout extends AnchorPane{
     }
 
     protected void wizardNext(){
+        switch(wizardPosition) {
+            case 2:
+                buy();
+                break;
+            case 1:
+                // code block
+                break;
+            default:
+                // code block
+        }
         wizardPosition++;
         wizardArr[wizardPosition].toFront();
     }
@@ -94,5 +106,9 @@ public class Checkout extends AnchorPane{
         card.setValidMonth(Integer.parseInt(cardMonthField.getText()));
         card.setValidYear(Integer.parseInt(cardYearField.getText()));
         card.setVerificationCode(Integer.parseInt(cardVerificationField.getText()));
+    }
+
+    protected void buy(){
+        imat.placeOrder(true);
     }
 }

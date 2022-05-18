@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Text?>
 
 <SplitPane dividerPositions="0.13909774436090225" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="800.0" prefWidth="1224.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <items>
@@ -14,7 +15,10 @@
          <children>
             <SplitPane dividerPositions="0.5" prefHeight="756.0" prefWidth="1254.0">
                <items>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <Text layoutX="187.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                     </children></AnchorPane>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
                         <StackPane prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -29,7 +33,7 @@
                               </AnchorPane>
                               <AnchorPane fx:id="addressPane" prefHeight="754.0" prefWidth="780.0" style="-fx-background-color: ffffff;">
                                  <children>
-                                    <Button layoutX="740.0" layoutY="604.0" mnemonicParsing="false" onMouseClicked="#wizardNext" text="Nästa" AnchorPane.bottomAnchor="125.0" AnchorPane.rightAnchor="84.0" />
+                                    <Button layoutX="740.0" layoutY="604.0" mnemonicParsing="false" onAction="#wizardNext" text="Nästa" AnchorPane.bottomAnchor="125.0" AnchorPane.rightAnchor="84.0" />
                                     <Label layoutX="51.0" layoutY="179.0" text="Adress:" />
                                     <TextField fx:id="addressField" layoutX="122.0" layoutY="175.0" />
                                     <Label layoutX="51.0" layoutY="228.0" text="Postnummer:" />
@@ -54,8 +58,8 @@
                                     <TextField fx:id="cardYearField" layoutX="92.0" layoutY="287.0" prefHeight="25.0" prefWidth="40.0" AnchorPane.leftAnchor="95.0" AnchorPane.topAnchor="205.0" />
                                     <Label layoutX="205.0" layoutY="247.0" text="CVC:" AnchorPane.leftAnchor="175.0" AnchorPane.topAnchor="185.0" />
                                     <TextField fx:id="cardVerificationField" layoutX="102.0" layoutY="297.0" prefHeight="25.0" prefWidth="40.0" AnchorPane.leftAnchor="175.0" AnchorPane.topAnchor="205.0" />
-                                    <Button layoutX="79.0" layoutY="588.0" mnemonicParsing="false" onMouseClicked="#wizardBack" text="Tillbaka" />
-                                    <Button layoutX="475.0" layoutY="588.0" mnemonicParsing="false" onMouseClicked="#wizardNext" text="Nästa" AnchorPane.bottomAnchor="141.0" AnchorPane.rightAnchor="82.0" />
+                                    <Button layoutX="79.0" layoutY="588.0" mnemonicParsing="false" onAction="#wizardBack" text="Tillbaka" />
+                                    <Button layoutX="475.0" layoutY="588.0" mnemonicParsing="false" onAction="#wizardNext" text="Nästa" AnchorPane.bottomAnchor="141.0" AnchorPane.rightAnchor="82.0" />
                                  </children>
                               </AnchorPane>
                            </children>
