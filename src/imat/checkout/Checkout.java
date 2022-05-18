@@ -1,5 +1,6 @@
-package imat;
+package imat.checkout;
 
+import imat.Controller;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,8 +39,7 @@ public class Checkout extends AnchorPane{
 
     public Checkout(Controller controller){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fx/checkout.fxml"));
-
-        fxmlLoader.setRoot(this);
+        //fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
         try {
@@ -72,7 +72,7 @@ public class Checkout extends AnchorPane{
         cardVerificationField.setText(Integer.toString(card.getVerificationCode()));
     }
 
-    protected void wizardNext(){
+    @FXML protected void wizardNext(){
         switch(wizardPosition) {
             case 2:
                 buy();
@@ -87,12 +87,12 @@ public class Checkout extends AnchorPane{
         wizardArr[wizardPosition].toFront();
     }
 
-    protected void wizardBack(){
+    @FXML protected void wizardBack(){
         wizardPosition--;
         wizardArr[wizardPosition].toFront();
     }
 
-    private void customerData(){
+    @FXML private void customerData(){
         customer.setAddress(addressField.getText());
         customer.setPostCode(postCodeField.getText());
         customer.setPostAddress(apartmentNumberField.getText());
@@ -100,7 +100,7 @@ public class Checkout extends AnchorPane{
         customer.setPhoneNumber(phoneNumberField.getText());
     }
 
-    private void cardData(){
+    @FXML private void cardData(){
         card.setHoldersName(nameField.getText());
         card.setCardNumber(cardNumberField.getText());
         card.setValidMonth(Integer.parseInt(cardMonthField.getText()));
@@ -108,7 +108,10 @@ public class Checkout extends AnchorPane{
         card.setVerificationCode(Integer.parseInt(cardVerificationField.getText()));
     }
 
-    protected void buy(){
+    @FXML protected void buy(){
         imat.placeOrder(true);
+    }
+    @FXML protected void pay(){
+
     }
 }

@@ -1,5 +1,6 @@
-package imat;
+package imat.basket;
 
+import imat.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -23,7 +24,7 @@ import se.chalmers.cse.dat216.project.CreditCard;
 
 //import imat.ProductItem;
 
-public class Basket extends AnchorPane{
+public class Basket extends AnchorPane {
     
     private Controller parentController;
 
@@ -38,7 +39,11 @@ public class Basket extends AnchorPane{
     }
 
     public Basket(Controller controller){
+        parentController = controller;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fx/basket.fxml"));
+        //fxmlLoader.setRoot(this);
+        fxmlLoader.setController(this);
+
         try {
             fxmlLoader.load();
         } catch (IOException exception) {
@@ -49,44 +54,29 @@ public class Basket extends AnchorPane{
 
     private void newBasket(){
         //checks if user has saved and such
-        Controller.getShoppingCart().clear();
+        parentController.getShoppingCart().clear();
         setBasketName("Ny varukorg");
     }
     private void setBasketName(String name){
-        basketName.setText(name);
+        //basketName.setText(name);
     } 
     private void openBasket(){ // need a name?
-        Controller.getShoppingCart(); //donno what cart this gets?
+        parentController.getShoppingCart(); //donno what cart this gets?
     }
     private void saveBasket(String name){
         setBasketName(name);
         //save shoppingcart somehow
     }
     private void addItemToBasket(ShoppingItem item){
-        Controller.getShoppingCart().addItem(item);
+        parentController.getShoppingCart().addItem(item);
         updateBasket();
     }
-    private void removeItemFromBasket(ShoppingItem item){
-        Controller.getShoppingCart().removeItem(item);
-        updateBasket();
-    }
-    private void changeAmount(ShoppingItem item, Double newAmount){
-        item.setAmount(newAmount);
-    }
-    private void removeOne(ShoppingItem item){
-        double amount = item.getAmount();
-        changeAmount(item, amount - 1);
-    }
-    private void addOne(ShoppingItem item){
-        double amount = item.getAmount();
-        changeAmount(item, amount + 1);
-    }
-    private void updateBasket(){
+    public void updateBasket(){
         productList.getChildren().clear();
-        List<ShoppingItem> basketItems = Controller.getShoppingCart().getItems();
+        List<ShoppingItem> basketItems = parentController.getShoppingCart().getItems();
         for (ShoppingItem product : basketItems) {
             int prodId = product.getProduct().getProductId();
-            productList.getChildren().add(Controller.getProdListItem(prodId));
+            productList.getChildren().add(parentController.getProdListItem(prodId));
         }
     }
 

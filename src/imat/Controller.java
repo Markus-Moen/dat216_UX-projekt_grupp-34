@@ -3,16 +3,13 @@ package imat;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import imat.basket.Basket;
+import imat.checkout.Checkout;
 import io.vavr.Tuple2;
-import io.vavr.control.Either;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import javafx.scene.layout.StackPane;
 import se.chalmers.cse.dat216.project.*;
 
 import java.io.File;
@@ -25,29 +22,31 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Controller {
+public class Controller implements Initializable {
     private static IMatDataHandler imat;
     private static List<Product> prods;
     private static HashMap<Integer, ProductItem> id2prodListItem;
     private static HashMap<String, Integer> savedCartName2id;
 
-    public static final String cartNamePath = imat.imatDirectory()+"/exCartData.json";
+    public static String cartNamePath;
 
 
-    @FXML private AnchorPane basketPane;
-    @FXML private AnchorPane savedBasketsPane;
-    @FXML private AnchorPane checkoutPane;
-    @FXML private AnchorPane historyPane;
+    @FXML public AnchorPane basketPane;
+    @FXML public AnchorPane savedBasketsPane;
+    @FXML public AnchorPane checkoutPane;
+    @FXML public AnchorPane historyPane;
+
+    @FXML public StackPane stackPane;
 
 
-    public static List<Product> getAllProducts(){
+    public List<Product> getAllProducts(){
         return prods;
     }
-    public static ProductItem getProdListItem(int i){
+    public ProductItem getProdListItem(int i){
         return id2prodListItem.get(i);
     }
 
-    public static void saveCartData(){
+    public void saveCartData(){
         File cartDataFile = new File(cartNamePath);
 
         ObjectMapper mapper = new ObjectMapper();
@@ -66,7 +65,7 @@ public class Controller {
         }
     }
 
-    public static void loadCartData(){
+    public void loadCartData(){
         Path cartDataFile = new File(cartNamePath).toPath();
         String jsonInput = null;
         try {
@@ -84,10 +83,10 @@ public class Controller {
         }
     }
 
-    public static ShoppingCart getShoppingCart() {
+    public ShoppingCart getShoppingCart() {
         return imat.getShoppingCart();
     }
-    public static List<Integer> getFilteredProductIds(ProductFilter productOrder){
+    public List<Integer> getFilteredProductIds(ProductFilter productOrder){
         var matchFunc = new Function<Product, Tuple2<Integer, Product>>(){
             @Override
             public Tuple2<Integer, Product> apply(Product product) {
@@ -107,22 +106,24 @@ public class Controller {
         return intOrder.collect(Collectors.toList());
     }
 
-    //@Override
-    public Controller(ResourceBundle resourceBundle) {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         imat = IMatDataHandler.getInstance();
+        cartNamePath = imat.imatDirectory()+"/exCartData.json";
         prods = imat.getProducts();
         System.out.println(prods.size()+" products loaded");
         loadCartData();
 
-        for(Product p : Controller.getAllProducts()){
+        for(Product p : getAllProducts()){
             ProductItem productItem = new ProductItem(new ShoppingItem(p), this);
         }
 
-        AnchorPane basket = new Basket(this);
-        basketPane.getChildren().add(basket);
-        basketPane.toFront();
+        System.out.println(basketPane);
+        basketPane = new Basket(this);
+        checkoutPane = new Checkout(this);
 
-        AnchorPane checkout = new Checkout(this);
-        checkoutPane.getChildren().add(checkout);
+        stackPane.getChildren().add(basketPane);
+        basketPane.toFront();
+        System.out.println(basketPane);
     }
 }

@@ -34,7 +34,7 @@
             <AnchorPane fx:id="amountButtons" prefHeight="60.0" prefWidth="140.0">
                <children>
                   <TextField fx:id="productItemAmount" alignment="CENTER" layoutX="37.0" layoutY="18.0" minWidth="50.0" prefWidth="50.0" text="1" />
-                  <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="94.0" layoutY="23.0" onMouseClicked="#removeOne" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="94.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../resources/minus-button.png" />
                      </image>

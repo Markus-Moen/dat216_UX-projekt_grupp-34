@@ -17,7 +17,6 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
                   <Button fx:id="newBasketButton" layoutX="7.0" layoutY="8.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" text="Ny varukorg" wrapText="true" />
-                  <TextField fx:id="basketName" alignment="CENTER" layoutX="200.0" layoutY="21.0" minWidth="400.0" promptText="Ny inköpslista" />
                   <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="571.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="213.0">
                      <image>
                         <Image url="@Images/editing.png" />
@@ -25,6 +24,7 @@
                   </ImageView>
                   <Button fx:id="mySavedBasketsButton" layoutX="701.0" layoutY="8.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="95.0" text="Mina sparade varukorgar" wrapText="true" />
                   <Button fx:id="shopingHistoryButton" layoutX="604.0" layoutY="8.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="95.0" text="Inköpshistorik" wrapText="true" />
+                  <Label fx:id="basketName" layoutX="386.0" layoutY="25.0" text="soup" />
                </children>
             </AnchorPane>
           <AnchorPane fx:id="apMainView" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">

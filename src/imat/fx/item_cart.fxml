@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="158.0" prefWidth="236.0" style="-fx-background-color: #F0F0F0;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imat.ItemCartController">
+<AnchorPane prefHeight="158.0" prefWidth="236.0" style="-fx-background-color: #F0F0F0;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imat.cartmenu.ItemCartController">
     <children>
         <Label fx:id="nameLabel" alignment="TOP_LEFT" layoutX="14.0" layoutY="14.0" prefHeight="28.0" prefWidth="143.0" text="Varukorg 1">
             <font>

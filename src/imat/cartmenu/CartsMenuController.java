@@ -1,4 +1,4 @@
-package imat;
+package imat.cartmenu;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
