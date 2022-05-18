@@ -4,3 +4,5 @@ target/**/*.*
 .idea/tasks.xml
 **/*.iws
 .DS_Store
+*.DS_Store
+**/.DS_Store
