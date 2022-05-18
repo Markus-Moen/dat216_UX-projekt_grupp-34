@@ -53,12 +53,12 @@ public class Controller implements Initializable {
 
     private static IMatDataHandler imat;
     private static List<Product> prods;
-    private static HashMap<Integer, ProductListItem> id2prodListItem;
+    private static HashMap<Integer, ProductItem> id2prodListItem;
 
     public static List<Product> getAllProducts(){
         return prods;
     }
-    public static HashMap<Integer, ProductListItem> getId2prodListItem(){
+    public static HashMap<Integer, ProductItem> getId2prodListItem(){
         return id2prodListItem;
     }
 
@@ -89,7 +89,7 @@ public class Controller implements Initializable {
         System.out.println(prods.size()+" products loaded");
 
         for(Product p : Controller.getAllProducts()){
-            ProductListItem productItem = new ProductListItem(p, this);
+            ProductItem productItem = new ProductItem(new ShoppingItem(p), this);
         }
     }
 }

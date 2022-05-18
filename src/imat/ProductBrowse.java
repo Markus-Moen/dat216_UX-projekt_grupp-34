@@ -16,7 +16,7 @@ import static imat.Controller.getId2prodListItem;
 
 public class ProductBrowse extends AnchorPane {
     @FXML FlowPane productFlowPane;
-    private Map<Integer, ProductListItem> productListItemMap = new HashMap<Integer, ProductListItem>();
+    private Map<Integer, ProductItem> productListItemMap = new HashMap<Integer, ProductItem>();
 
     public ProductBrowse(){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fx/productbrowse.fxml"));
@@ -34,7 +34,7 @@ public class ProductBrowse extends AnchorPane {
 
         productFlowPane.getChildren().clear();
         for(Integer i : ids){
-            ProductListItem productListItem = getId2prodListItem().get(i);
+            ProductItem productListItem = getId2prodListItem().get(i);
             productFlowPane.getChildren().add(productListItem);
         }
     }
