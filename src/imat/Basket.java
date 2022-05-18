@@ -37,7 +37,7 @@ public class Basket extends AnchorPane{
         amountButtons.toFront();
     }
 
-    public Basket(){
+    public Basket(Controller controller){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fx/basket.fxml"));
         try {
             fxmlLoader.load();

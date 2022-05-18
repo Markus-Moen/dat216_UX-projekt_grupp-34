@@ -3,9 +3,11 @@ package imat;
 import io.vavr.Tuple;
 import io.vavr.Tuple2;
 import io.vavr.control.Either;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -18,10 +20,17 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Controller implements Initializable {
+public class Controller {
     private static IMatDataHandler imat;
     private static List<Product> prods;
     private static HashMap<Integer, ProductItem> id2prodListItem;
+
+
+    @FXML private AnchorPane basketPane;
+    @FXML private AnchorPane savedBasketsPane;
+    @FXML private AnchorPane checkoutPane;
+    @FXML private AnchorPane historyPane;
+
 
     public static List<Product> getAllProducts(){
         return prods;
@@ -62,8 +71,8 @@ public class Controller implements Initializable {
         return intOrder.collect(Collectors.toList());
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    //@Override
+    public Controller(ResourceBundle resourceBundle) {
         imat = IMatDataHandler.getInstance();
         prods = imat.getProducts();
         System.out.println(prods.size()+" products loaded");
@@ -71,5 +80,12 @@ public class Controller implements Initializable {
         for(Product p : Controller.getAllProducts()){
             ProductItem productItem = new ProductItem(new ShoppingItem(p), this);
         }
+
+        AnchorPane basket = new Basket(this);
+        basketPane.getChildren().add(basket);
+        basketPane.toFront();
+
+        AnchorPane checkout = new Checkout(this);
+        checkoutPane.getChildren().add(checkout);
     }
 }
