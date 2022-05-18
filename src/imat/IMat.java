@@ -28,7 +28,7 @@ public class IMat extends Application {
         ResourceBundle bundle = java.util.ResourceBundle.getBundle("imat/resources/IMat");
 
         maybeInitializeDB();
-        Controller.initialize();
+        Controller controller = new Controller();
 
         Parent root = FXMLLoader.load(getClass().getResource("fx/imat.fxml"), bundle);
         Scene scene = new Scene(root, 800, 500);
