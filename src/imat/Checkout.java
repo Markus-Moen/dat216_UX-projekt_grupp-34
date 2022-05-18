@@ -36,7 +36,7 @@ public class Checkout extends AnchorPane{
     @FXML private TextField cardYearField;
     @FXML private TextField cardVerificationField;
 
-    public Checkout(){
+    public Checkout(Controller controller){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fx/checkout.fxml"));
 
         fxmlLoader.setRoot(this);
