@@ -26,7 +26,6 @@ import se.chalmers.cse.dat216.project.CreditCard;
 public class Basket extends AnchorPane{
     
     private Controller parentController;
-    private ShoppingCart basket;
 
     @FXML private Label basketName;
     @FXML private Button newBasketButton;
@@ -50,25 +49,25 @@ public class Basket extends AnchorPane{
 
     private void newBasket(){
         //checks if user has saved and such
-        basket.clear();
+        Controller.getShoppingCart().clear();
         setBasketName("Ny varukorg");
     }
     private void setBasketName(String name){
         basketName.setText(name);
     } 
     private void openBasket(){ // need a name?
-        basket = Controller.getShoppingCart(); //donno what cart this gets?
+        Controller.getShoppingCart(); //donno what cart this gets?
     }
     private void saveBasket(String name){
         setBasketName(name);
         //save shoppingcart somehow
     }
     private void addItemToBasket(ShoppingItem item){
-        basket.addItem(item);
+        Controller.getShoppingCart().addItem(item);
         updateBasket();
     }
     private void removeItemFromBasket(ShoppingItem item){
-        basket.removeItem(item);
+        Controller.getShoppingCart().removeItem(item);
         updateBasket();
     }
     private void changeAmount(ShoppingItem item, Double newAmount){
@@ -84,12 +83,11 @@ public class Basket extends AnchorPane{
     }
     private void updateBasket(){
         productList.getChildren().clear();
-        List<ShoppingItem> basketItems = basket.getItems();
+        List<ShoppingItem> basketItems = Controller.getShoppingCart().getItems();
         for (ShoppingItem product : basketItems) {
             int prodId = product.getProduct().getProductId();
             productList.getChildren().add(Controller.getProdListItem(prodId));
         }
-
     }
 
     private void mySavedBasketsButtonClicked() {
