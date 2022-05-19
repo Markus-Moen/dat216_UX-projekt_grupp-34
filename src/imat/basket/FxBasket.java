@@ -27,6 +27,16 @@ public class FxBasket extends AnchorPane implements Anchorable, Initializable {
     @FXML private Button newBasketButton;
     @FXML private FlowPane productList;
     @FXML private Button mySavedBasketsButton;
+    @FXML private Label savedBasketLabel;
+    @FXML private AnchorPane apNewBasketSaveWarning;
+
+    @FXML
+        public void openSaveView () {
+            apNewBasketSaveWarning.toFront();
+        }
+        public void closeSaveView () {
+            apNewBasketSaveWarning.toBack();
+        }
 
     public FxBasket(FxRoot parentFx) {
         this.parentFx = parentFx;
@@ -40,26 +50,32 @@ public class FxBasket extends AnchorPane implements Anchorable, Initializable {
         }
         clearBasket();
     }
-
     private void setBasketName(String name){
-        //basketName.setText(name);
+        basketName.setText(name);
     }
     private void openBasket(){ // need a name?
+        savedBasketLabel.setText("Saved!");
         FxRoot.getCart();
     }
-    private void saveBasket(String name){
+    private void saveBasket(){
+        savedBasketLabel.setText("Saved!");
+        String name = "hej";
         setBasketName(name);
+        closeSaveView();
         //save shoppingcart somehow
     }
     public void addItemToBasket(ShoppingItem item){
+        savedBasketLabel.setText("");
         FxRoot.getCart().addItem(item);
         updateBasket();
     }
     public void removeItemFromBasket(ShoppingItem item){
+        savedBasketLabel.setText("");
         FxRoot.getCart().removeItem(item);
         updateBasket();
     }
     private void clearBasket(){
+        savedBasketLabel.setText("");
         //checks if user has saved and such
         FxRoot.getCart().clear();
         setBasketName("Ny varukorg");
