@@ -22,15 +22,14 @@
                      <items>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
-                              <Text layoutX="187.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                              <Text layoutX="187.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="{lista med dina varor}" />
                            </children>
                         </AnchorPane>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
                               <StackPane prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <AnchorPane fx:id="donePane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: ffffff;" />
-                                    <AnchorPane fx:id="deliveryPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: eeeeee;">
+                                    <AnchorPane fx:id="deliveryPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
                                        <children>
                                           <Label layoutX="165.0" layoutY="71.0" text="Välj Leveranstid!" />
                                           <Button layoutX="159.0" layoutY="187.0" mnemonicParsing="false" onAction="#wizardBack" text="Tillbaka" />
@@ -52,7 +51,7 @@
                                           <TextField fx:id="phoneNumberField" layoutX="122.0" layoutY="352.0" />
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane fx:id="paymentPane" onMouseClicked="#pay" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: EEEEEE;">
+                                    <AnchorPane fx:id="paymentPane" onMouseClicked="#pay" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
                                        <children>
                                           <Label layoutX="156.0" layoutY="36.0" text="Betalningsuppgifter" AnchorPane.leftAnchor="156.0" AnchorPane.rightAnchor="156.0" AnchorPane.topAnchor="35.0" />
                                           <Label layoutX="43.0" layoutY="103.0" text="Namn:" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="65.0" />
@@ -67,6 +66,12 @@
                                           <TextField fx:id="cardVerificationField" layoutX="102.0" layoutY="297.0" prefHeight="25.0" prefWidth="40.0" AnchorPane.leftAnchor="175.0" AnchorPane.topAnchor="205.0" />
                                           <Button layoutX="79.0" layoutY="588.0" mnemonicParsing="false" onAction="#wizardBack" text="Tillbaka" />
                                           <Button layoutX="475.0" layoutY="588.0" mnemonicParsing="false" onAction="#wizardNext" text="Nästa" AnchorPane.bottomAnchor="141.0" AnchorPane.rightAnchor="82.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane fx:id="donePane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
+                                       <children>
+                                          <Label layoutX="266.0" layoutY="87.0" text="Tack för ditt köp!" />
+                                          <Button layoutX="409.0" layoutY="559.0" mnemonicParsing="false" onAction="#onButtonBack" prefHeight="83.0" prefWidth="139.0" text="Tillbaka till varukorgen" />
                                        </children>
                                     </AnchorPane>
                                  </children>
