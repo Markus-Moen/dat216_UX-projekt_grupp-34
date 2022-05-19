@@ -35,13 +35,12 @@ public class FxBasket extends AnchorPane implements Anchorable, Initializable {
     @FXML private Label savedBasketLabel;
     @FXML private AnchorPane apNewBasketSaveWarning;
 
-    @FXML
-        public void openSaveView () {
-            apNewBasketSaveWarning.toFront();
-        }
-        public void closeSaveView () {
-            apNewBasketSaveWarning.toBack();
-        }
+    @FXML public void openSaveView () {
+        apNewBasketSaveWarning.toFront();
+    }
+    @FXML public void closeSaveView () {
+        apNewBasketSaveWarning.toBack();
+    }
 
     public FxBasket(FxRoot parentFx) {
         this.parentFx = parentFx;
@@ -62,11 +61,11 @@ public class FxBasket extends AnchorPane implements Anchorable, Initializable {
     private void setBasketName(String name){
         basketName.setText(name);
     }
-    private void openBasket(){ // need a name?
+    @FXML private void openBasket(){ // need a name?
         savedBasketLabel.setText("Saved!");
         FxRoot.getCart();
     }
-    private void saveBasket(){
+    @FXML private void saveBasket(){
         savedBasketLabel.setText("Saved!");
         String name = "hej";
         setBasketName(name);
@@ -83,7 +82,7 @@ public class FxBasket extends AnchorPane implements Anchorable, Initializable {
         FxRoot.getCart().removeItem(item);
         updateBasket();
     }
-    private void clearBasket(){
+    @FXML private void clearBasket(){
         savedBasketLabel.setText("");
         //checks if user has saved and such
         FxRoot.getCart().clear();
