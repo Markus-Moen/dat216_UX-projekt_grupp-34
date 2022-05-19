@@ -13,7 +13,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="66.0" prefWidth="802.0">
                <children>
-                  <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="106.0" text="Tillbaka till&#10;varukorg" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
+                  <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#onButtonReturn" prefHeight="68.0" prefWidth="106.0" text="Tillbaka till&#10;varukorg" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
                   <TextField layoutX="200.0" layoutY="45.0" prefHeight="26.0" prefWidth="293.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
                   <Label layoutX="377.0" layoutY="14.0" text="Sök Vara" />
                </children>

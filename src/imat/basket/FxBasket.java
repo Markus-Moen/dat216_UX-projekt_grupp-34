@@ -2,6 +2,7 @@ package imat.basket;
 
 import imat.Anchorable;
 import imat.FxRoot;
+import imat.browse.FxBrowse;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,8 +22,12 @@ import se.chalmers.cse.dat216.project.ShoppingItem;
 
 public class FxBasket extends AnchorPane implements Anchorable, Initializable {
     private AnchorPane anchorPane;
-    private FxRoot parentFx;
+    public FxRoot parentFx;
+    private FxBrowse browse;
 
+    @FXML public AnchorPane basketPane;
+    @FXML private AnchorPane browseLightBox;
+    @FXML private AnchorPane browsepane;
     @FXML private Label basketName;
     @FXML private Button newBasketButton;
     @FXML private FlowPane productList;
@@ -38,6 +43,10 @@ public class FxBasket extends AnchorPane implements Anchorable, Initializable {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        browse = new FxBrowse(this);
+        browsepane.getChildren().add(browse.getAnchor());
+
         clearBasket();
     }
 
@@ -68,7 +77,7 @@ public class FxBasket extends AnchorPane implements Anchorable, Initializable {
         List<ShoppingItem> basketItems = FxRoot.getCart().getItems();
         productList.getChildren().clear();
         for (ShoppingItem product : basketItems) {
-            int prodId = product.getProduct().getProductId();
+            int prodId = product.getProduct().getProductId(                                                                            );
             productList.getChildren().add(FxRoot.getProdListItem(prodId));
         }
     }
@@ -79,6 +88,9 @@ public class FxBasket extends AnchorPane implements Anchorable, Initializable {
     }
     @FXML protected void onButtonToSavedCarts(){
         parentFx.savedBasketsPane.toFront();
+    }
+    @FXML protected void onButtonBrowse(){
+        browseLightBox.toFront();
     }
 
     @Override
