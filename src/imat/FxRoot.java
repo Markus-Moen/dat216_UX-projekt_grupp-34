@@ -145,4 +145,18 @@ public class FxRoot implements Initializable {
         Stream<Integer> idOrdered = filteredAndOrdered.map(Product::getProductId);
         return idOrdered.collect(Collectors.toList());
     }
+
+    public String[] receipt(){
+        String[] output = new String[] {"", "", ""};
+        ShoppingCart cart = getCart();
+        List<ShoppingItem> items = cart.getItems();
+        for (ShoppingItem item : items){
+            output[0] += Math.round(item.getAmount()) + " " + item.getProduct().getName() + "\n";
+            output[1] += item.getTotal() + "\n";
+        }
+
+        output[2] = Double.toString(cart.getTotal());
+
+        return output;
+    }
 }
