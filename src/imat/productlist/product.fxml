@@ -26,16 +26,16 @@
       <Label fx:id="productItemCost" layoutX="101.0" layoutY="54.0" prefHeight="17.0" prefWidth="432.0" text="1000 kr/kg" />
       <StackPane fx:id="amountAddButton" layoutX="661.0" layoutY="37.0" prefHeight="60.0" prefWidth="140.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <AnchorPane fx:id="amountButtons">
+            <AnchorPane fx:id="amountPane">
                <children>
-                  <TextField fx:id="productItemAmount" alignment="CENTER" layoutX="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="150.0" styleClass="button-light" text="1" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                  <TextField fx:id="productItemAmount" alignment="CENTER" layoutX="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="150.0" styleClass="text-field-amount" text="1" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
                   <Button fx:id="addItemButton11" layoutX="87.0" layoutY="17.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onButtonAddOne" prefHeight="50.0" prefWidth="50.0" styleClass="button-green" text="+" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
                   <Button fx:id="addItemButton1" layoutX="24.0" layoutY="28.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onButtonRemoveOne" prefHeight="50.0" prefWidth="50.0" styleClass="button-red" text="-" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="110.0" />
-                  <AnchorPane fx:id="addButton" prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <Button fx:id="addItemButton" layoutX="14.0" layoutY="18.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Lägg till" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-                     </children>
-                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="addPane" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="addItemButton" layoutX="14.0" layoutY="18.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onButtonAdd" prefHeight="50.0" prefWidth="150.0" text="Lägg till" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
                </children>
             </AnchorPane>
          </children>

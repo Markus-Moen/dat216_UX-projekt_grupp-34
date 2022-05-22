@@ -24,6 +24,9 @@ public class FxProductItem extends AnchorPane implements Anchorable {
     @FXML private Label productItemCost;
     @FXML private TextField productItemAmount;
 
+    @FXML private AnchorPane addPane;
+    @FXML private AnchorPane amountPane;
+
     public FxProductItem(ShoppingItem shoppingItem, FxBasket fxBasket){
         this.shoppingItem = shoppingItem;
         this.fxBasket = fxBasket;
@@ -43,26 +46,27 @@ public class FxProductItem extends AnchorPane implements Anchorable {
         productItemCost.setText(Double.toString(product.getPrice()) + " kr/kg");
         productItemAmount.setText(Double.toString(shoppingItem.getAmount()));
     }
-    private void removeItemFromBasket(ShoppingItem item){
-        fxBasket.removeItemFromBasket(item);
+    private void removeItemFromBasket(){
+        fxBasket.removeItemFromBasket(shoppingItem);
     }
-    private void changeAmount(ShoppingItem item, Double newAmount){
-        item.setAmount(newAmount);
+    private double changeAmount(Double newAmount){
+        shoppingItem.setAmount(newAmount);
+        productItemAmount.setText(newAmount.toString());
+        return newAmount;
     }
-    private void removeOne(ShoppingItem item){
-        double amount = item.getAmount();
-        changeAmount(item, amount - 1);
-    }
-    private void addOne(ShoppingItem item){
-        double amount = item.getAmount();
-        changeAmount(item, amount + 1);
-    }
-
-    @FXML protected void onButtonRemoveOne(){
-        removeOne(shoppingItem);
+    @FXML protected void onButtonRemoveOne(){;
+        double siAmount = shoppingItem.getAmount();
+        if (changeAmount(siAmount-1) <= 0){
+            addPane.toFront();
+        }
     }
     @FXML protected void onButtonAddOne(){
-        addOne(shoppingItem);
+        double amount = shoppingItem.getAmount();
+        changeAmount( amount + 1);
+    }
+    @FXML protected void onButtonAdd(){
+        amountPane.toFront();
+        onButtonAddOne();
     }
 
     @Override
