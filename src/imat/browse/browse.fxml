@@ -9,15 +9,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 
-<AnchorPane prefHeight="576.0" prefWidth="794.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="576.0" prefWidth="794.0" stylesheets="@../imat.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <SplitPane dividerPositions="0.1426261319534282" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.1672473867595819" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="66.0" prefWidth="802.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="66.0" prefWidth="802.0" styleClass="header">
                <children>
-                  <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#onButtonReturn" prefHeight="68.0" prefWidth="106.0" text="Tillbaka till&#10;varukorg" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
-                  <TextField fx:id="searchTextBox" layoutX="200.0" layoutY="45.0" onAction="#onTextEdit" onKeyTyped="#onTextEdit" prefHeight="26.0" prefWidth="293.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
-                  <Label layoutX="377.0" layoutY="14.0" text="Sök Vara" />
+                  <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#onButtonReturn" prefHeight="68.0" prefWidth="106.0" styleClass="button-light" text="Tillbaka till&#10;varukorg" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
+                  <TextField fx:id="searchTextBox" layoutX="200.0" layoutY="45.0" onAction="#onTextEdit" onKeyTyped="#onTextEdit" prefHeight="26.0" prefWidth="293.0" promptText="Skriv här för att söka" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="44.0" />
+                  <Label layoutX="363.0" layoutY="14.0" styleClass="header" text="Sök Vara" textAlignment="CENTER" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="14.0" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -27,14 +27,14 @@
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
                               <ListView prefHeight="346.0" prefWidth="106.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                              <Button layoutX="17.0" layoutY="14.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="106.0" text="Tillbaka till&#10;varukorg" />
+                              <Button layoutX="17.0" layoutY="14.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="106.0" text="Kategori" />
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="278.0" prefWidth="502.0">
                            <children>
                               <ScrollPane hbarPolicy="NEVER" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <content>
-                                    <FlowPane fx:id="productFlowPane" prefHeight="200.0" prefWidth="200.0" />
+                                    <FlowPane fx:id="productFlowPane" hgap="10.0" vgap="10.0" />
                                  </content>
                               </ScrollPane>
                            </children>

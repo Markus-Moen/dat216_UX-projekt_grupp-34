@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 import org.jetbrains.annotations.Nullable;
 import se.chalmers.cse.dat216.project.*;
 
@@ -62,6 +63,9 @@ public class FxRoot implements Initializable {
         prods = imat.getProducts();
         System.out.println(prods.size()+" products loaded");
         loadCartData();
+
+        Font.loadFont(this.getClass().getResource("resources/font/Atkinson-Hyperlegible-Regular-102.ttf").toExternalForm(), 10);
+        Font.loadFont(this.getClass().getResource("resources/font/Atkinson-Hyperlegible-Bold-102.ttf").toExternalForm(), 10);
 
         System.out.println(basketPane);
         fxBasket = new FxBasket(this);
