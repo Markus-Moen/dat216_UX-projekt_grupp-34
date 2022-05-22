@@ -47,7 +47,7 @@ public class FxCheckout extends AnchorPane implements Anchorable, Initializable 
         fxmlLoader.setController(this);
 
         try {
-            anchorPane = makeAnchor(fxmlLoader.load());
+            anchorPane = fitAnchor(fxmlLoader.load());
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }

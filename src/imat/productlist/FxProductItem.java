@@ -31,7 +31,7 @@ public class FxProductItem extends AnchorPane implements Anchorable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("product.fxml"));
         fxmlLoader.setController(this);
         try {
-            anchorPane = makeAnchor(fxmlLoader.load());
+            anchorPane = fitAnchor(fxmlLoader.load());
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }

@@ -11,19 +11,16 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.Console;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class FxBrowse extends AnchorPane implements Anchorable, Initializable {
     FxBasket parentFx;
@@ -40,7 +37,7 @@ public class FxBrowse extends AnchorPane implements Anchorable, Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("browse.fxml"));
         fxmlLoader.setController(this);
         try {
-            anchorPane = makeAnchor(fxmlLoader.load());
+            anchorPane = fitAnchor(fxmlLoader.load());
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
