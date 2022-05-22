@@ -46,7 +46,7 @@ public class FxSavedCarts implements Anchorable, Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("savedcarts.fxml"));
         fxmlLoader.setController(this);
         try {
-            anchorPane = fxmlLoader.load();
+            anchorPane = makeAnchor(fxmlLoader.load());
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }

@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import org.jetbrains.annotations.Nullable;
 import se.chalmers.cse.dat216.project.*;
 
 import java.io.File;
@@ -114,7 +115,7 @@ public class FxRoot implements Initializable {
         }
     }
 
-    public static List<Integer> getFilteredProductIds(ProductFilter productOrder){
+    public static List<Integer> getFilteredProductIds(@Nullable ProductFilter productOrder){
         var matchScoreFunc = new Function<Product, Tuple2<Integer, Product>>(){
             @Override
             public Tuple2<Integer, Product> apply(Product product) {

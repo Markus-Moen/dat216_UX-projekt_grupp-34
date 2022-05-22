@@ -50,7 +50,7 @@ public class FxBasket extends AnchorPane implements Anchorable, Initializable {
         fxmlLoader.setController(this);
 
         try {
-            anchorPane = fxmlLoader.load();
+            anchorPane = makeAnchor(fxmlLoader.load());
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }

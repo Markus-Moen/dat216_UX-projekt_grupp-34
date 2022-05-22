@@ -4,15 +4,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imat.FxRoot">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="516.0" prefWidth="762.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imat.FxRoot">
    <children>
       <Label text="Label" />
-      <StackPane fx:id="stackPane" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <StackPane fx:id="stackPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane fx:id="historyPane" />
-            <AnchorPane fx:id="savedBasketsPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0000FF;" />
-            <AnchorPane fx:id="checkoutPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ff0000;" />
-            <AnchorPane fx:id="basketPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00ff00;" />
+            <AnchorPane fx:id="savedBasketsPane" style="-fx-background-color: #0000FF;" />
+            <AnchorPane fx:id="checkoutPane" style="-fx-background-color: #ff0000;" />
+            <AnchorPane fx:id="basketPane" style="-fx-background-color: #00ff00;" />
          </children>
       </StackPane>
    </children></AnchorPane>
