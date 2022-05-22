@@ -6,6 +6,7 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="802.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -14,7 +15,7 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="66.0" prefWidth="802.0">
                <children>
                   <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#onButtonReturn" prefHeight="68.0" prefWidth="106.0" text="Tillbaka till&#10;varukorg" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
-                  <TextField layoutX="200.0" layoutY="45.0" prefHeight="26.0" prefWidth="293.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
+                  <TextField fx:id="searchTextBox" layoutX="200.0" layoutY="45.0" onAction="#onTextEdit" onKeyTyped="#onTextEdit" prefHeight="26.0" prefWidth="293.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
                   <Label layoutX="377.0" layoutY="14.0" text="Sök Vara" />
                </children>
             </AnchorPane>
@@ -30,7 +31,7 @@
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="278.0" prefWidth="502.0">
                            <children>
-                              <ListView prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <FlowPane fx:id="productFlowPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                     </items>

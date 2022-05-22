@@ -12,7 +12,7 @@ public class ProductFilter {
     @Nullable ProductFilter then;
     private Either<String, HashSet<ProductCategory>> filter;
 
-    ProductFilter(Either<String, List<ProductCategory>> filter) {
+    public ProductFilter(Either<String, List<ProductCategory>> filter) {
         this(filter, null);
     }
     ProductFilter(Either<String, List<ProductCategory>> filter, @Nullable ProductFilter then) {
@@ -20,16 +20,20 @@ public class ProductFilter {
         this.filter = filter.map(HashSet::new);
     }
 
-    static final int bestPossibleMatch = 2;
+    static final int bestPossibleMatch = 3;
     static int howGoodStringMatch(String search, String src){ //this can be improved
-        if(src.startsWith(search)) return bestPossibleMatch;
+        src = src.toLowerCase();
+        search = search.toLowerCase();
+        if(src.equals(search)) return bestPossibleMatch;
+        if(src.startsWith(search)) return 2;
         if(src.contains(search)) return 1;
-        else return -1;
+        return -1;
     }
     int howGoodMatch(Product p){
         int matchScore;
         if(filter.isLeft()) {
-            matchScore = howGoodStringMatch(p.getName(), filter.getLeft());
+            matchScore = howGoodStringMatch(filter.getLeft(), p.getName());
+            System.out.println(p.getName()+"/"+filter.getLeft()+" ="+matchScore);
         } else {
             matchScore = filter.get().contains(p.getCategory()) ? 1 : -1;
         }

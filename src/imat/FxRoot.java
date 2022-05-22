@@ -49,6 +49,8 @@ public class FxRoot implements Initializable {
         return prods;
     }
     public static FxProductItem getProdListItem(int i){
+        if(id2prodListItem.containsKey(i) == false)
+            throw new RuntimeException("Item does not exist");
         return id2prodListItem.get(i);
     }
 
@@ -113,7 +115,7 @@ public class FxRoot implements Initializable {
     }
 
     public static List<Integer> getFilteredProductIds(ProductFilter productOrder){
-        var matchFunc = new Function<Product, Tuple2<Integer, Product>>(){
+        var matchScoreFunc = new Function<Product, Tuple2<Integer, Product>>(){
             @Override
             public Tuple2<Integer, Product> apply(Product product) {
                 if (productOrder == null){
@@ -123,12 +125,14 @@ public class FxRoot implements Initializable {
                 }
             }
         };
-        Stream<Tuple2<Integer, Product>> scored = prods.stream().map(matchFunc);
+        Stream<Tuple2<Integer, Product>> scored = prods.stream().map(matchScoreFunc);
         Stream<Product> filteredAndOrdered = scored
                 .filter(x -> x._1 > 0)
-                .sorted(Comparator.comparingInt(o -> o._1))
+                .sorted((Comparator.comparingInt(
+                        (Tuple2<Integer, Product> t) -> t._1)).reversed()
+                )
                 .map(x -> x._2);
-        Stream<Integer> intOrder = filteredAndOrdered.map(Product::getProductId);
-        return intOrder.collect(Collectors.toList());
+        Stream<Integer> idOrdered = filteredAndOrdered.map(Product::getProductId);
+        return idOrdered.collect(Collectors.toList());
     }
 }
