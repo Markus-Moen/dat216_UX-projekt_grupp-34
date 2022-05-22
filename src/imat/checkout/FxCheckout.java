@@ -5,6 +5,7 @@ import imat.FxRoot;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TextField;
 
@@ -41,6 +42,15 @@ public class FxCheckout extends AnchorPane implements Anchorable, Initializable 
     @FXML private TextField cardYearField;
     @FXML private TextField cardVerificationField;
 
+    @FXML private AnchorPane imgPaneAddress;
+    @FXML private ImageView imgAddress;
+    @FXML private AnchorPane imgPaneDelivery;
+    @FXML private ImageView imgDelivery;
+    @FXML private AnchorPane imgPanePayment;
+    @FXML private ImageView imgPayment;
+    @FXML private AnchorPane imgPaneDone;
+    @FXML private ImageView imgDone;
+
     public FxCheckout(FxRoot parentFx) {
         this.parentFx = parentFx;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("checkout.fxml"));
@@ -52,8 +62,12 @@ public class FxCheckout extends AnchorPane implements Anchorable, Initializable 
             throw new RuntimeException(exception);
         }
 
-        imat = IMatDataHandler.getInstance();
+        imgAddress.fitWidthProperty().bind(imgPaneAddress.widthProperty());
+        imgDelivery.fitWidthProperty().bind(imgPaneDelivery.widthProperty());
+        imgPayment.fitWidthProperty().bind(imgPanePayment.widthProperty());
+        imgDone.fitWidthProperty().bind(imgPaneDone.widthProperty());
 
+        imat = IMatDataHandler.getInstance();
         customer = imat.getCustomer();
         card = imat.getCreditCard();
 
