@@ -74,3 +74,11 @@
     -fx-font-weight: bold;
     -fx-text-fill: -Vtext-white;
 }
+.header-text{
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -Vtext-white;
+}
+.list-backdrop{
+    -fx-background-color: -Vaccent-color;
+}

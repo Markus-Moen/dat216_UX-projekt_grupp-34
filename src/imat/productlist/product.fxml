@@ -7,23 +7,21 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane maxHeight="100.0" maxWidth="800.0" minHeight="100.0" minWidth="800.0" prefHeight="100.0" prefWidth="800.0" stylesheets="@../imat.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../imat.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Rectangle fill="#eef7ff" height="90.0" layoutX="4.0" layoutY="5.0" stroke="BLACK" strokeType="INSIDE" width="791.0" />
-      <ImageView fx:id="productItemRemove" fitHeight="15.0" fitWidth="15.0" layoutX="776.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="productItemRemove" fitHeight="15.0" fitWidth="15.0" layoutX="776.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <image>
             <Image url="@../resources/close.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="productItemImage" fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="productItemImage" fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="701.0" AnchorPane.topAnchor="10.0">
          <image>
             <Image url="@../resources/cucumber.png" />
          </image>
       </ImageView>
-      <Label fx:id="productItemName" layoutX="101.0" layoutY="29.0" prefHeight="17.0" prefWidth="432.0" text="Softis gurga" />
-      <Label fx:id="productItemCost" layoutX="101.0" layoutY="54.0" prefHeight="17.0" prefWidth="432.0" text="1000 kr/kg" />
+      <Label fx:id="productItemName" layoutX="101.0" layoutY="29.0" prefHeight="17.0" prefWidth="432.0" text="Softis gurga" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="10.0" />
+      <Label fx:id="productItemCost" layoutX="101.0" layoutY="54.0" prefHeight="17.0" prefWidth="432.0" text="1000 kr/kg" AnchorPane.leftAnchor="100.0" />
       <StackPane fx:id="amountAddButton" layoutX="661.0" layoutY="37.0" prefHeight="60.0" prefWidth="140.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <AnchorPane fx:id="amountPane">

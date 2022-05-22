@@ -30,11 +30,11 @@
                               <Button layoutX="17.0" layoutY="14.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="106.0" text="Kategori" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                            </children>
                         </AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="278.0" prefWidth="502.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="278.0" prefWidth="502.0" styleClass="list-backdrop">
                            <children>
-                              <ScrollPane hbarPolicy="NEVER" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <ScrollPane hbarPolicy="NEVER" styleClass="list-backdrop" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <content>
-                                    <FlowPane fx:id="productFlowPane" hgap="10.0" vgap="10.0" />
+                                    <FlowPane fx:id="productFlowPane" hgap="10.0" styleClass="list-backdrop" vgap="10.0" />
                                  </content>
                               </ScrollPane>
                            </children>

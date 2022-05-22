@@ -49,20 +49,22 @@ public class FxProductItem extends AnchorPane implements Anchorable {
     private void removeItemFromBasket(){
         fxBasket.removeItemFromBasket(shoppingItem);
     }
-    private double changeAmount(Double newAmount){
+    private double setAmount(Double newAmount){
+        if(newAmount <= 0){
+            addPane.toFront();
+            newAmount = 0.0; //Ensures amount is never less than 0
+        }
         shoppingItem.setAmount(newAmount);
         productItemAmount.setText(newAmount.toString());
         return newAmount;
     }
     @FXML protected void onButtonRemoveOne(){;
-        double siAmount = shoppingItem.getAmount();
-        if (changeAmount(siAmount-1) <= 0){
-            addPane.toFront();
-        }
+        double amount = shoppingItem.getAmount();
+        setAmount(amount-1);
     }
     @FXML protected void onButtonAddOne(){
         double amount = shoppingItem.getAmount();
-        changeAmount( amount + 1);
+        setAmount( amount + 1);
     }
     @FXML protected void onButtonAdd(){
         amountPane.toFront();

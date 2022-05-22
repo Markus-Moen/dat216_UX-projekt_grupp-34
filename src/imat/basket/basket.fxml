@@ -26,7 +26,7 @@
                               <Button fx:id="newBasketButton" layoutX="7.0" layoutY="8.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" styleClass="button-light" text="Töm varukorg" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
                               <Button fx:id="mySavedBasketsButton" layoutX="701.0" layoutY="8.0" mnemonicParsing="false" onMouseClicked="#onButtonToSavedCarts" prefHeight="46.0" prefWidth="130.0" styleClass="button-light" text="Mina sparade varukorgar" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                               <Button fx:id="shopingHistoryButton" layoutX="552.0" layoutY="10.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" styleClass="button-light" text="Inköpshistorik" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="10.0" />
-                              <Label fx:id="basketName" layoutX="386.0" layoutY="25.0" styleClass="header" text="soup" />
+                              <Label fx:id="basketName" alignment="CENTER" layoutX="381.0" layoutY="50.0" styleClass="header-text" text="soup" textAlignment="CENTER" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
                            </children>
                         </AnchorPane>
                       <AnchorPane fx:id="apMainView" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -36,11 +36,11 @@
                                     <FlowPane fx:id="productList" prefHeight="358.0" prefWidth="720.0" />
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                        <children>
-                                          <Button fx:id="toCheckoutButton" mnemonicParsing="false" onMouseClicked="#onButtonToCheckout" prefHeight="65.0" prefWidth="100.0" text="Till kassan" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-                                          <Button fx:id="saveBasketButton" layoutX="705.0" layoutY="273.0" mnemonicParsing="false" onMouseClicked="#openSaveView" prefHeight="35.0" prefWidth="100.0" styleClass="button-light" text="Spara Som" wrapText="true" AnchorPane.bottomAnchor="85.0" AnchorPane.rightAnchor="10.0" />
+                                          <Button fx:id="toCheckoutButton" mnemonicParsing="false" onMouseClicked="#onButtonToCheckout" prefHeight="100.0" prefWidth="180.0" text="Till kassan" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                                          <Button fx:id="saveBasketButton" layoutX="705.0" layoutY="273.0" mnemonicParsing="false" onMouseClicked="#openSaveView" prefHeight="35.0" prefWidth="100.0" styleClass="button-light" text="Spara Som" wrapText="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0" />
                                           <Label fx:id="savedBasketLabel" layoutX="380.0" layoutY="395.0" text="xxxxxx" AnchorPane.bottomAnchor="14.0" />
-                                          <Button fx:id="browseProductsButton" layoutX="200.0" layoutY="9.0" minHeight="50.0" minWidth="400.0" mnemonicParsing="false" onMouseClicked="#onButtonBrowse" text="Sök bland alla varor" AnchorPane.topAnchor="9.0" />
-                                          <Button fx:id="saveBasketButton1" layoutX="689.0" layoutY="248.0" mnemonicParsing="false" onMouseClicked="#openSaveView" prefHeight="35.0" prefWidth="100.0" styleClass="button-light" text="Spara" wrapText="true" AnchorPane.bottomAnchor="125.0" AnchorPane.rightAnchor="10.0" />
+                                          <Button fx:id="browseProductsButton" layoutX="200.0" layoutY="9.0" mnemonicParsing="false" onMouseClicked="#onButtonBrowse" text="Sök bland alla varor" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="10.0" />
+                                          <Button fx:id="saveBasketButton1" layoutX="689.0" layoutY="9.0" mnemonicParsing="false" onMouseClicked="#openSaveView" prefHeight="35.0" prefWidth="100.0" styleClass="button-light" text="Spara" wrapText="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                                        </children>
                                     </AnchorPane>
                                  </children>
@@ -73,9 +73,9 @@
                         </AnchorPane>
                         <AnchorPane fx:id="apNewBasketSaveWarning" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: lightgray;">
                            <children>
-                              <Button layoutX="40.0" layoutY="136.0" mnemonicParsing="false" onMouseClicked="#closeSaveView" prefHeight="50.0" prefWidth="80.0" text="Avbryt" />
-                              <Button layoutX="120.0" layoutY="136.0" mnemonicParsing="false" onMouseClicked="#saveBasket" prefHeight="50.0" prefWidth="80.0" text="Ja, Spara" />
-                              <Button layoutX="206.0" layoutY="136.0" mnemonicParsing="false" onMouseClicked="#closeSaveView" prefHeight="50.0" prefWidth="80.0" text="Spara inte" />
+                              <Button layoutX="40.0" layoutY="136.0" mnemonicParsing="false" onMouseClicked="#closeSaveView" prefHeight="50.0" prefWidth="80.0" styleClass="button-light" text="Avbryt" />
+                              <Button layoutX="120.0" layoutY="136.0" mnemonicParsing="false" onMouseClicked="#saveBasket" prefHeight="50.0" prefWidth="80.0" styleClass="button-light" text="Ja, Spara" />
+                              <Button layoutX="206.0" layoutY="136.0" mnemonicParsing="false" onMouseClicked="#closeSaveView" prefHeight="50.0" prefWidth="80.0" styleClass="button-light" text="Spara inte" />
                               <Label alignment="TOP_LEFT" layoutX="3.0" layoutY="-22.0" prefHeight="115.0" prefWidth="280.0" text="ListName har osparade ändringar. Vill du spara ändringar innan du öpnar en tom varukorg?" wrapText="true" />
                            </children>
                         </AnchorPane>

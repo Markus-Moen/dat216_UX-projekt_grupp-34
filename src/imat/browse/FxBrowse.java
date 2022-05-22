@@ -43,6 +43,7 @@ public class FxBrowse extends AnchorPane implements Anchorable, Initializable {
         }
 
         this.parentFx = parentFx;
+        updateProductList(null);
     }
 
     private void updateProductList(@Nullable ProductFilter productFilter){

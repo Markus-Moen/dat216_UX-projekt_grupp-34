@@ -12,29 +12,29 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane stylesheets="@../imat.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <SplitPane dividerPositions="0.13909774436090225" orientation="VERTICAL" prefHeight="800.0" prefWidth="1224.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="84.0" styleClass="header">
                <children>
-                  <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#onButtonBack" prefHeight="83.0" prefWidth="139.0" text="Tillbaka till varukorgen&#10;(Avbryt köp)" />
-                  <Label layoutX="596.0" layoutY="47.0" text="Kassa" />
+                  <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#onButtonBack" prefHeight="64.0" prefWidth="218.0" styleClass="button-light" text="Tillbaka till varukorgen&#10;(Avbryt köp)" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                  <Label alignment="CENTER" layoutX="596.0" layoutY="47.0" styleClass="header-text" text="Kassa" textAlignment="CENTER" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
                </children></AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <SplitPane dividerPositions="0.5" prefHeight="756.0" prefWidth="1254.0">
+                  <SplitPane dividerPositions="0.5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <items>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                        <AnchorPane>
                            <children>
                               <Text layoutX="187.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="{lista med dina varor}" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                        <AnchorPane>
                            <children>
-                              <StackPane prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <AnchorPane fx:id="paymentPane" onMouseClicked="#pay" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
+                                    <AnchorPane fx:id="paymentPane" onMouseClicked="#pay" style="-fx-background-color: ffffff;">
                                        <children>
                                           <Label alignment="CENTER_RIGHT" layoutX="31.0" layoutY="280.0" prefHeight="25.0" prefWidth="70.0" text="Namn:" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="280.0" />
                                           <TextField fx:id="nameField" layoutX="35.0" layoutY="387.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="280.0" />
@@ -46,9 +46,9 @@
                                           <TextField fx:id="cardYearField" layoutX="95.0" layoutY="507.0" prefHeight="25.0" prefWidth="40.0" AnchorPane.leftAnchor="235.0" AnchorPane.topAnchor="380.0" />
                                           <Label alignment="CENTER_RIGHT" layoutX="175.0" layoutY="487.0" prefHeight="25.0" prefWidth="70.0" text="CVC:" AnchorPane.leftAnchor="275.0" AnchorPane.topAnchor="380.0" />
                                           <TextField fx:id="cardVerificationField" layoutX="175.0" layoutY="507.0" prefHeight="25.0" prefWidth="40.0" AnchorPane.leftAnchor="355.0" AnchorPane.topAnchor="380.0" />
-                                          <Button layoutX="35.0" layoutY="655.0" mnemonicParsing="false" onAction="#wizardBack" prefHeight="83.0" prefWidth="139.0" text="Tillbaka" AnchorPane.bottomAnchor="104.0" AnchorPane.leftAnchor="35.0" />
-                                          <Button layoutX="475.0" layoutY="588.0" mnemonicParsing="false" onAction="#wizardNext" prefHeight="83.0" prefWidth="139.0" text="Nästa" AnchorPane.bottomAnchor="104.0" AnchorPane.rightAnchor="64.0" />
-                                          <ImageView fitHeight="334.0" fitWidth="729.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="29.22222900390625" AnchorPane.topAnchor="-100.0">
+                                          <Button layoutX="35.0" layoutY="655.0" mnemonicParsing="false" onAction="#wizardBack" prefHeight="83.0" prefWidth="139.0" text="Tillbaka" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+                                          <Button layoutX="475.0" layoutY="588.0" mnemonicParsing="false" onAction="#wizardNext" prefHeight="83.0" prefWidth="139.0" text="Nästa" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                                          <ImageView fitHeight="334.0" fitWidth="729.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-100.0">
                                              <image>
                                                 <Image url="@../resources/wizardBar-thirdStep.png" />
                                              </image>
@@ -73,12 +73,12 @@
                                           </ImageView>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane fx:id="deliveryPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
+                                    <AnchorPane fx:id="deliveryPane" style="-fx-background-color: ffffff;">
                                        <children>
                                           <Label layoutX="268.0" layoutY="297.0" text="Välj Leveranstid!" AnchorPane.topAnchor="297.0" />
-                                          <Button layoutX="159.0" layoutY="187.0" mnemonicParsing="false" onAction="#wizardBack" prefHeight="83.0" prefWidth="139.0" text="Tillbaka" AnchorPane.bottomAnchor="104.0" AnchorPane.leftAnchor="35.0" />
-                                          <Button layoutX="386.0" layoutY="187.0" mnemonicParsing="false" onAction="#wizardNext" prefHeight="83.0" prefWidth="139.0" text="Nästa" AnchorPane.bottomAnchor="104.0" AnchorPane.rightAnchor="64.0" />
-                                          <ImageView fitHeight="334.0" fitWidth="729.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="29.22222900390625" AnchorPane.topAnchor="-100.0">
+                                          <Button layoutX="159.0" layoutY="187.0" mnemonicParsing="false" onAction="#wizardBack" prefHeight="83.0" prefWidth="139.0" text="Tillbaka" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+                                          <Button layoutX="386.0" layoutY="187.0" mnemonicParsing="false" onAction="#wizardNext" prefHeight="83.0" prefWidth="139.0" text="Nästa" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                                          <ImageView fitHeight="334.0" fitWidth="729.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-100.0">
                                              <image>
                                                 <Image url="@../resources/wizardBar-secondStep.png" />
                                              </image>
@@ -103,11 +103,11 @@
                                           </ImageView>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane fx:id="donePane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: ffffff;">
+                                    <AnchorPane fx:id="donePane" style="-fx-background-color: ffffff;">
                                        <children>
                                           <Label layoutX="266.0" layoutY="320.0" text="Tack för ditt köp!" AnchorPane.topAnchor="320.0" />
-                                          <Button layoutX="409.0" layoutY="559.0" mnemonicParsing="false" onAction="#onButtonBack" prefHeight="83.0" prefWidth="139.0" text="Tillbaka till varukorgen" AnchorPane.bottomAnchor="104.0" AnchorPane.rightAnchor="64.0" />
-                                          <ImageView fitHeight="334.0" fitWidth="729.0" layoutY="-64.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="29.22222900390625" AnchorPane.topAnchor="-100.0">
+                                          <Button layoutX="409.0" layoutY="559.0" mnemonicParsing="false" onAction="#onButtonBack" prefHeight="83.0" prefWidth="218.0" text="Tillbaka till varukorgen" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                                          <ImageView fitHeight="334.0" fitWidth="729.0" layoutY="-64.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-100.0">
                                              <image>
                                                 <Image url="@../resources/wizardBar-fourthStep.png" />
                                              </image>
@@ -132,9 +132,9 @@
                                           </ImageView>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane fx:id="addressPane" prefHeight="754.0" prefWidth="780.0" style="-fx-background-color: ffffff;">
+                                    <AnchorPane fx:id="addressPane" style="-fx-background-color: ffffff;">
                                        <children>
-                                          <ImageView fitHeight="334.0" fitWidth="729.0" layoutY="-106.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="29.22222900390625" AnchorPane.topAnchor="-100.0">
+                                          <ImageView fitHeight="334.0" fitWidth="729.0" layoutY="-106.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-100.0">
                                              <image>
                                                 <Image url="@../resources/wizardBar-firstStep.png" />
                                              </image>
@@ -150,7 +150,7 @@
                                                 <Insets left="30.0" right="29.0" top="5.0" />
                                              </padding>
                                           </HBox>
-                                          <Button layoutX="740.0" layoutY="604.0" mnemonicParsing="false" onAction="#wizardNext" prefHeight="83.0" prefWidth="139.0" text="Nästa" AnchorPane.bottomAnchor="104.0" AnchorPane.rightAnchor="64.0" />
+                                          <Button layoutX="740.0" layoutY="604.0" mnemonicParsing="false" onAction="#wizardNext" prefHeight="83.0" prefWidth="139.0" text="Nästa" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
                                           <Label alignment="CENTER_RIGHT" layoutX="35.0" layoutY="275.0" prefHeight="25.0" prefWidth="100.0" text="Adress:" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="280.0" />
                                           <TextField fx:id="addressField" layoutX="122.0" layoutY="361.0" AnchorPane.leftAnchor="145.0" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="280.0" />
                                           <Label alignment="CENTER_RIGHT" layoutX="51.0" layoutY="414.0" prefHeight="25.0" prefWidth="100.0" text="Postnummer:" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="330.0" />

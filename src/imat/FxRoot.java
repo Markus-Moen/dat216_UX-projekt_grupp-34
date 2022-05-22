@@ -77,7 +77,9 @@ public class FxRoot implements Initializable {
 
         id2prodListItem = new HashMap<>();
         for(Product p : getAllProducts()){
-            FxProductItem fxProductItem = new FxProductItem(new ShoppingItem(p), fxBasket);
+            var newSp = new ShoppingItem(p);
+            newSp.setAmount(0);
+            FxProductItem fxProductItem = new FxProductItem(newSp, fxBasket);
             id2prodListItem.put(p.getProductId(), fxProductItem);
         }
     }
