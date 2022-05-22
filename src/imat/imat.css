@@ -1,45 +1,72 @@
 * {
     -Vaccent-color: #6694A2;
     -Vaccent-color-dark: #3c5962;
-    -Vaccent-color-light: #b2c9d0;
 
     -Vbutton: -Vaccent-color;
     -Vbutton-dark: -Vaccent-color-dark;
-    -Vbutton-light: -Vaccent-color-light;
-    -Vbutton-light: #EEEEEE;
-    -Vbutton-light-dark: #AAAAAA;
+    -VbuttonL: #EEEEEE;
+    -VbuttonL-dark: #AAAAAA;
+
+    -VbuttonRed: #a26666;
+    -VbuttonRed-dark: #623c3c;
+
+    -VbuttonGreen: #67a374;
+    -VbuttonGreen-dark: #3c6244;
 
     -Vtext-white: #EEEEEE;
-    -Vtext-black: #333333;
+    -Vtext-black: #555555;
     -fx-font-family: "Atkinson Hyperlegible";
 }
 
 .text-field{
-    -fx-background-color: -Vbutton-light;
+    -fx-background-color: -VbuttonL;
     -fx-font-size: 16px;
     -fx-font-weight: bold;
     -fx-text-fill: -Vtext-black;
 }
 .button{
-    -fx-padding: 0 4 4 0;
+    -fx-padding: 4 8 8 4;
     -fx-background-insets: 0, 0 4 4 0;
     -fx-background-radius: 5;
     -fx-background-color: -Vbutton-dark, -Vbutton;
     -fx-text-fill: -Vtext-white;
     -fx-font-weight: bold;
     -fx-font-size: 16px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0.5, 0, 0);
 }
 .button:hover{
-    -fx-padding: 4 0 0 4;
+    -fx-padding: 8 4 4 8;
     -fx-background-insets: 0, 4 0 0 4;
     -fx-background-color: -Vbutton, -Vbutton-dark ;
 }
 .button-light{
-    -fx-background-color: -Vbutton-light-dark, -Vbutton-light ;
+    -fx-padding: 4 8 8 4;
+    -fx-background-insets: 0, 0 4 4 0;
+    -fx-background-radius: 5;
+    -fx-background-color: -Vbutton-dark, -Vbutton;
+    -fx-text-fill: -Vtext-white;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0.5, 0, 0);
+    -fx-background-color: -VbuttonL-dark, -VbuttonL ;
     -fx-text-fill: -Vtext-black;
 }
 .button-light:hover{
-    -fx-background-color: -Vbutton-light, -Vbutton-light-dark;
+    -fx-padding: 8 4 4 8;
+    -fx-background-insets: 0, 4 0 0 4;
+    -fx-background-color: -VbuttonL, -VbuttonL-dark;
+}
+.button-red{
+    -fx-background-color: -VbuttonRed-dark, -VbuttonRed ;
+}
+.button-red:hover{
+    -fx-background-color: -VbuttonRed, -VbuttonRed-dark;
+}
+.button-green{
+    -fx-background-color: -VbuttonGreen-dark, -VbuttonGreen ;
+}
+.button-green:hover{
+    -fx-background-color: -VbuttonGreen, -VbuttonGreen-dark;
 }
 .header{
     -fx-background-color: -Vaccent-color;

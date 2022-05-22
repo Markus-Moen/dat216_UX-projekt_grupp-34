@@ -19,14 +19,14 @@
             </AnchorPane>
             <AnchorPane fx:id="basketPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                <children>
-                  <SplitPane dividerPositions="0.1391" orientation="VERTICAL" prefHeight="500.0" prefWidth="801.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <SplitPane dividerPositions="0.17670682730923695" orientation="VERTICAL" prefHeight="500.0" prefWidth="801.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                      <AnchorPane maxHeight="85.0" minHeight="85.0" minWidth="0.0" prefHeight="85.0" prefWidth="160.0" styleClass="header">
                            <children>
-                              <Button fx:id="newBasketButton" layoutX="7.0" layoutY="8.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="80.0" text="Töm varukorg" wrapText="true" />
-                              <Button fx:id="mySavedBasketsButton" layoutX="701.0" layoutY="8.0" mnemonicParsing="false" onMouseClicked="#onButtonToSavedCarts" prefHeight="50.0" prefWidth="95.0" text="Mina sparade varukorgar" wrapText="true" />
-                              <Button fx:id="shopingHistoryButton" layoutX="604.0" layoutY="8.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="95.0" text="Inköpshistorik" wrapText="true" />
-                              <Label fx:id="basketName" layoutX="386.0" layoutY="25.0" text="soup" />
+                              <Button fx:id="newBasketButton" layoutX="7.0" layoutY="8.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" styleClass="button-light" text="Töm varukorg" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                              <Button fx:id="mySavedBasketsButton" layoutX="701.0" layoutY="8.0" mnemonicParsing="false" onMouseClicked="#onButtonToSavedCarts" prefHeight="46.0" prefWidth="130.0" styleClass="button-light" text="Mina sparade varukorgar" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                              <Button fx:id="shopingHistoryButton" layoutX="552.0" layoutY="10.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" styleClass="button-light" text="Inköpshistorik" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="10.0" />
+                              <Label fx:id="basketName" layoutX="386.0" layoutY="25.0" styleClass="header" text="soup" />
                            </children>
                         </AnchorPane>
                       <AnchorPane fx:id="apMainView" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -36,10 +36,11 @@
                                     <FlowPane fx:id="productList" prefHeight="358.0" prefWidth="720.0" />
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                        <children>
-                                          <Button fx:id="toCheckoutButton" mnemonicParsing="false" onMouseClicked="#onButtonToCheckout" prefHeight="50.0" prefWidth="80.0" text="Till kassan" wrapText="true" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
-                                          <Button fx:id="saveBasketButton" mnemonicParsing="false" onMouseClicked="#openSaveView" prefHeight="50.0" prefWidth="80.0" text="Spara Varukorg" wrapText="true" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="110.0" />
+                                          <Button fx:id="toCheckoutButton" mnemonicParsing="false" onMouseClicked="#onButtonToCheckout" prefHeight="65.0" prefWidth="100.0" text="Till kassan" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                                          <Button fx:id="saveBasketButton" layoutX="705.0" layoutY="273.0" mnemonicParsing="false" onMouseClicked="#openSaveView" prefHeight="35.0" prefWidth="100.0" styleClass="button-light" text="Spara Som" wrapText="true" AnchorPane.bottomAnchor="85.0" AnchorPane.rightAnchor="10.0" />
                                           <Label fx:id="savedBasketLabel" layoutX="380.0" layoutY="395.0" text="xxxxxx" AnchorPane.bottomAnchor="14.0" />
                                           <Button fx:id="browseProductsButton" layoutX="200.0" layoutY="9.0" minHeight="50.0" minWidth="400.0" mnemonicParsing="false" onMouseClicked="#onButtonBrowse" text="Sök bland alla varor" AnchorPane.topAnchor="9.0" />
+                                          <Button fx:id="saveBasketButton1" layoutX="689.0" layoutY="248.0" mnemonicParsing="false" onMouseClicked="#openSaveView" prefHeight="35.0" prefWidth="100.0" styleClass="button-light" text="Spara" wrapText="true" AnchorPane.bottomAnchor="125.0" AnchorPane.rightAnchor="10.0" />
                                        </children>
                                     </AnchorPane>
                                  </children>

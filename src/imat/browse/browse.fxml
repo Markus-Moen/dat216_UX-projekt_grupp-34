@@ -13,11 +13,11 @@
    <children>
       <SplitPane dividerPositions="0.1672473867595819" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="66.0" prefWidth="802.0" styleClass="header">
+          <AnchorPane maxHeight="85.0" minHeight="85.0" minWidth="0.0" prefHeight="85.0" prefWidth="802.0" styleClass="header">
                <children>
-                  <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#onButtonReturn" prefHeight="68.0" prefWidth="106.0" styleClass="button-light" text="Tillbaka till&#10;varukorg" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
-                  <TextField fx:id="searchTextBox" layoutX="200.0" layoutY="45.0" onAction="#onTextEdit" onKeyTyped="#onTextEdit" prefHeight="26.0" prefWidth="293.0" promptText="Skriv här för att söka" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="44.0" />
-                  <Label layoutX="363.0" layoutY="14.0" styleClass="header" text="Sök Vara" textAlignment="CENTER" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="14.0" />
+                  <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#onButtonReturn" prefHeight="70.0" prefWidth="106.0" styleClass="button-light" text="Tillbaka till&#10;varukorg" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                  <TextField fx:id="searchTextBox" layoutX="200.0" layoutY="45.0" onAction="#onTextEdit" onKeyTyped="#onTextEdit" prefHeight="26.0" prefWidth="293.0" promptText="Skriv här för att söka" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
+                  <Label layoutX="200.0" layoutY="23.0" styleClass="header" text="Sök Vara" textAlignment="CENTER" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -27,7 +27,7 @@
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
                               <ListView prefHeight="346.0" prefWidth="106.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                              <Button layoutX="17.0" layoutY="14.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="106.0" text="Kategori" />
+                              <Button layoutX="17.0" layoutY="14.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="106.0" text="Kategori" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="278.0" prefWidth="502.0">
