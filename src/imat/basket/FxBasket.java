@@ -3,6 +3,7 @@ package imat.basket;
 import imat.Anchorable;
 import imat.FxRoot;
 import imat.browse.FxBrowse;
+import imat.productlist.FxProductItem;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -90,10 +91,12 @@ public class FxBasket extends AnchorPane implements Anchorable, Initializable {
     }
     public void updateBasket(){
         List<ShoppingItem> basketItems = FxRoot.getCart().getItems();
+        System.out.println("UPDATE BASKET:"+basketItems.size());
         productList.getChildren().clear();
-        for (ShoppingItem product : basketItems) {
-            int prodId = product.getProduct().getProductId(                                                                            );
-            productList.getChildren().add(FxRoot.getProdListItem(prodId));
+        for (ShoppingItem shoppingItem : basketItems) {
+            int prodId = shoppingItem.getProduct().getProductId();
+            FxProductItem fxProd = FxRoot.getProdListItem(prodId);
+            productList.getChildren().add(fxProd.getAnchor());
         }
     }
 

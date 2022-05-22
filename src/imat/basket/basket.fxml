@@ -6,49 +6,20 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../imat.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="566.0" prefWidth="875.0" stylesheets="@../imat.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <StackPane layoutX="366.0" layoutY="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane fx:id="browseLightBox" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000000;">
+            <AnchorPane fx:id="browseLightBox" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: RGBA(0,0,0,0.5);">
                <children>
                   <AnchorPane fx:id="browsepane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #DDDDDD;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="20.0" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="basketPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                <children>
-                  <SplitPane dividerPositions="0.17670682730923695" orientation="VERTICAL" prefHeight="500.0" prefWidth="801.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <items>
-                      <AnchorPane maxHeight="85.0" minHeight="85.0" minWidth="0.0" prefHeight="85.0" prefWidth="160.0" styleClass="header">
-                           <children>
-                              <Button fx:id="newBasketButton" layoutX="7.0" layoutY="8.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" styleClass="button-light" text="Töm varukorg" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
-                              <Button fx:id="mySavedBasketsButton" layoutX="701.0" layoutY="8.0" mnemonicParsing="false" onMouseClicked="#onButtonToSavedCarts" prefHeight="46.0" prefWidth="130.0" styleClass="button-light" text="Mina sparade varukorgar" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
-                              <Button fx:id="shopingHistoryButton" layoutX="552.0" layoutY="10.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" styleClass="button-light" text="Inköpshistorik" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="10.0" />
-                              <Label fx:id="basketName" alignment="CENTER" layoutX="381.0" layoutY="50.0" styleClass="header-text" text="soup" textAlignment="CENTER" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
-                           </children>
-                        </AnchorPane>
-                      <AnchorPane fx:id="apMainView" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                           <children>
-                              <StackPane prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <FlowPane fx:id="productList" prefHeight="358.0" prefWidth="720.0" />
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                       <children>
-                                          <Button fx:id="toCheckoutButton" mnemonicParsing="false" onMouseClicked="#onButtonToCheckout" prefHeight="100.0" prefWidth="180.0" text="Till kassan" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-                                          <Button fx:id="saveBasketButton" layoutX="705.0" layoutY="273.0" mnemonicParsing="false" onMouseClicked="#openSaveView" prefHeight="35.0" prefWidth="100.0" styleClass="button-light" text="Spara Som" wrapText="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0" />
-                                          <Label fx:id="savedBasketLabel" layoutX="380.0" layoutY="395.0" text="xxxxxx" AnchorPane.bottomAnchor="14.0" />
-                                          <Button fx:id="browseProductsButton" layoutX="200.0" layoutY="9.0" mnemonicParsing="false" onMouseClicked="#onButtonBrowse" text="Sök bland alla varor" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="10.0" />
-                                          <Button fx:id="saveBasketButton1" layoutX="689.0" layoutY="9.0" mnemonicParsing="false" onMouseClicked="#openSaveView" prefHeight="35.0" prefWidth="100.0" styleClass="button-light" text="Spara" wrapText="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
-                                       </children>
-                                    </AnchorPane>
-                                 </children>
-                              </StackPane>
-                           </children>
-                        </AnchorPane>
-                    </items>
-                  </SplitPane>
                   <StackPane layoutX="-366.0" layoutY="7.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="200.0">
                      <children>
                         <AnchorPane fx:id="apNameBasket" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: white;">
@@ -81,6 +52,49 @@
                         </AnchorPane>
                      </children>
                   </StackPane>
+                <AnchorPane fx:id="apMainView" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
+                     <children>
+                        <SplitPane dividerPositions="0.7663230240549829" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <StackPane prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <FlowPane fx:id="productList" prefHeight="358.0" prefWidth="720.0" styleClass="list-backdrop" />
+                                          <AnchorPane>
+                                             <children>
+                                                <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="37.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
+                                                   <children>
+                                                      <Button fx:id="browseProductsButton" alignment="CENTER" maxWidth="400.0" mnemonicParsing="false" onMouseClicked="#onButtonBrowse" prefWidth="400.0" text="Sök bland alla varor" />
+                                                   </children>
+                                                </HBox>
+                                                <Label fx:id="savedBasketLabel" alignment="CENTER" layoutX="177.0" layoutY="11.0" styleClass="text-important-black" text="xxxxxx" textAlignment="CENTER" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0">
+                                 <children>
+                                    <Button fx:id="toCheckoutButton" mnemonicParsing="false" onMouseClicked="#onButtonToCheckout" prefHeight="100.0" prefWidth="180.0" text="Till kassan" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                                    <Button fx:id="newBasketButton" layoutX="42.0" layoutY="138.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" styleClass="button-light" text="Töm" wrapText="true" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="150.0" />
+                                    <Button fx:id="saveBasketButton" layoutX="42.0" layoutY="64.0" mnemonicParsing="false" onMouseClicked="#openSaveView" prefHeight="35.0" prefWidth="120.0" styleClass="button-light" text="Spara" wrapText="true" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="70.0" />
+                                    <Button fx:id="saveBasketButton1" layoutX="42.0" layoutY="101.0" mnemonicParsing="false" onMouseClicked="#openSaveView" prefHeight="37.0" prefWidth="120.0" styleClass="button-light" text="Spara Som" wrapText="true" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="110.0" />
+                                    <Button fx:id="saveBasketButton2" layoutX="42.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#openSaveView" prefHeight="35.0" prefWidth="120.0" styleClass="button-light" text="Öppna" wrapText="true" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="30.0" />
+                                    <Label fx:id="savedBasketLabel1" alignment="CENTER" layoutX="66.0" layoutY="2.0" styleClass="text-important-black" text="Varukorg" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="2.0" />
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+                <AnchorPane maxHeight="85.0" minHeight="85.0" minWidth="0.0" prefHeight="85.0" prefWidth="160.0" styleClass="header" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label fx:id="basketName" alignment="CENTER" layoutX="-85.0" layoutY="10.0" styleClass="header-text" text="Ny Varukorg" textAlignment="CENTER" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="10.0" />
+                        <Button fx:id="shopingHistoryButton" layoutX="666.0" layoutY="10.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" styleClass="button-light" text="Inköpshistorik" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
          </children>

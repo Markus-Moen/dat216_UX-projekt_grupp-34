@@ -50,6 +50,9 @@ public class FxRoot implements Initializable {
     public static List<Product> getAllProducts(){
         return prods;
     }
+    public static Collection<FxProductItem> getAllProdListItems(){
+        return id2prodListItem.values();
+    }
     public static FxProductItem getProdListItem(int i){
         if(id2prodListItem.containsKey(i) == false)
             throw new RuntimeException("Item does not exist");

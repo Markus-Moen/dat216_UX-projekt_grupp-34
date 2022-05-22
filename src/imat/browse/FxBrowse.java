@@ -43,7 +43,7 @@ public class FxBrowse extends AnchorPane implements Anchorable, Initializable {
         }
 
         this.parentFx = parentFx;
-        updateProductList(null);
+        onTextEdit();
     }
 
     private void updateProductList(@Nullable ProductFilter productFilter){
@@ -74,6 +74,7 @@ public class FxBrowse extends AnchorPane implements Anchorable, Initializable {
     }
 
     @FXML protected void onButtonReturn(){
+        parentFx.updateBasket();
         parentFx.basketPane.toFront();
     }
     @FXML protected void onTextEdit(){
