@@ -58,6 +58,13 @@ public class FxProductItem extends AnchorPane implements Anchorable {
         changeAmount(item, amount + 1);
     }
 
+    @FXML protected void onButtonRemoveOne(){
+        removeOne(shoppingItem);
+    }
+    @FXML protected void onButtonAddOne(){
+        addOne(shoppingItem);
+    }
+
     @Override
     public AnchorPane getAnchor() {
         return anchorPane;
