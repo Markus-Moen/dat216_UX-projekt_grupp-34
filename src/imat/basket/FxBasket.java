@@ -108,6 +108,7 @@ public class FxBasket extends AnchorPane implements Anchorable, Initializable {
         parentFx.savedBasketsPane.toFront();
     }
     @FXML protected void onButtonBrowse(){
+        browse.enter();
         browseLightBox.toFront();
     }
 

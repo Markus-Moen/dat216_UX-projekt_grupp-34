@@ -1,6 +1,7 @@
 * {
     -Vaccent-color: #6694A2;
     -Vaccent-color-dark: #3c5962;
+    -Vaccent-color-light: #c2d4da;
 
     -Vbutton: -Vaccent-color;
     -Vbutton-dark: -Vaccent-color-dark;
@@ -86,10 +87,13 @@
 }
 
 .list-backdrop{
-    -fx-background-color: -VListBg;
+    -fx-background-color: -Vtext-white;
 }
 .list-foreground{
-    -fx-background-color: -VListFg;
+    -fx-background-color: -Vaccent-color-light;
+}
+.list-backdrop-blue{
+    -fx-background-color: -Vaccent-color-light;
 }
 
 .text-important{
