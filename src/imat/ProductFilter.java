@@ -33,7 +33,6 @@ public class ProductFilter {
         int matchScore;
         if(filter.isLeft()) {
             matchScore = howGoodStringMatch(filter.getLeft(), p.getName());
-            System.out.println(p.getName()+"/"+filter.getLeft()+" ="+matchScore);
         } else {
             matchScore = filter.get().contains(p.getCategory()) ? 1 : -1;
         }
