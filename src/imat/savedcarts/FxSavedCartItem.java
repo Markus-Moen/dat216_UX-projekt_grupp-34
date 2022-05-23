@@ -12,13 +12,14 @@ import java.io.IOException;
 public class FxSavedCartItem extends AnchorPane implements Anchorable {
     private AnchorPane anchorPane;
     private SavedCart savedCart;
+    private FxSavedCarts parentController;
 
     @FXML private Label nameLabel;
     @FXML private Label dateLabel;
     @FXML private Button openButton;
     @FXML private Button removeButton;
 
-    public FxSavedCartItem(SavedCart savedCart) {
+    public FxSavedCartItem(SavedCart savedCart, FxSavedCarts parentController) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("savedcartitem.fxml"));
         fxmlLoader.setController(this);
         try {
@@ -28,12 +29,19 @@ public class FxSavedCartItem extends AnchorPane implements Anchorable {
         }
 
         this.savedCart = savedCart;
+        this.parentController = parentController;
         nameLabel.setText(savedCart.getName());
         dateLabel.setText(savedCart.getDate());
     }
 
+    @FXML
+    protected void removeButtonPressed() {
+        parentController.removeCart(this.savedCart);
+        System.out.println("remove cart");
+    }
+
     @Override
     public AnchorPane getAnchor() {
-        return null;
+        return anchorPane;
     }
 }

@@ -43,6 +43,36 @@ public class FxSavedCarts implements Anchorable, Initializable {
 
     public FxSavedCarts(FxRoot parentFx){
         this.parentFx = parentFx;
+        this.savedCarts = getData();
+        updateCartList();
+
+    }
+
+    @FXML protected void onButtonReturn(){
+        parentFx.basketPane.toFront();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {}
+    @Override
+    public AnchorPane getAnchor() {
+        return anchorPane;
+    }
+
+    public void removeCart(SavedCart savedCart) {
+        System.out.println("Before: " + savedCarts.size());
+        savedCarts.remove(savedCart);
+        clearCartList();
+        System.out.println("After: " + savedCarts.size());
+
+        updateCartList();
+    }
+
+    private void clearCartList() {
+        grid.getChildren().clear();
+    }
+
+    public void updateCartList() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("savedcarts.fxml"));
         fxmlLoader.setController(this);
         try {
@@ -51,10 +81,12 @@ public class FxSavedCarts implements Anchorable, Initializable {
             throw new RuntimeException(exception);
         }
 
+
+
         int column = 0;
         int row = 1;
         for (int i = 0; i < savedCarts.size(); i++) {
-            FxSavedCartItem savedCartItem = new FxSavedCartItem(savedCarts.get(i));
+            FxSavedCartItem savedCartItem = new FxSavedCartItem(savedCarts.get(i), this);
             AnchorPane itemAnchorPane = savedCartItem.getAnchor();
 
             if (column == 3) {
@@ -76,16 +108,5 @@ public class FxSavedCarts implements Anchorable, Initializable {
 
             GridPane.setMargin(itemAnchorPane, new Insets(10));
         }
-    }
-
-    @FXML protected void onButtonReturn(){
-        parentFx.basketPane.toFront();
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {}
-    @Override
-    public AnchorPane getAnchor() {
-        return anchorPane;
     }
 }
