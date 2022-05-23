@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.scene.text.Text;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Customer;
 import se.chalmers.cse.dat216.project.CreditCard;
@@ -31,6 +32,11 @@ public class FxCheckout extends AnchorPane implements Anchorable, Initializable 
     @FXML private AnchorPane deliveryPane;
     @FXML private AnchorPane paymentPane;
     @FXML private AnchorPane donePane;
+
+    @FXML private Text itemListText;
+    @FXML private Text itemCostText;
+    @FXML private Text itemTotalText;
+
     @FXML private TextField addressField;
     @FXML private TextField postCodeField;
     @FXML private TextField apartmentNumberField;
@@ -80,8 +86,16 @@ public class FxCheckout extends AnchorPane implements Anchorable, Initializable 
 
     public void openCheckout(){
         fillFields();
+        fillReceipt();
         wizardPosition = 0;
         addressPane.toFront();
+    }
+
+    private void fillReceipt(){
+        String[] receipt = parentFx.receipt();
+        itemListText.setText(receipt[0]);
+        itemCostText.setText(receipt[1]);
+        itemTotalText.setText(receipt[2]);
     }
 
     private void fillFields(){

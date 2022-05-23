@@ -43,7 +43,7 @@ public class FxBrowse extends AnchorPane implements Anchorable, Initializable {
         }
 
         this.parentFx = parentFx;
-        updateProductList(null);
+        onTextEdit();
     }
 
     private void updateProductList(@Nullable ProductFilter productFilter){
@@ -60,20 +60,25 @@ public class FxBrowse extends AnchorPane implements Anchorable, Initializable {
 
                 for(Integer i : ids) {
                     FxProductItem productListItem = FxRoot.getProdListItem(i);
-                    Platform.runLater(() -> {
-                        productFlowPane.getChildren().add(productListItem.getAnchor());
-                    });
                     Thread.sleep(10);
+                    Platform.runLater(() ->
+                        productFlowPane.getChildren().add(productListItem.getAnchor())
+                    );
                 }
                 return null;
             }
         };
         flowAppenderThread = new Thread(flowAppenderTask);
-        flowAppenderThread.setDaemon(true);
         flowAppenderThread.start();
     }
 
+    public void enter(){
+        searchTextBox.requestFocus();
+        onTextEdit();
+    }
+
     @FXML protected void onButtonReturn(){
+        parentFx.updateBasket();
         parentFx.basketPane.toFront();
     }
     @FXML protected void onTextEdit(){

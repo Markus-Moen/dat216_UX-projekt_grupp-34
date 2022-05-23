@@ -1,6 +1,7 @@
 * {
     -Vaccent-color: #6694A2;
     -Vaccent-color-dark: #3c5962;
+    -Vaccent-color-light: #c2d4da;
 
     -Vbutton: -Vaccent-color;
     -Vbutton-dark: -Vaccent-color-dark;
@@ -15,6 +16,9 @@
 
     -Vtext-white: #EEEEEE;
     -Vtext-black: #555555;
+
+    -VListBg: #CCCCCC;
+    -VListFg: -Vtext-white;
     -fx-font-family: "Atkinson Hyperlegible";
 }
 
@@ -24,7 +28,6 @@
     -fx-font-weight: bold;
     -fx-text-fill: -Vtext-black;
 }
-
 .text-field-amount{
     -fx-padding: 4 8 8 4;
     -fx-background-insets: 0, 0 4 4 0;
@@ -34,6 +37,7 @@
     -fx-font-size: 16px;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0.5, 0, 0);
 }
+
 .button{
     -fx-padding: 4 8 8 4;
     -fx-background-insets: 0, 0 4 4 0;
@@ -69,16 +73,36 @@
     -fx-background-color: -VbuttonGreen, -VbuttonGreen-dark;
 }
 .header{
-    -fx-background-color: -Vaccent-color;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-background-color: -Vbutton-dark, -Vbutton;
     -fx-font-size: 16px;
     -fx-font-weight: bold;
     -fx-text-fill: -Vtext-white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 5, 0.5, 0, 0);
 }
 .header-text{
     -fx-font-size: 30px;
     -fx-font-weight: bold;
     -fx-text-fill: -Vtext-white;
 }
+
 .list-backdrop{
-    -fx-background-color: -Vaccent-color;
+    -fx-background-color: -Vtext-white;
+}
+.list-foreground{
+    -fx-background-color: -Vaccent-color-light;
+}
+.list-backdrop-blue{
+    -fx-background-color: -Vaccent-color-light;
+}
+
+.text-important{
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -Vtext-white;
+}
+.text-important-black{
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -Vtext-black;
 }
