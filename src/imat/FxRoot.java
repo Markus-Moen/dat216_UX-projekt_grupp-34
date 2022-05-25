@@ -159,4 +159,8 @@ public class FxRoot implements Initializable {
 
         return output;
     }
+
+    public static void shutDown() {
+        imat.shutDown();
+    }
 }
