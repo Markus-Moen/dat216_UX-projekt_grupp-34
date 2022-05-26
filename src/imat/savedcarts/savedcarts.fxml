@@ -19,7 +19,7 @@
                      <children>
                         <ScrollPane fx:id="scroll" prefHeight="545.0" prefWidth="814.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <content>
-                              <GridPane fx:id="grid" alignment="CENTER" prefHeight="0.0" prefWidth="41.0">
+                              <GridPane fx:id="grid" alignment="CENTER" prefHeight="0.0" prefWidth="41.0" styleClass="list-backdrop-blue">
                                  <rowConstraints>
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" />
                                  </rowConstraints>
