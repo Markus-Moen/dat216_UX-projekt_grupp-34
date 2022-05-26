@@ -3,13 +3,20 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane stylesheets="@../imat.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
@@ -27,53 +34,30 @@
                      <items>
                         <AnchorPane>
                            <children>
-                              <Text fx:id="itemListText" layoutX="105.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="{lista med dina varor}" />
-                              <Text fx:id="itemCostText" layoutX="358.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="{lista med dina varor}" />
-                              <Text fx:id="itemTotalText" layoutX="358.0" layoutY="485.0" strokeType="OUTSIDE" strokeWidth="0.0" text="{lista med dina varor}" />
+                              <VBox layoutX="250.0" layoutY="164.0" prefHeight="200.0" prefWidth="100.0" spacing="30.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+                                 <children>
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                       <children>
+                                          <Text fx:id="itemListText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-important-black" text="{lista med dina varor}" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="100.0" />
+                                          <Text fx:id="itemCostText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-important-black" text="{priser}" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <Separator prefWidth="200.0" />
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-important-black" text="Totalt" AnchorPane.leftAnchor="100.0" />
+                                          <Text fx:id="itemTotalText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-important-black" text="{totalt}" AnchorPane.rightAnchor="100.0" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </VBox>
                            </children>
                         </AnchorPane>
                         <AnchorPane>
                            <children>
                               <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <AnchorPane fx:id="donePane" style="-fx-background-color: ffffff;">
-                                       <children>
-                                          <AnchorPane fx:id="imgPaneDone" layoutX="10.0" layoutY="117.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-100.0">
-                                             <children>
-                                                <ImageView fx:id="imgDone" fitHeight="83.0" fitWidth="94.0" layoutX="11.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                   <image>
-                                                      <Image url="@../resources/thumbs-up-icon.png" />
-                                                   </image>
-                                                </ImageView>
-                                                <HBox prefHeight="40.0" prefWidth="594.0" spacing="125.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="217.0">
-                                                   <children>
-                                                      <Label text="Adress" />
-                                                      <Label text="Leverans" />
-                                                      <Label text="Betalning" />
-                                                      <Label text="Klar" />
-                                                   </children>
-                                                   <padding>
-                                                      <Insets left="30.0" right="29.0" top="5.0" />
-                                                   </padding>
-                                                </HBox>
-                                             </children>
-                                          </AnchorPane>
-                                          <AnchorPane layoutX="10.0" layoutY="-100.0">
-                                             <children>
-                                                <Label layoutX="256.0" layoutY="420.0" text="Tack för ditt köp!" />
-                                                <Button layoutX="376.0" layoutY="713.0" mnemonicParsing="false" onAction="#onButtonBack" prefHeight="83.0" prefWidth="218.0" text="Tillbaka till varukorgen" />
-                                                <ImageView fitHeight="334.0" fitWidth="729.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../resources/wizardBar-fourthStep.png" />
-                                                   </image>
-                                                </ImageView>
-                                                <Label layoutX="120.0" layoutY="298.0" text="Adressinmatning" />
-                                                <Label layoutX="445.0" layoutY="298.0" text="Steg 4 av 4" />
-                                             </children>
-                                          </AnchorPane>
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane fx:id="paymentPane" onMouseClicked="#pay" style="-fx-background-color: ffffff;">
+                                    <AnchorPane fx:id="paymentPane" style="-fx-background-color: ffffff;">
                                        <children>
                                           <AnchorPane fx:id="imgPanePayment" layoutX="10.0" layoutY="-100.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-100.0">
                                              <children>
@@ -84,10 +68,10 @@
                                                 </ImageView>
                                                 <HBox layoutY="217.0" prefHeight="40.0" prefWidth="594.0" spacing="125.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="217.0">
                                                    <children>
-                                                      <Label text="Adress" />
-                                                      <Label text="Leverans" />
-                                                      <Label text="Betalning" />
-                                                      <Label text="Klar" />
+                                                      <Label styleClass="text-important-black" text="Adress" />
+                                                      <Label styleClass="text-important-black" text="Leverans" />
+                                                      <Label styleClass="text-important-black" text="Betalning" />
+                                                      <Label styleClass="text-important-black" text="Klar" />
                                                    </children>
                                                    <padding>
                                                       <Insets left="30.0" right="29.0" top="5.0" />
@@ -95,63 +79,25 @@
                                                 </HBox>
                                              </children>
                                           </AnchorPane>
-                                          <AnchorPane layoutX="5.0" layoutY="157.0">
+                                          <AnchorPane layoutX="5.0" layoutY="157.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="157.0">
                                              <children>
-                                                <Label alignment="CENTER_RIGHT" layoutX="30.0" layoutY="123.0" prefHeight="25.0" prefWidth="70.0" text="Namn:" />
+                                                <Label alignment="CENTER_RIGHT" layoutX="30.0" layoutY="123.0" prefHeight="25.0" prefWidth="70.0" styleClass="text-important-black" text="Namn:" />
                                                 <TextField fx:id="nameField" layoutX="110.0" layoutY="123.0" />
-                                                <Label alignment="CENTER_RIGHT" layoutX="30.0" layoutY="173.0" prefHeight="25.0" prefWidth="70.0" text="Kortnummer:" />
+                                                <Label alignment="CENTER_RIGHT" layoutX="30.0" layoutY="173.0" prefHeight="25.0" prefWidth="70.0" styleClass="text-important-black" text="Kortnummer:" />
                                                 <TextField fx:id="cardNumberField" layoutX="110.0" layoutY="173.0" />
-                                                <Label alignment="CENTER_RIGHT" layoutX="30.0" layoutY="223.0" prefHeight="25.0" prefWidth="70.0" text="Mån:" />
+                                                <Label alignment="CENTER_RIGHT" layoutX="30.0" layoutY="223.0" prefHeight="25.0" prefWidth="70.0" styleClass="text-important-black" text="Mån:" />
                                                 <TextField fx:id="cardMonthField" layoutX="110.0" layoutY="223.0" prefHeight="25.0" prefWidth="40.0" />
-                                                <Label alignment="CENTER_RIGHT" layoutX="150.0" layoutY="223.0" prefHeight="25.0" prefWidth="70.0" text="År:" />
+                                                <Label alignment="CENTER_RIGHT" layoutX="150.0" layoutY="223.0" prefHeight="25.0" prefWidth="70.0" styleClass="text-important-black" text="År:" />
                                                 <TextField fx:id="cardYearField" layoutX="230.0" layoutY="223.0" prefHeight="25.0" prefWidth="40.0" />
-                                                <Label alignment="CENTER_RIGHT" layoutX="270.0" layoutY="223.0" prefHeight="25.0" prefWidth="70.0" text="CVC:" />
+                                                <Label alignment="CENTER_RIGHT" layoutX="270.0" layoutY="223.0" prefHeight="25.0" prefWidth="70.0" styleClass="text-important-black" text="CVC:" />
                                                 <TextField fx:id="cardVerificationField" layoutX="350.0" layoutY="223.0" prefHeight="25.0" prefWidth="40.0" />
-                                                <Button layoutX="5.0" layoutY="456.0" mnemonicParsing="false" onAction="#wizardBack" prefHeight="83.0" prefWidth="139.0" text="Tillbaka" />
-                                                <Button layoutX="460.0" layoutY="456.0" mnemonicParsing="false" onAction="#wizardNext" prefHeight="83.0" prefWidth="139.0" text="Nästa" />
-                                                <Label layoutX="125.0" layoutY="41.0" text="Betalning" />
-                                                <Label layoutX="450.0" layoutY="41.0" text="Steg 3 av 4" />
+                                                <Button layoutX="5.0" layoutY="456.0" mnemonicParsing="false" onAction="#wizardBack" prefHeight="83.0" prefWidth="139.0" text="Tillbaka" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+                                                <Button layoutX="460.0" layoutY="456.0" mnemonicParsing="false" onAction="#wizardNext" prefHeight="83.0" prefWidth="139.0" text="Nästa" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                                                <Label layoutX="125.0" layoutY="41.0" styleClass="text-important-black" text="Betalning" />
+                                                <Label layoutX="450.0" layoutY="41.0" styleClass="text-important-black" text="Steg 3 av 4" />
                                                 <ImageView fitHeight="83.0" fitWidth="94.0" layoutX="16.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../resources/payment-icon.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </children>
-                                          </AnchorPane>
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane fx:id="deliveryPane" style="-fx-background-color: ffffff;">
-                                       <children>
-                                          <AnchorPane fx:id="imgPaneDelivery" layoutX="10.0" layoutY="-100.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-100.0">
-                                             <children>
-                                                <ImageView fx:id="imgDelivery" fitHeight="334.0" fitWidth="729.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                   <image>
-                                                      <Image url="@../resources/wizardBar-secondStep.png" />
-                                                   </image>
-                                                </ImageView>
-                                                <HBox layoutY="217.0" prefHeight="40.0" prefWidth="594.0" spacing="125.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="217.0">
-                                                   <children>
-                                                      <Label text="Adress" />
-                                                      <Label text="Leverans" />
-                                                      <Label text="Betalning" />
-                                                      <Label text="Klar" />
-                                                   </children>
-                                                   <padding>
-                                                      <Insets left="30.0" right="29.0" top="5.0" />
-                                                   </padding>
-                                                </HBox>
-                                             </children>
-                                          </AnchorPane>
-                                          <AnchorPane layoutX="5.0" layoutY="157.0">
-                                             <children>
-                                                <Label layoutX="263.0" layoutY="140.0" text="Välj Leveranstid!" />
-                                                <Button layoutX="5.0" layoutY="456.0" mnemonicParsing="false" onAction="#wizardBack" prefHeight="83.0" prefWidth="139.0" text="Tillbaka" />
-                                                <Button layoutX="460.0" layoutY="456.0" mnemonicParsing="false" onAction="#wizardNext" prefHeight="83.0" prefWidth="139.0" text="Nästa" />
-                                                <Label layoutX="125.0" layoutY="41.0" text="Leveransbokning" />
-                                                <Label layoutX="450.0" layoutY="41.0" text="Steg 2 av 4" />
-                                                <ImageView fitHeight="83.0" fitWidth="94.0" layoutX="16.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../resources/delivery-icon.png" />
                                                    </image>
                                                 </ImageView>
                                              </children>
@@ -169,6 +115,157 @@
                                                 </ImageView>
                                                 <HBox layoutY="217.0" prefHeight="40.0" prefWidth="594.0" spacing="125.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="217.0">
                                                    <children>
+                                                      <Label styleClass="text-important-black" text="Adress" />
+                                                      <Label styleClass="text-important-black" text="Leverans" />
+                                                      <Label styleClass="text-important-black" text="Betalning" />
+                                                      <Label styleClass="text-important-black" text="Klar" />
+                                                   </children>
+                                                   <padding>
+                                                      <Insets left="30.0" right="29.0" top="5.0" />
+                                                   </padding>
+                                                </HBox>
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane layoutX="21.0" layoutY="157.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="157.0">
+                                             <children>
+                                                <Button layoutX="444.0" layoutY="456.0" mnemonicParsing="false" onAction="#wizardNext" prefHeight="83.0" prefWidth="139.0" text="Nästa" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                                                <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="123.0" prefHeight="25.0" prefWidth="100.0" styleClass="text-important-black" text="Adress:" />
+                                                <TextField fx:id="addressField" layoutX="124.0" layoutY="123.0" />
+                                                <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="173.0" prefHeight="25.0" prefWidth="100.0" styleClass="text-important-black" text="Postnummer:" />
+                                                <TextField fx:id="postCodeField" layoutX="124.0" layoutY="173.0" />
+                                                <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="223.0" prefHeight="25.0" prefWidth="100.0" styleClass="text-important-black" text="Lgh nr:" />
+                                                <TextField fx:id="apartmentNumberField" layoutX="124.0" layoutY="223.0" />
+                                                <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="273.0" prefHeight="25.0" prefWidth="100.0" styleClass="text-important-black" text="Stad:" />
+                                                <TextField fx:id="cityField" layoutX="124.0" layoutY="273.0" />
+                                                <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="323.0" prefHeight="25.0" prefWidth="100.0" styleClass="text-important-black" text="Telefonnunmmer:" />
+                                                <TextField fx:id="phoneNumberField" layoutX="124.0" layoutY="323.0" />
+                                                <Label layoutX="109.0" layoutY="41.0" styleClass="text-important-black" text="Adressinmatning" />
+                                                <Label layoutX="434.0" layoutY="41.0" styleClass="text-important-black" text="Steg 1 av 4" />
+                                                <ImageView fitHeight="83.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../resources/address-icon.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane fx:id="deliveryPane" style="-fx-background-color: ffffff;">
+                                       <children>
+                                          <AnchorPane fx:id="imgPaneDelivery" layoutX="10.0" layoutY="-100.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-100.0">
+                                             <children>
+                                                <ImageView fx:id="imgDelivery" fitHeight="334.0" fitWidth="729.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <image>
+                                                      <Image url="@../resources/wizardBar-secondStep.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <HBox layoutY="217.0" prefHeight="40.0" prefWidth="594.0" spacing="125.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="217.0">
+                                                   <children>
+                                                      <Label styleClass="text-important-black" text="Adress" />
+                                                      <Label styleClass="text-important-black" text="Leverans" />
+                                                      <Label styleClass="text-important-black" text="Betalning" />
+                                                      <Label styleClass="text-important-black" text="Klar" />
+                                                   </children>
+                                                   <padding>
+                                                      <Insets left="30.0" right="29.0" top="5.0" />
+                                                   </padding>
+                                                </HBox>
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane layoutX="5.0" layoutY="157.0" prefWidth="599.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="157.0">
+                                             <children>
+                                                <Label layoutX="263.0" layoutY="124.0" styleClass="text-important-black" text="Välj Leveranstid!" />
+                                                <Button layoutX="5.0" layoutY="456.0" mnemonicParsing="false" onAction="#wizardBack" prefHeight="83.0" prefWidth="139.0" text="Tillbaka" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+                                                <Button layoutX="460.0" layoutY="456.0" mnemonicParsing="false" onAction="#wizardNext" prefHeight="83.0" prefWidth="139.0" text="Nästa" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                                                <Label layoutX="125.0" layoutY="41.0" styleClass="text-important-black" text="Leveransbokning" />
+                                                <Label layoutX="450.0" layoutY="41.0" styleClass="text-important-black" text="Steg 2 av 4" />
+                                                <ImageView fitHeight="83.0" fitWidth="94.0" layoutX="16.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../resources/delivery-icon.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <GridPane hgap="10.0" layoutX="207.0" layoutY="230.0" vgap="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="180.0">
+                                                  <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="77.0" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="77.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="77.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="77.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="77.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="77.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="77.0" />
+                                                  </columnConstraints>
+                                                  <rowConstraints>
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                  </rowConstraints>
+                                                   <children>
+                                                      <Label alignment="CENTER" prefHeight="30.0" prefWidth="77.0" styleClass="text-important-black" text="Mån" />
+                                                      <ToggleButton mnemonicParsing="false" prefWidth="77.0" styleClass="button" text="10:00" GridPane.rowIndex="1">
+                                                         <toggleGroup>
+                                                            <ToggleGroup fx:id="dateGroup" />
+                                                         </toggleGroup>
+                                                      </ToggleButton>
+                                                      <ToggleButton mnemonicParsing="false" prefWidth="77.0" styleClass="button" text="10:30" toggleGroup="$dateGroup" GridPane.rowIndex="2" />
+                                                      <ToggleButton mnemonicParsing="false" prefWidth="77.0" styleClass="button" text="11:00" toggleGroup="$dateGroup" GridPane.rowIndex="3" />
+                                                      <ToggleButton mnemonicParsing="false" prefWidth="77.0" styleClass="button" text="11:30" toggleGroup="$dateGroup" GridPane.rowIndex="4" />
+                                                      <ToggleButton mnemonicParsing="false" prefHeight="30.0" prefWidth="77.0" styleClass="button" text="12:00" toggleGroup="$dateGroup" GridPane.rowIndex="5" />
+                                                      <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="77.0" styleClass="text-important-black" text="Tis" GridPane.columnIndex="1" />
+                                                      <ToggleButton layoutX="10.0" layoutY="50.0" mnemonicParsing="false" prefWidth="77.0" styleClass="button" text="10:00" toggleGroup="$dateGroup" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                      <ToggleButton layoutX="10.0" layoutY="90.0" mnemonicParsing="false" prefWidth="77.0" styleClass="button" text="10:30" toggleGroup="$dateGroup" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                      <ToggleButton layoutX="10.0" layoutY="130.0" mnemonicParsing="false" prefWidth="77.0" styleClass="button" text="11:00" toggleGroup="$dateGroup" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                      <ToggleButton layoutX="10.0" layoutY="170.0" mnemonicParsing="false" prefWidth="77.0" styleClass="button" text="11:30" toggleGroup="$dateGroup" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                      <ToggleButton layoutX="10.0" layoutY="210.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="77.0" styleClass="button" text="12:00" toggleGroup="$dateGroup" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                      <Label alignment="CENTER" layoutX="96.0" layoutY="10.0" prefHeight="30.0" prefWidth="77.0" styleClass="text-important-black" text="Ons" GridPane.columnIndex="2" />
+                                                      <ToggleButton layoutX="96.0" layoutY="10.0" mnemonicParsing="false" prefWidth="77.0" styleClass="button" text="10:00" toggleGroup="$dateGroup" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                      <ToggleButton layoutX="96.0" layoutY="10.0" mnemonicParsing="false" prefWidth="77.0" styleClass="button" text="10:30" toggleGroup="$dateGroup" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                      <ToggleButton layoutX="96.0" layoutY="10.0" mnemonicParsing="false" prefWidth="77.0" styleClass="button" text="11:00" toggleGroup="$dateGroup" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                                      <ToggleButton layoutX="96.0" layoutY="10.0" mnemonicParsing="false" prefWidth="77.0" styleClass="button" text="11:30" toggleGroup="$dateGroup" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                                      <ToggleButton layoutX="96.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="77.0" styleClass="button" text="12:00" toggleGroup="$dateGroup" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                                      <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="77.0" styleClass="text-important-black" text="Tor" GridPane.columnIndex="3" />
+                                                      <ToggleButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="77.0" styleClass="button" text="10:00" toggleGroup="$dateGroup" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                                      <ToggleButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="77.0" styleClass="button" text="10:30" toggleGroup="$dateGroup" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                                      <ToggleButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="77.0" styleClass="button" text="11:00" toggleGroup="$dateGroup" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                                      <ToggleButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="77.0" styleClass="button" text="11:30" toggleGroup="$dateGroup" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                                                      <ToggleButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="77.0" styleClass="button" text="12:00" toggleGroup="$dateGroup" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                                                      <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="77.0" styleClass="text-important-black" text="Fre" GridPane.columnIndex="4" />
+                                                      <ToggleButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="77.0" styleClass="button" text="10:00" toggleGroup="$dateGroup" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                                      <ToggleButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="77.0" styleClass="button" text="10:30" toggleGroup="$dateGroup" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                                                      <ToggleButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="77.0" styleClass="button" text="11:00" toggleGroup="$dateGroup" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                                                      <ToggleButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="77.0" styleClass="button" text="11:30" toggleGroup="$dateGroup" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                                                      <ToggleButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="77.0" styleClass="button" text="12:00" toggleGroup="$dateGroup" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                                                      <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="77.0" styleClass="text-important-black" text="Lör" GridPane.columnIndex="5" />
+                                                      <ToggleButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="77.0" styleClass="button" text="10:00" toggleGroup="$dateGroup" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                                                      <ToggleButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="77.0" styleClass="button" text="10:30" toggleGroup="$dateGroup" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                                                      <ToggleButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="77.0" styleClass="button" text="11:00" toggleGroup="$dateGroup" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                                                      <ToggleButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="77.0" styleClass="button" text="11:30" toggleGroup="$dateGroup" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                                                      <ToggleButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="77.0" styleClass="button" text="12:00" toggleGroup="$dateGroup" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                                                      <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="77.0" styleClass="text-important-black" text="Sön" GridPane.columnIndex="6" />
+                                                      <ToggleButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="77.0" styleClass="button" text="10:00" toggleGroup="$dateGroup" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                                                      <ToggleButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="77.0" styleClass="button" text="10:30" toggleGroup="$dateGroup" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                                                      <ToggleButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="77.0" styleClass="button" text="11:00" toggleGroup="$dateGroup" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+                                                      <ToggleButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="77.0" styleClass="button" text="11:30" toggleGroup="$dateGroup" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+                                                      <ToggleButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="77.0" styleClass="button" text="12:00" toggleGroup="$dateGroup" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+                                                   </children>
+                                                </GridPane>
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane fx:id="donePane" style="-fx-background-color: ffffff;">
+                                       <children>
+                                          <AnchorPane fx:id="imgPaneDone" layoutX="10.0" layoutY="117.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-100.0">
+                                             <children>
+                                                <ImageView fitHeight="334.0" fitWidth="729.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../resources/wizardBar-fourthStep.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <HBox prefHeight="40.0" prefWidth="594.0" spacing="125.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="217.0">
+                                                   <children>
                                                       <Label text="Adress" />
                                                       <Label text="Leverans" />
                                                       <Label text="Betalning" />
@@ -180,26 +277,17 @@
                                                 </HBox>
                                              </children>
                                           </AnchorPane>
-                                          <AnchorPane layoutX="21.0" layoutY="157.0">
+                                          <AnchorPane layoutX="10.0" layoutY="-100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="157.0">
                                              <children>
-                                                <Button layoutX="444.0" layoutY="456.0" mnemonicParsing="false" onAction="#wizardNext" prefHeight="83.0" prefWidth="139.0" text="Nästa" />
-                                                <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="123.0" prefHeight="25.0" prefWidth="100.0" text="Adress:" />
-                                                <TextField fx:id="addressField" layoutX="124.0" layoutY="123.0" />
-                                                <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="173.0" prefHeight="25.0" prefWidth="100.0" text="Postnummer:" />
-                                                <TextField fx:id="postCodeField" layoutX="124.0" layoutY="173.0" />
-                                                <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="223.0" prefHeight="25.0" prefWidth="100.0" text="Lgh nr:" />
-                                                <TextField fx:id="apartmentNumberField" layoutX="124.0" layoutY="223.0" />
-                                                <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="273.0" prefHeight="25.0" prefWidth="100.0" text="Stad:" />
-                                                <TextField fx:id="cityField" layoutX="124.0" layoutY="273.0" />
-                                                <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="323.0" prefHeight="25.0" prefWidth="100.0" text="Telefonnunmmer:" />
-                                                <TextField fx:id="phoneNumberField" layoutX="124.0" layoutY="323.0" />
-                                                <Label layoutX="109.0" layoutY="41.0" text="Adressinmatning" />
-                                                <Label layoutX="434.0" layoutY="41.0" text="Steg 1 av 4" />
-                                                <ImageView fitHeight="83.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
+                                                <Label layoutX="256.0" layoutY="226.0" styleClass="text-important-black" text="Tack för ditt köp!" />
+                                                <Button layoutX="376.0" layoutY="713.0" mnemonicParsing="false" onAction="#onButtonBack" prefHeight="83.0" prefWidth="218.0" text="Tillbaka till varukorgen" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                                                <ImageView fx:id="imgDone" fitHeight="83.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
                                                    <image>
-                                                      <Image url="@../resources/address-icon.png" />
+                                                      <Image url="@../resources/thumbs-up-icon.png" />
                                                    </image>
                                                 </ImageView>
+                                                <Label layoutX="112.0" layoutY="39.0" styleClass="text-important-black" text="Adressinmatning" />
+                                                <Label layoutX="441.0" layoutY="39.0" styleClass="text-important-black" text="Steg 4 av 4" />
                                              </children>
                                           </AnchorPane>
                                        </children>

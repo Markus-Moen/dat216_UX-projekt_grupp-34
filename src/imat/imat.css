@@ -61,6 +61,11 @@
     -fx-background-insets: 0, 4 0 0 4;
     -fx-background-color: -Vbutton, -Vbutton-dark ;
 }
+.button:selected{
+    -fx-padding: 8 4 4 8;
+    -fx-background-insets: 0, 4 0 0 4;
+    -fx-background-color: -Vbutton, -Vbutton-dark ;
+}
 .button-light{
     -fx-background-color: -VbuttonL-dark, -VbuttonL ;
     -fx-text-fill: -Vtext-black;

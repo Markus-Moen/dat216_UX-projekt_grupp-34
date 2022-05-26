@@ -5,6 +5,8 @@ import imat.FxRoot;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TextField;
@@ -17,6 +19,8 @@ import javafx.scene.text.Text;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Customer;
 import se.chalmers.cse.dat216.project.CreditCard;
+
+import static io.vavr.API.print;
 
 public class FxCheckout extends AnchorPane implements Anchorable, Initializable {
     private AnchorPane anchorPane;
@@ -36,6 +40,7 @@ public class FxCheckout extends AnchorPane implements Anchorable, Initializable 
     @FXML private Text itemListText;
     @FXML private Text itemCostText;
     @FXML private Text itemTotalText;
+    @FXML private TextArea receipt;
 
     @FXML private TextField addressField;
     @FXML private TextField postCodeField;
@@ -47,6 +52,8 @@ public class FxCheckout extends AnchorPane implements Anchorable, Initializable 
     @FXML private TextField cardMonthField;
     @FXML private TextField cardYearField;
     @FXML private TextField cardVerificationField;
+
+    @FXML private ToggleGroup dateGroup;
 
     @FXML private AnchorPane imgPaneAddress;
     @FXML private ImageView imgAddress;
@@ -130,7 +137,7 @@ public class FxCheckout extends AnchorPane implements Anchorable, Initializable 
                 customerData();
                 break;
             case 1:
-                // code block
+                dateSelector();
                 break;
             case 2:
                 cardData();
@@ -176,8 +183,9 @@ public class FxCheckout extends AnchorPane implements Anchorable, Initializable 
     @FXML protected void buy(){
         imat.placeOrder();
     }
-    @FXML protected void pay(){
 
+    @FXML protected void dateSelector(){
+        print(dateGroup.getSelectedToggle().getProperties().values().toArray()[0].toString());
     }
 
     @FXML protected void onButtonBack(){
