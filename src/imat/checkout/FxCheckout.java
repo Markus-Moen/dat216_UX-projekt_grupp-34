@@ -174,7 +174,7 @@ public class FxCheckout extends AnchorPane implements Anchorable, Initializable 
     }
 
     @FXML protected void buy(){
-        imat.placeOrder(true);
+        imat.placeOrder();
     }
     @FXML protected void pay(){
 
