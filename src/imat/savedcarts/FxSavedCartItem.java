@@ -37,7 +37,6 @@ public class FxSavedCartItem extends AnchorPane implements Anchorable {
     @FXML
     protected void removeButtonPressed() {
         parentController.removeCart(this.savedCart);
-        System.out.println("remove cart");
     }
 
     @Override

@@ -27,11 +27,11 @@ public class FxSavedCarts implements Anchorable, Initializable {
 
     private List<SavedCart> savedCarts = new ArrayList<>();
 
-    private List<SavedCart> getData() {
+    private List<SavedCart> getData(int amount) {
         List<SavedCart> carts = new ArrayList<>();
         SavedCart cart;
 
-        for (int i=0; i<20; i++) {
+        for (int i=0; i<amount; i++) {
             cart = new SavedCart();
             cart.setName("Varukorg " + i);
             cart.setDate("18/5-22");
@@ -43,7 +43,17 @@ public class FxSavedCarts implements Anchorable, Initializable {
 
     public FxSavedCarts(FxRoot parentFx){
         this.parentFx = parentFx;
-        this.savedCarts = getData();
+        this.savedCarts = getData(5);
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("savedcarts.fxml"));
+        fxmlLoader.setController(this);
+
+        try {
+            anchorPane = fitAnchor(fxmlLoader.load());
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+
         updateCartList();
 
     }
@@ -60,9 +70,10 @@ public class FxSavedCarts implements Anchorable, Initializable {
     }
 
     public void removeCart(SavedCart savedCart) {
-        System.out.println("Before: " + savedCarts.size());
-        savedCarts.remove(savedCart);
         clearCartList();
+
+        System.out.println("Before: " + savedCarts.size());
+        this.savedCarts.remove(savedCart);
         System.out.println("After: " + savedCarts.size());
 
         updateCartList();
@@ -73,18 +84,11 @@ public class FxSavedCarts implements Anchorable, Initializable {
     }
 
     public void updateCartList() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("savedcarts.fxml"));
-        fxmlLoader.setController(this);
-        try {
-            anchorPane = fitAnchor(fxmlLoader.load());
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
-        }
-
 
 
         int column = 0;
         int row = 1;
+        System.out.println("upfatyer " + savedCarts.size());
         for (int i = 0; i < savedCarts.size(); i++) {
             FxSavedCartItem savedCartItem = new FxSavedCartItem(savedCarts.get(i), this);
             AnchorPane itemAnchorPane = savedCartItem.getAnchor();
