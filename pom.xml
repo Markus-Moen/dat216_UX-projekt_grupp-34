@@ -79,10 +79,9 @@
             <resource>
                 <filtering>true</filtering>
                 <directory>src</directory>
-                <excludes>
-                    <exclude>**/*.java</exclude>
-                    <exclude>**/*.zip</exclude>
-                </excludes>
+                <includes>
+                    <include>**/*.jar</include>
+                </includes>
             </resource>
             <resource>
                 <directory>lib</directory>
@@ -137,6 +136,11 @@
                                     <directory>${basedir}/src</directory>
                                     <includes>
                                         <include>**/*.zip</include>
+                                        <include>**/*.css</include>
+                                        <include>**/*.fxml</include>
+                                        <include>**/*.ttf</include>
+                                        <include>**/*.png</include>
+                                        <include>**/*.properties</include>
                                     </includes>
                                 </resource>
                             </resources>

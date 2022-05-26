@@ -67,9 +67,6 @@ public class FxRoot implements Initializable {
         System.out.println(prods.size()+" products loaded");
         loadCartData();
 
-        Font.loadFont(this.getClass().getResource("resources/font/Atkinson-Hyperlegible-Regular-102.ttf").toExternalForm(), 10);
-        Font.loadFont(this.getClass().getResource("resources/font/Atkinson-Hyperlegible-Bold-102.ttf").toExternalForm(), 10);
-
         System.out.println(basketPane);
         fxBasket = new FxBasket(this);
         fxCheckout = new FxCheckout(this);

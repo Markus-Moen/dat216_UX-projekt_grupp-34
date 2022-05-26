@@ -2,11 +2,13 @@ package imat;
 
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
+import javafx.scene.text.Font;
 import net.lingala.zip4j.ZipFile;
 
 import javafx.application.Application;
@@ -25,6 +27,10 @@ public class IMat extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         ResourceBundle bundle = java.util.ResourceBundle.getBundle("imat/resources/IMat");
+        InputStream is = this.getClass().getResourceAsStream("./resources/font/Atkinson-Hyperlegible-Regular-102.ttf");
+        Font font = Font.loadFont(is,50);
+        Font.loadFont(this.getClass().getResourceAsStream("./resources/font/Atkinson-Hyperlegible-Bold-102.ttf"), 50);
+        System.out.println("FONT="+font);
 
         maybeInitializeDB();
 
