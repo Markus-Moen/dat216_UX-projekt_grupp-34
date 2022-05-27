@@ -10,6 +10,7 @@ import imat.savedcarts.FxSavedCarts;
 import io.vavr.Tuple2;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
@@ -57,6 +58,9 @@ public class FxRoot implements Initializable {
         if(id2prodListItem.containsKey(i) == false)
             throw new RuntimeException("Item does not exist");
         return id2prodListItem.get(i);
+    }
+    public static Image getProductImage(Product prod){
+        return imat.getFXImage(prod);
     }
 
     @Override
