@@ -9,16 +9,23 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="566.0" prefWidth="875.0" stylesheets="@../imat.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="566.0" prefWidth="875.0" stylesheets="@../imat.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imat.basket.FxBasket">
    <children>
       <StackPane layoutX="366.0" layoutY="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane fx:id="browseLightBox" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: RGBA(0,0,0,0.5);">
+            <AnchorPane fx:id="stackHistory" prefHeight="200.0" prefWidth="200.0" />
+            <AnchorPane fx:id="stackCheckout" prefHeight="200.0" prefWidth="200.0" />
+            <AnchorPane fx:id="stackSavedCarts" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: RGBA(0,0,0,0.5);">
                <children>
-                  <AnchorPane fx:id="browsepane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #DDDDDD;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="20.0" />
+                  <AnchorPane fx:id="savedCartsPaneContent" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="20.0" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="basketPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+            <AnchorPane fx:id="stackBrowse" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: RGBA(0,0,0,0.5);">
+               <children>
+                  <AnchorPane fx:id="browsePaneContent" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #DDDDDD;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="20.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="stackBasket" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                <children>
                   <StackPane layoutX="-366.0" layoutY="7.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="200.0">
                      <children>

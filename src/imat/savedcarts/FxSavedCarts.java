@@ -1,7 +1,7 @@
 package imat.savedcarts;
 
 import imat.Anchorable;
-import imat.FxRoot;
+import imat.basket.FxBasket;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 
 public class FxSavedCarts implements Anchorable, Initializable {
     AnchorPane anchorPane;
-    FxRoot parentFx;
+    FxBasket fxBasket;
 
     @FXML private GridPane grid;
 
@@ -41,8 +41,8 @@ public class FxSavedCarts implements Anchorable, Initializable {
         return carts;
     }
 
-    public FxSavedCarts(FxRoot parentFx){
-        this.parentFx = parentFx;
+    public FxSavedCarts(FxBasket fxBasket){
+        this.fxBasket = fxBasket;
         this.savedCarts = getData(5);
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("savedcarts.fxml"));
@@ -55,11 +55,10 @@ public class FxSavedCarts implements Anchorable, Initializable {
         }
 
         updateCartList();
-
     }
 
     @FXML protected void onButtonReturn(){
-        parentFx.basketPane.toFront();
+        fxBasket.focus();
     }
 
     @Override

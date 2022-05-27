@@ -1,7 +1,8 @@
 package imat.checkout;
 
 import imat.Anchorable;
-import imat.FxRoot;
+import imat.IMatData;
+import imat.basket.FxBasket;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,11 +24,9 @@ import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Customer;
 import se.chalmers.cse.dat216.project.CreditCard;
 
-import static io.vavr.API.print;
-
 public class FxCheckout extends AnchorPane implements Anchorable, Initializable {
     private AnchorPane anchorPane;
-    private FxRoot parentFx;
+    private FxBasket fxBasket;
 
     private int wizardPosition;
     private AnchorPane[] wizardArr;
@@ -69,8 +68,8 @@ public class FxCheckout extends AnchorPane implements Anchorable, Initializable 
     @FXML private AnchorPane imgPaneDone;
     @FXML private ImageView imgDone;
 
-    public FxCheckout(FxRoot parentFx) {
-        this.parentFx = parentFx;
+    public FxCheckout(FxBasket fxBasket) {
+        this.fxBasket = fxBasket;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("checkout.fxml"));
         fxmlLoader.setController(this);
 
@@ -102,7 +101,7 @@ public class FxCheckout extends AnchorPane implements Anchorable, Initializable 
     }
 
     private void fillReceipt(){
-        String[] receipt = parentFx.receipt();
+        String[] receipt = fxBasket.iMatData.receipt();
         itemListText.setText(receipt[0]);
         itemCostText.setText(receipt[1]);
         itemTotalText.setText(receipt[2]);
@@ -224,7 +223,7 @@ public class FxCheckout extends AnchorPane implements Anchorable, Initializable 
     }
 
     @FXML protected void onButtonBack(){
-        parentFx.basketPane.toFront();
+        fxBasket.focus();
     }
 
     @Override

@@ -1,7 +1,7 @@
 package imat.browse;
 
 import imat.Anchorable;
-import imat.FxRoot;
+import imat.IMatData;
 import imat.ProductFilter;
 import imat.basket.FxBasket;
 import imat.productlist.FxProductItem;
@@ -22,8 +22,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class FxBrowse extends AnchorPane implements Anchorable, Initializable {
-    FxBasket parentFx;
+public class FxBrowse implements Anchorable, Initializable {
+    FxBasket fxBasket;
     AnchorPane anchorPane;
     @FXML FlowPane productFlowPane;
     @FXML TextField searchTextBox;
@@ -42,7 +42,7 @@ public class FxBrowse extends AnchorPane implements Anchorable, Initializable {
             throw new RuntimeException(exception);
         }
 
-        this.parentFx = parentFx;
+        this.fxBasket = parentFx;
         onTextEdit();
     }
 
@@ -60,11 +60,11 @@ public class FxBrowse extends AnchorPane implements Anchorable, Initializable {
 
         flowAppenderTask = new Task() {
             @Override protected Void call() throws Exception {
-                var ids = FxRoot.getFilteredProductIds(productFilter);
+                var ids = fxBasket.iMatData.getFilteredProductIds(productFilter);
                 System.out.println("FOUND:"+ids.size());
 
                 for(Integer i : ids) {
-                    FxProductItem productListItem = FxRoot.getProdListItem(i);
+                    FxProductItem productListItem = fxBasket.iMatData.getProdListItem(i);
                     Thread.sleep(10);
                     Platform.runLater(() ->
                         productFlowPane.getChildren().add(productListItem.getAnchor())
@@ -77,14 +77,14 @@ public class FxBrowse extends AnchorPane implements Anchorable, Initializable {
         flowAppenderThread.start();
     }
 
-    public void enter(){
+    public void openBrowse(){
         searchTextBox.requestFocus();
         onTextEdit();
     }
 
     @FXML protected void onButtonReturn(){
-        parentFx.updateBasket();
-        parentFx.basketPane.toFront();
+        fxBasket.updateBasket();
+        fxBasket.focus();
     }
     @FXML protected void onTextEdit(){
         String search = searchTextBox.getText();

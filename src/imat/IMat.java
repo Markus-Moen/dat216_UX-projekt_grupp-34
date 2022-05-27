@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
+import imat.basket.FxBasket;
 import javafx.scene.text.Font;
 import net.lingala.zip4j.ZipFile;
 
@@ -34,7 +35,7 @@ public class IMat extends Application {
 
         maybeInitializeDB();
 
-        Parent root = FXMLLoader.load(getClass().getResource("imat.fxml"), bundle);
+        Parent root = FXMLLoader.load(getClass().getResource("basket/basket.fxml"), bundle);
 
         Scene scene = new Scene(root, 800, 500);
         stage.setTitle(bundle.getString("application.name"));
@@ -65,7 +66,7 @@ public class IMat extends Application {
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             @Override
             public void run() {
-                FxRoot.shutDown();
+               FxBasket.INSTANCE.shutDown();
             }
         }));
     }
