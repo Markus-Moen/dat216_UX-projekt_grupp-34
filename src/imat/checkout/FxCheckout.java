@@ -185,7 +185,21 @@ public class FxCheckout extends AnchorPane implements Anchorable, Initializable 
     }
 
     @FXML protected void dateSelector(){
-        print(dateGroup.getSelectedToggle().getProperties().values().toArray()[0].toString());
+        Object[] arr = dateGroup.getSelectedToggle().getProperties().values().toArray();
+        String str = "";
+        for (Object o : arr) {
+            str += o.toString();
+        }
+        nameField.setText(str);
+
+        String[] times = {"10:00", "10:30", "11:00", "11:30", "12:00"};
+        String[] days = {"Mån", "Tis", "Ons", "Tor", "Fre", "Lör", "Sön"};
+        String deliveryTime;
+        int selected = (int) dateGroup.getSelectedToggle().getProperties().values().toArray()[0];
+
+        //deliveryTime = days[selected/10] + " " + times[selected%10-1];
+        deliveryTime = selected + " " + times[selected%10-1];
+        nameField.setText(deliveryTime);
     }
 
     @FXML protected void onButtonBack(){
