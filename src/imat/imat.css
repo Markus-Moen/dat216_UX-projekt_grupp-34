@@ -48,11 +48,11 @@
 .text-bread{
     -fx-font-size: 14px;
 }
-
 .split-pane *.split-pane-divider {
     -fx-padding: 1;
 }
 
+/* ========= BUTTON ========= */
 .button{
     -fx-padding: 4 8 8 4;
     -fx-background-insets: 0, 0 4 4 0;
@@ -80,6 +80,8 @@
 .button:selected:hover{
     -fx-border-style: none ;
 }
+
+/* ========= BUTTON LIGHT ========= */
 .button-light{
     -fx-background-color: -VbuttonL-dark, -VbuttonL ;
     -fx-text-fill: -Vtext-black;
@@ -87,6 +89,12 @@
 .button-light:hover{
     -fx-background-color: -VbuttonL, -VbuttonL-dark;
 }
+.button-light:selected{
+    -fx-background-color: -VbuttonL, -VbuttonL-dark;
+    -fx-border-color: -VbuttonL;
+}
+
+/* ========= BUTTON COLORS ========= */
 .button-red{
     -fx-background-color: -VbuttonRed-dark, -VbuttonRed ;
 }
@@ -99,6 +107,8 @@
 .button-green:hover{
     -fx-background-color: -VbuttonGreen, -VbuttonGreen-dark;
 }
+
+/* ========= BUTTON COLORS ========= */
 .header{
     -fx-background-insets: 0, 0 0 1 0;
     -fx-background-color: -Vbutton-dark, -Vbutton;
@@ -115,6 +125,7 @@
 
 .list-blue{
     -fx-background-color: -Vaccent-color-light;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 5, 0.5, 0, 0);
 }
 .list-white{
     -fx-background-color: -Vtext-white;

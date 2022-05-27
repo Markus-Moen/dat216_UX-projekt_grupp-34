@@ -7,13 +7,20 @@ import imat.basket.FxBasket;
 import imat.productlist.FxProductItem;
 import io.vavr.control.Either;
 import javafx.application.Platform;
+import javafx.beans.InvalidationListener;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableIntegerValue;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableIntegerArray;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
@@ -22,11 +29,36 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+/*
+    POD,
+    BREAD,
+    BERRY,
+    CITRUS_FRUIT,
+    HOT_DRINKS,
+    COLD_DRINKS,
+    EXOTIC_FRUIT,
+    FISH,
+    VEGETABLE_FRUIT,
+    CABBAGE,
+    MEAT,
+    DAIRIES,
+    MELONS,
+    FLOUR_SUGAR_SALT,
+    NUTS_AND_SEEDS,
+    PASTA,
+    POTATO_RICE,
+    ROOT_VEGETABLE,
+    FRUIT,
+    SWEET,
+    HERB;
+*/
 public class FxBrowse implements Anchorable, Initializable {
     FxBasket fxBasket;
     AnchorPane anchorPane;
     @FXML FlowPane productFlowPane;
     @FXML TextField searchTextBox;
+    @FXML AnchorPane scrollContent;
+    @FXML ScrollPane scrollPane;
 
     private Thread flowAppenderThread;
     private Task flowAppenderTask;
@@ -43,6 +75,7 @@ public class FxBrowse implements Anchorable, Initializable {
         }
 
         this.fxBasket = parentFx;
+        scrollContent.prefWidthProperty().bind(scrollPane.widthProperty());
         onTextEdit();
     }
 
