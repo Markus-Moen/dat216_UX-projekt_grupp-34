@@ -5,7 +5,9 @@ import imat.FxRoot;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -15,6 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Customer;
@@ -53,7 +56,9 @@ public class FxCheckout extends AnchorPane implements Anchorable, Initializable 
     @FXML private TextField cardYearField;
     @FXML private TextField cardVerificationField;
 
-    @FXML private ToggleGroup dateGroup;
+    //@FXML private ToggleGroup dateGroup;
+    @FXML private GridPane deliveryGrid;
+    @FXML private TextArea doneText;
 
     @FXML private AnchorPane imgPaneAddress;
     @FXML private ImageView imgAddress;
@@ -87,8 +92,6 @@ public class FxCheckout extends AnchorPane implements Anchorable, Initializable 
         openCheckout();
 
         wizardArr = new AnchorPane[] {addressPane, deliveryPane, paymentPane, donePane};
-
-        //nameField.setText("RuneSlayerF69420");
     }
 
     public void openCheckout(){
@@ -185,21 +188,39 @@ public class FxCheckout extends AnchorPane implements Anchorable, Initializable 
     }
 
     @FXML protected void dateSelector(){
-        Object[] arr = dateGroup.getSelectedToggle().getProperties().values().toArray();
-        String str = "";
-        for (Object o : arr) {
-            str += o.toString();
-        }
-        nameField.setText(str);
+        //Object[] arr = dateGroup.getSelectedToggle().getProperties().values().toArray();
+        //String str = "";
+        //for (Object o : arr) {
+        //    str += o.toString();
+        //}
+        //nameField.setText(str);
 
-        String[] times = {"10:00", "10:30", "11:00", "11:30", "12:00"};
-        String[] days = {"Mån", "Tis", "Ons", "Tor", "Fre", "Lör", "Sön"};
-        String deliveryTime;
-        int selected = (int) dateGroup.getSelectedToggle().getProperties().values().toArray()[0];
+        //String[] times = {"10:00", "10:30", "11:00", "11:30", "12:00"};
+        //String[] days = {"Mån", "Tis", "Ons", "Tor", "Fre", "Lör", "Sön"};
+        //String deliveryTime;
+        //int selected = (int) dateGroup.getSelectedToggle().getProperties().values().toArray()[0];
 
         //deliveryTime = days[selected/10] + " " + times[selected%10-1];
-        deliveryTime = selected + " " + times[selected%10-1];
-        nameField.setText(deliveryTime);
+        //deliveryTime = selected + " " + times[selected%10-1];
+        //nameField.setText(deliveryTime);
+
+        String output;
+        String[] days = {"måndag", "tisdag", "onsdag", "torsdag", "fre", "lördag", "söndag"};
+        String[] times = {"10:00", "10:30", "11:00", "11:30", "12:00"};
+
+        for (Node node : deliveryGrid.getChildren()) {
+            if (node instanceof ToggleButton){
+                if (((ToggleButton)node).isSelected()){
+                    output = days[deliveryGrid.getColumnIndex(node)] + " ";
+                    output += times[deliveryGrid.getRowIndex(node)-1];
+                    output = "Tack för din beställning!\n" +
+                            "Dina kassar anländer " + output + ".\n" +
+                            "Vi ringer en halvtimme innan leverans.";
+                    doneText.setText(output);
+                    break;
+                }
+            }
+        }
     }
 
     @FXML protected void onButtonBack(){
