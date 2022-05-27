@@ -38,15 +38,15 @@
                                  <children>
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                        <children>
-                                          <Text fx:id="itemListText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-important-black" text="{lista med dina varor}" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="100.0" />
-                                          <Text fx:id="itemCostText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-important-black" text="{priser}" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0" />
+                                          <Text fx:id="itemListText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-body" text="{lista med dina varor}" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="100.0" />
+                                          <Text fx:id="itemCostText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-body" text="{priser}" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0" />
                                        </children>
                                     </AnchorPane>
                                     <Separator prefWidth="200.0" />
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-important-black" text="Totalt" AnchorPane.leftAnchor="100.0" />
-                                          <Text fx:id="itemTotalText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-important-black" text="{totalt}" AnchorPane.rightAnchor="100.0" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-body" text="Totalt" AnchorPane.leftAnchor="100.0" />
+                                          <Text fx:id="itemTotalText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-body" text="{totalt}" AnchorPane.rightAnchor="100.0" />
                                        </children>
                                     </AnchorPane>
                                  </children>
