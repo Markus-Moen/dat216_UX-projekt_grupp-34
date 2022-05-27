@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
@@ -32,7 +33,7 @@
                <children>
                   <SplitPane dividerPositions="0.49426229508196723" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <items>
-                        <AnchorPane styleClass="list-backdrop">
+                        <AnchorPane styleClass="list-white">
                            <children>
                               <VBox layoutX="250.0" layoutY="164.0" prefHeight="200.0" prefWidth="100.0" spacing="30.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
                                  <children>
@@ -57,16 +58,16 @@
                            <children>
                               <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <AnchorPane fx:id="donePane" style="-fx-background-color: ffffff;">
+                                    <AnchorPane fx:id="addressPane" prefWidth="761.0" style="-fx-background-color: ffffff;">
                                        <children>
-                                          <AnchorPane fx:id="imgPaneDone" layoutX="10.0" layoutY="117.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-100.0">
+                                          <AnchorPane fx:id="imgPaneAddress" layoutX="10.0" layoutY="-100.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-100.0">
                                              <children>
-                                                <ImageView fitHeight="334.0" fitWidth="729.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="imgAddress" fitHeight="652.0" fitWidth="1180.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-100.0">
                                                    <image>
-                                                      <Image url="@../resources/wizardBar-fourthStep.png" />
+                                                      <Image url="@../resources/wizardBar-firstStep.png" />
                                                    </image>
                                                 </ImageView>
-                                                <HBox prefHeight="40.0" prefWidth="594.0" spacing="125.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="217.0">
+                                                <HBox layoutY="217.0" prefHeight="40.0" prefWidth="594.0" spacing="263.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="320.0">
                                                    <children>
                                                       <Label styleClass="text-important-black" text="Adress" />
                                                       <Label styleClass="text-important-black" text="Leverans" />
@@ -74,67 +75,29 @@
                                                       <Label styleClass="text-important-black" text="Klar" />
                                                    </children>
                                                    <padding>
-                                                      <Insets left="30.0" right="29.0" top="5.0" />
+                                                      <Insets left="70.0" right="29.0" top="5.0" />
                                                    </padding>
                                                 </HBox>
                                              </children>
                                           </AnchorPane>
-                                          <AnchorPane layoutX="10.0" layoutY="-100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="157.0">
+                                          <AnchorPane layoutX="21.0" layoutY="157.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="280.0">
                                              <children>
-                                                <Label layoutX="256.0" layoutY="226.0" styleClass="text-important-black" text="Tack för ditt köp!" />
-                                                <Button layoutX="376.0" layoutY="713.0" mnemonicParsing="false" onAction="#onButtonBack" prefHeight="83.0" prefWidth="218.0" text="Tillbaka till varukorgen" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-                                                <ImageView fx:id="imgDone" fitHeight="83.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+                                                <Button layoutX="444.0" layoutY="456.0" mnemonicParsing="false" onAction="#wizardNext" prefHeight="83.0" prefWidth="139.0" text="Nästa" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                                                <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="123.0" prefHeight="35.0" prefWidth="150.0" styleClass="text-important-black" text="Adress:" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="120.0" />
+                                                <TextField fx:id="addressField" layoutX="208.0" layoutY="123.0" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="120.0" />
+                                                <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="173.0" prefHeight="35.0" prefWidth="150.0" styleClass="text-important-black" text="Postnummer:" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="175.0" />
+                                                <TextField fx:id="postCodeField" layoutX="208.0" layoutY="173.0" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="175.0" />
+                                                <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="223.0" prefHeight="35.0" prefWidth="150.0" styleClass="text-important-black" text="Lgh nr:" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="230.0" />
+                                                <TextField fx:id="apartmentNumberField" layoutX="208.0" layoutY="223.0" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="230.0" />
+                                                <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="273.0" prefHeight="35.0" prefWidth="150.0" styleClass="text-important-black" text="Stad:" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="285.0" />
+                                                <TextField fx:id="cityField" layoutX="208.0" layoutY="273.0" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="285.0" />
+                                                <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="323.0" prefHeight="35.0" prefWidth="150.0" styleClass="text-important-black" text="Telefonnunmmer:" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="340.0" />
+                                                <TextField fx:id="phoneNumberField" layoutX="208.0" layoutY="323.0" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="340.0" />
+                                                <Label alignment="CENTER_RIGHT" layoutX="109.0" layoutY="41.0" prefHeight="100.0" prefWidth="150.0" styleClass="text-important-black" text="Adressinmatning" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="10.0" />
+                                                <Label layoutX="434.0" layoutY="41.0" prefHeight="100.0" styleClass="text-important-black" text="Steg 1 av 4" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="10.0" />
+                                                <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                                                    <image>
-                                                      <Image url="@../resources/thumbs-up-icon.png" />
-                                                   </image>
-                                                </ImageView>
-                                                <Label layoutX="112.0" layoutY="39.0" styleClass="text-important-black" text="Adressinmatning" />
-                                                <Label layoutX="441.0" layoutY="39.0" styleClass="text-important-black" text="Steg 4 av 4" />
-                                             </children>
-                                          </AnchorPane>
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane fx:id="paymentPane" style="-fx-background-color: ffffff;">
-                                       <children>
-                                          <AnchorPane fx:id="imgPanePayment" layoutX="10.0" layoutY="-100.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-100.0">
-                                             <children>
-                                                <ImageView fx:id="imgPayment" fitHeight="334.0" fitWidth="729.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                   <image>
-                                                      <Image url="@../resources/wizardBar-thirdStep.png" />
-                                                   </image>
-                                                </ImageView>
-                                                <HBox layoutY="217.0" prefHeight="40.0" prefWidth="594.0" spacing="125.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="217.0">
-                                                   <children>
-                                                      <Label styleClass="text-important-black" text="Adress" />
-                                                      <Label styleClass="text-important-black" text="Leverans" />
-                                                      <Label styleClass="text-important-black" text="Betalning" />
-                                                      <Label styleClass="text-important-black" text="Klar" />
-                                                   </children>
-                                                   <padding>
-                                                      <Insets left="30.0" right="29.0" top="5.0" />
-                                                   </padding>
-                                                </HBox>
-                                             </children>
-                                          </AnchorPane>
-                                          <AnchorPane layoutX="5.0" layoutY="157.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="157.0">
-                                             <children>
-                                                <Label alignment="CENTER_RIGHT" layoutX="30.0" layoutY="123.0" prefHeight="25.0" prefWidth="70.0" styleClass="text-important-black" text="Namn:" />
-                                                <TextField fx:id="nameField" layoutX="110.0" layoutY="123.0" />
-                                                <Label alignment="CENTER_RIGHT" layoutX="30.0" layoutY="173.0" prefHeight="25.0" prefWidth="70.0" styleClass="text-important-black" text="Kortnummer:" />
-                                                <TextField fx:id="cardNumberField" layoutX="110.0" layoutY="173.0" />
-                                                <Label alignment="CENTER_RIGHT" layoutX="30.0" layoutY="223.0" prefHeight="25.0" prefWidth="70.0" styleClass="text-important-black" text="Mån:" />
-                                                <TextField fx:id="cardMonthField" layoutX="110.0" layoutY="223.0" prefHeight="25.0" prefWidth="40.0" />
-                                                <Label alignment="CENTER_RIGHT" layoutX="150.0" layoutY="223.0" prefHeight="25.0" prefWidth="70.0" styleClass="text-important-black" text="År:" />
-                                                <TextField fx:id="cardYearField" layoutX="230.0" layoutY="223.0" prefHeight="25.0" prefWidth="40.0" />
-                                                <Label alignment="CENTER_RIGHT" layoutX="270.0" layoutY="223.0" prefHeight="25.0" prefWidth="70.0" styleClass="text-important-black" text="CVC:" />
-                                                <TextField fx:id="cardVerificationField" layoutX="350.0" layoutY="223.0" prefHeight="25.0" prefWidth="40.0" />
-                                                <Button layoutX="5.0" layoutY="456.0" mnemonicParsing="false" onAction="#wizardBack" prefHeight="83.0" prefWidth="139.0" text="Tillbaka" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
-                                                <Button layoutX="460.0" layoutY="456.0" mnemonicParsing="false" onAction="#wizardNext" prefHeight="83.0" prefWidth="139.0" text="Nästa" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-                                                <Label layoutX="125.0" layoutY="41.0" styleClass="text-important-black" text="Betalning" />
-                                                <Label layoutX="450.0" layoutY="41.0" styleClass="text-important-black" text="Steg 3 av 4" />
-                                                <ImageView fitHeight="83.0" fitWidth="94.0" layoutX="16.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../resources/payment-icon.png" />
+                                                      <Image url="@../resources/address-icon.png" />
                                                    </image>
                                                 </ImageView>
                                              </children>
@@ -145,12 +108,12 @@
                                        <children>
                                           <AnchorPane fx:id="imgPaneDelivery" layoutX="10.0" layoutY="-100.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-100.0">
                                              <children>
-                                                <ImageView fx:id="imgDelivery" fitHeight="334.0" fitWidth="729.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                <ImageView fx:id="imgDelivery" fitHeight="652.0" fitWidth="1180.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-100.0">
                                                    <image>
                                                       <Image url="@../resources/wizardBar-secondStep.png" />
                                                    </image>
                                                 </ImageView>
-                                                <HBox layoutY="217.0" prefHeight="40.0" prefWidth="594.0" spacing="125.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="217.0">
+                                                <HBox layoutY="217.0" prefHeight="40.0" prefWidth="594.0" spacing="263.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="320.0">
                                                    <children>
                                                       <Label styleClass="text-important-black" text="Adress" />
                                                       <Label styleClass="text-important-black" text="Leverans" />
@@ -158,24 +121,24 @@
                                                       <Label styleClass="text-important-black" text="Klar" />
                                                    </children>
                                                    <padding>
-                                                      <Insets left="30.0" right="29.0" top="5.0" />
+                                                      <Insets left="70.0" right="29.0" top="5.0" />
                                                    </padding>
                                                 </HBox>
                                              </children>
                                           </AnchorPane>
-                                          <AnchorPane layoutX="5.0" layoutY="157.0" prefWidth="599.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="157.0">
+                                          <AnchorPane layoutX="5.0" layoutY="157.0" prefWidth="599.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="280.0">
                                              <children>
-                                                <Label layoutX="263.0" layoutY="124.0" styleClass="text-important-black" text="Välj Leveranstid!" />
-                                                <Button layoutX="5.0" layoutY="456.0" mnemonicParsing="false" onAction="#wizardBack" prefHeight="83.0" prefWidth="139.0" text="Tillbaka" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+                                                <Label layoutX="538.0" layoutY="157.0" styleClass="text-important-black" text="Välj Leveranstid!" AnchorPane.leftAnchor="538.0" AnchorPane.rightAnchor="537.0" AnchorPane.topAnchor="155.0" />
+                                                <Button layoutX="5.0" layoutY="456.0" mnemonicParsing="false" onAction="#wizardBack" prefHeight="83.0" prefWidth="139.0" styleClass="button-light" text="Tillbaka" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
                                                 <Button layoutX="460.0" layoutY="456.0" mnemonicParsing="false" onAction="#wizardNext" prefHeight="83.0" prefWidth="139.0" text="Nästa" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-                                                <Label layoutX="125.0" layoutY="41.0" styleClass="text-important-black" text="Leveransbokning" />
-                                                <Label layoutX="450.0" layoutY="41.0" styleClass="text-important-black" text="Steg 2 av 4" />
-                                                <ImageView fitHeight="83.0" fitWidth="94.0" layoutX="16.0" pickOnBounds="true" preserveRatio="true">
+                                                <Label alignment="CENTER_RIGHT" layoutX="125.0" layoutY="41.0" prefHeight="100.0" prefWidth="150.0" styleClass="text-important-black" text="Leveransbokning" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="10.0" />
+                                                <Label layoutX="450.0" layoutY="41.0" prefHeight="100.0" styleClass="text-important-black" text="Steg 2 av 4" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="10.0" />
+                                                <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="16.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                                                    <image>
                                                       <Image url="@../resources/delivery-icon.png" />
                                                    </image>
                                                 </ImageView>
-                                                <GridPane hgap="10.0" layoutX="207.0" layoutY="230.0" vgap="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="180.0">
+                                                <GridPane hgap="10.0" layoutX="301.0" layoutY="240.0" vgap="10.0" AnchorPane.leftAnchor="301.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="200.0">
                                                   <columnConstraints>
                                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="77.0" />
                                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="77.0" />
@@ -246,16 +209,16 @@
                                           </AnchorPane>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane fx:id="addressPane" prefWidth="761.0" style="-fx-background-color: ffffff;">
+                                    <AnchorPane fx:id="paymentPane" style="-fx-background-color: ffffff;">
                                        <children>
-                                          <AnchorPane fx:id="imgPaneAddress" layoutX="10.0" layoutY="-100.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-100.0">
+                                          <AnchorPane fx:id="imgPanePayment" layoutX="10.0" layoutY="-100.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-100.0">
                                              <children>
-                                                <ImageView fx:id="imgAddress" fitHeight="652.0" fitWidth="1180.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-100.0">
+                                                <ImageView fx:id="imgPayment" fitHeight="652.0" fitWidth="1180.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-100.0">
                                                    <image>
-                                                      <Image url="@../resources/wizardBar-firstStep.png" />
+                                                      <Image url="@../resources/wizardBar-thirdStep.png" />
                                                    </image>
                                                 </ImageView>
-                                                <HBox layoutY="217.0" prefHeight="40.0" prefWidth="594.0" spacing="125.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="217.0">
+                                                <HBox layoutY="217.0" prefHeight="40.0" prefWidth="594.0" spacing="263.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="320.0">
                                                    <children>
                                                       <Label styleClass="text-important-black" text="Adress" />
                                                       <Label styleClass="text-important-black" text="Leverans" />
@@ -263,31 +226,70 @@
                                                       <Label styleClass="text-important-black" text="Klar" />
                                                    </children>
                                                    <padding>
-                                                      <Insets left="30.0" right="29.0" top="5.0" />
+                                                      <Insets left="70.0" right="29.0" top="5.0" />
                                                    </padding>
                                                 </HBox>
                                              </children>
                                           </AnchorPane>
-                                          <AnchorPane layoutX="21.0" layoutY="157.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="157.0">
+                                          <AnchorPane layoutX="5.0" layoutY="157.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="280.0">
                                              <children>
-                                                <Button layoutX="444.0" layoutY="456.0" mnemonicParsing="false" onAction="#wizardNext" prefHeight="83.0" prefWidth="139.0" text="Nästa" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-                                                <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="123.0" prefHeight="25.0" prefWidth="100.0" styleClass="text-important-black" text="Adress:" />
-                                                <TextField fx:id="addressField" layoutX="124.0" layoutY="123.0" />
-                                                <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="173.0" prefHeight="25.0" prefWidth="100.0" styleClass="text-important-black" text="Postnummer:" />
-                                                <TextField fx:id="postCodeField" layoutX="124.0" layoutY="173.0" />
-                                                <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="223.0" prefHeight="25.0" prefWidth="100.0" styleClass="text-important-black" text="Lgh nr:" />
-                                                <TextField fx:id="apartmentNumberField" layoutX="124.0" layoutY="223.0" />
-                                                <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="273.0" prefHeight="25.0" prefWidth="100.0" styleClass="text-important-black" text="Stad:" />
-                                                <TextField fx:id="cityField" layoutX="124.0" layoutY="273.0" />
-                                                <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="323.0" prefHeight="25.0" prefWidth="100.0" styleClass="text-important-black" text="Telefonnunmmer:" />
-                                                <TextField fx:id="phoneNumberField" layoutX="124.0" layoutY="323.0" />
-                                                <Label layoutX="109.0" layoutY="41.0" styleClass="text-important-black" text="Adressinmatning" />
-                                                <Label layoutX="434.0" layoutY="41.0" styleClass="text-important-black" text="Steg 1 av 4" />
-                                                <ImageView fitHeight="83.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
+                                                <Label alignment="CENTER_RIGHT" layoutX="30.0" layoutY="123.0" prefHeight="35.0" prefWidth="150.0" styleClass="text-important-black" text="Namn:" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="120.0" />
+                                                <TextField fx:id="nameField" layoutX="110.0" layoutY="123.0" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="120.0" />
+                                                <Label alignment="CENTER_RIGHT" layoutX="30.0" layoutY="173.0" prefHeight="35.0" prefWidth="150.0" styleClass="text-important-black" text="Kortnummer:" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="175.0" />
+                                                <TextField fx:id="cardNumberField" layoutX="110.0" layoutY="173.0" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="175.0" />
+                                                <Label alignment="CENTER_RIGHT" layoutX="30.0" layoutY="223.0" prefHeight="35.0" prefWidth="150.0" styleClass="text-important-black" text="Mån:" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="230.0" />
+                                                <TextField fx:id="cardMonthField" layoutX="110.0" layoutY="223.0" prefHeight="25.0" prefWidth="40.0" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="230.0" />
+                                                <Label alignment="CENTER_RIGHT" layoutX="120.0" layoutY="222.0" prefHeight="35.0" prefWidth="150.0" styleClass="text-important-black" text="År:" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="285.0" />
+                                                <TextField fx:id="cardYearField" layoutX="230.0" layoutY="260.0" prefHeight="25.0" prefWidth="40.0" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="285.0" />
+                                                <Label alignment="CENTER_RIGHT" layoutX="120.0" layoutY="306.0" prefHeight="35.0" prefWidth="150.0" styleClass="text-important-black" text="CVC:" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="340.0" />
+                                                <TextField fx:id="cardVerificationField" layoutX="350.0" layoutY="222.0" prefHeight="25.0" prefWidth="50.0" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="340.0" />
+                                                <Button layoutX="5.0" layoutY="456.0" mnemonicParsing="false" onAction="#wizardBack" prefHeight="83.0" prefWidth="139.0" styleClass="button-light" text="Tillbaka" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+                                                <Button layoutX="460.0" layoutY="456.0" mnemonicParsing="false" onAction="#wizardNext" prefHeight="83.0" prefWidth="139.0" text="Köp" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                                                <Label alignment="CENTER_RIGHT" layoutX="125.0" layoutY="41.0" prefHeight="100.0" prefWidth="150.0" styleClass="text-important-black" text="Betalning" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="10.0" />
+                                                <Label layoutX="450.0" layoutY="41.0" prefHeight="100.0" styleClass="text-important-black" text="Steg 3 av 4" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="10.0" />
+                                                <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="16.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                                                    <image>
-                                                      <Image url="@../resources/address-icon.png" />
+                                                      <Image url="@../resources/payment-icon.png" />
                                                    </image>
                                                 </ImageView>
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane fx:id="donePane" style="-fx-background-color: ffffff;">
+                                       <children>
+                                          <AnchorPane fx:id="imgPaneDone" layoutX="10.0" layoutY="117.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-100.0">
+                                             <children>
+                                                <ImageView fitHeight="652.0" fitWidth="1180.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-100.0">
+                                                   <image>
+                                                      <Image url="@../resources/wizardBar-fourthStep.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <HBox prefHeight="40.0" prefWidth="594.0" spacing="263.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="320.0">
+                                                   <children>
+                                                      <Label styleClass="text-important-black" text="Adress" />
+                                                      <Label styleClass="text-important-black" text="Leverans" />
+                                                      <Label styleClass="text-important-black" text="Betalning" />
+                                                      <Label styleClass="text-important-black" text="Klar" />
+                                                   </children>
+                                                   <padding>
+                                                      <Insets left="70.0" right="29.0" top="5.0" />
+                                                   </padding>
+                                                </HBox>
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane layoutX="10.0" layoutY="-100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="280.0">
+                                             <children>
+                                                <Button layoutX="376.0" layoutY="713.0" mnemonicParsing="false" onAction="#onButtonBack" prefHeight="83.0" prefWidth="218.0" text="Tillbaka till varukorgen" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                                                <ImageView fx:id="imgDone" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                                   <image>
+                                                      <Image url="@../resources/thumbs-up-icon.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <Label alignment="CENTER_RIGHT" layoutX="112.0" layoutY="39.0" prefHeight="100.0" prefWidth="150.0" styleClass="text-important-black" text="Klar" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="10.0" />
+                                                <Label layoutX="441.0" layoutY="39.0" prefHeight="100.0" styleClass="text-important-black" text="Steg 4 av 4" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="10.0" />
+                                                <TextArea layoutX="419.0" layoutY="252.0" prefHeight="107.0" prefWidth="363.0" styleClass="text-body" text="Tack för din beställning!&#10;Dina kassar anländer måndag 11:30.&#10;Vi ringer en halvtimme innan leverans." />
+                                                <Button layoutX="244.0" layoutY="605.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="218.0" styleClass="button-light" text="Skriv ut kvitto" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="238.0" />
                                              </children>
                                           </AnchorPane>
                                        </children>
