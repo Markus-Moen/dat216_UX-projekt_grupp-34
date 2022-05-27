@@ -122,3 +122,7 @@
     -fx-font-weight: bold;
     -fx-text-fill: -Vtext-black;
 }
+.text-body{
+    -fx-font-size: 20px;
+    -fx-text-fill: -Vtext-black;
+}
