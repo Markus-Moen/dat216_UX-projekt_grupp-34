@@ -113,7 +113,7 @@
                                     </ScrollPane>
                                  </children>
                               </StackPane>
-                              <Button layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onMouseClicked="#onButtonReturn" prefHeight="93.0" prefWidth="137.0" text="Tillbaka till&#10;varukorg" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                              <Button fx:id="lowReturnButton" layoutX="24.0" layoutY="24.0" mnemonicParsing="false" onMouseClicked="#onButtonReturn" prefHeight="93.0" prefWidth="137.0" text="Tillbaka till&#10;varukorg" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="20.0" />
                            </children>
                         </AnchorPane>
                     </items>

@@ -16,6 +16,7 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -59,6 +60,7 @@ public class FxBrowse implements Anchorable, Initializable {
     @FXML TextField searchTextBox;
     @FXML AnchorPane scrollContent;
     @FXML ScrollPane scrollPane;
+    @FXML Button lowReturnButton;
 
     private Thread flowAppenderThread;
     private Task flowAppenderTask;
