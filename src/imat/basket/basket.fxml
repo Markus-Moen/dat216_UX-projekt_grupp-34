@@ -56,12 +56,12 @@
                      <children>
                         <SplitPane dividerPositions="0.7663230240549829" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <items>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="list-white">
                                  <children>
                                     <StackPane prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
                                           <FlowPane fx:id="productList" prefHeight="358.0" prefWidth="720.0" styleClass="list-backdrop" />
-                                          <AnchorPane>
+                                          <AnchorPane styleClass="text-important-white">
                                              <children>
                                                 <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="37.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
                                                    <children>
@@ -75,7 +75,7 @@
                                     </StackPane>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" styleClass="list-backdrop-blue">
+                              <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" styleClass="list-blue">
                                  <children>
                                     <Button fx:id="toCheckoutButton" mnemonicParsing="false" onMouseClicked="#onButtonToCheckout" prefHeight="100.0" prefWidth="180.0" text="Till kassan" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
                                     <Button fx:id="newBasketButton" layoutX="42.0" layoutY="138.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="120.0" styleClass="button-light" text="Ny varukorg" wrapText="true" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="30.0" />

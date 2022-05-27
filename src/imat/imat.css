@@ -45,11 +45,14 @@
     -fx-font-size: 16px;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0.5, 0, 0);
 }
+.split-pane *.split-pane-divider {
+    -fx-padding: 1;
+}
 
 .button{
     -fx-padding: 4 8 8 4;
     -fx-background-insets: 0, 0 4 4 0;
-    -fx-background-radius: 5;
+    /*`-fx-background-radius: 5;*/
     -fx-background-color: -Vbutton-dark, -Vbutton;
     -fx-text-fill: -Vtext-white;
     -fx-font-weight: bold;
@@ -62,9 +65,16 @@
     -fx-background-color: -Vbutton, -Vbutton-dark ;
 }
 .button:selected{
-    -fx-padding: 8 4 4 8;
-    -fx-background-insets: 0, 4 0 0 4;
+    -fx-padding: 0;
     -fx-background-color: -Vbutton, -Vbutton-dark ;
+    -fx-background-insets: 0, 4 0 0 4;
+    -fx-border-color: -Vbutton ;
+    -fx-border-style: dashed dashed dashed dashed ;
+    -fx-border-width: 2;
+    -fx-border-insets: 6 2 2 6;
+}
+.button:selected:hover{
+    -fx-border-style: none ;
 }
 .button-light{
     -fx-background-color: -VbuttonL-dark, -VbuttonL ;
@@ -99,14 +109,11 @@
     -fx-text-fill: -Vtext-white;
 }
 
-.list-backdrop{
+.list-blue{
+    -fx-background-color: -Vaccent-color-light;
+}
+.list-white{
     -fx-background-color: -Vtext-white;
-}
-.list-foreground{
-    -fx-background-color: -Vaccent-color-light;
-}
-.list-backdrop-blue{
-    -fx-background-color: -Vaccent-color-light;
 }
 
 .text-important-white{
