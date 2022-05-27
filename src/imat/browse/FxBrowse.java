@@ -50,6 +50,11 @@ public class FxBrowse extends AnchorPane implements Anchorable, Initializable {
         if(flowAppenderThread != null && flowAppenderThread.isAlive()){
             flowAppenderTask.cancel();
             flowAppenderThread.interrupt();
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         productFlowPane.getChildren().clear();
 

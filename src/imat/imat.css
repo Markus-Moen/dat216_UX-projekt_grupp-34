@@ -14,8 +14,8 @@
     -VbuttonGreen: #67a374;
     -VbuttonGreen-dark: #3c6244;
 
-    -Vtext-white: #EEEEEE;
-    -Vtext-black: #555555;
+    -Vtext-white: #FFFFFF;
+    -Vtext-black: #3D3D3D;
 
     -VListBg: #CCCCCC;
     -VListFg: -Vtext-white;
@@ -109,10 +109,13 @@
     -fx-background-color: -Vaccent-color-light;
 }
 
-.text-important{
+.text-important-white{
     -fx-font-size: 16px;
     -fx-font-weight: bold;
     -fx-text-fill: -Vtext-white;
+}
+.text-important{
+    -fx-font-size: 16px;
 }
 .text-important-black{
     -fx-font-size: 16px;
