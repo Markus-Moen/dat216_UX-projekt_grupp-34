@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
@@ -18,17 +18,31 @@
                <children>
                   <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#onButtonReturn" prefHeight="65.0" prefWidth="150.0" styleClass="button-light" text="Tillbaka till&#10;varukorg" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
                   <TextField fx:id="searchTextBox" layoutX="200.0" layoutY="45.0" onAction="#onTextEdit" onKeyTyped="#onTextEdit" prefHeight="26.0" prefWidth="293.0" promptText="Skriv här för att söka" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
-                  <Label layoutX="200.0" layoutY="23.0" styleClass="text-important" text="Sök Vara" textAlignment="CENTER" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
+                  <Label layoutX="200.0" layoutY="23.0" styleClass="text-important-white" text="Sök Vara" textAlignment="CENTER" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
                   <SplitPane dividerPositions="0.18024999999999997" prefHeight="331.0" prefWidth="599.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
-                      <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="130.0">
+                      <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="146.0" styleClass="list-blue">
                            <children>
-                              <ListView prefHeight="346.0" prefWidth="106.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                              <Button layoutX="17.0" layoutY="14.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="106.0" text="Kategori" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                              <FlowPane alignment="TOP_CENTER" columnHalignment="CENTER" prefHeight="200.0" prefWidth="200.0" vgap="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                 <children>
+                                    <Label styleClass="text-important" text="Kategori" underline="true" />
+                                    <Button maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="37.0" styleClass="button-light" text="Frukt och grönt" wrapText="true">
+                                       <FlowPane.margin>
+                                          <Insets />
+                                       </FlowPane.margin>
+                                    </Button>
+                                    <Button maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="37.0" styleClass="button-light" text="Frukt och grönt" wrapText="true" />
+                                    <Button maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="37.0" styleClass="button-light" text="Frukt och grönt" wrapText="true" />
+                                    <Button maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="37.0" styleClass="button-light" text="Frukt och grönt" wrapText="true" />
+                                    <Button maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="37.0" styleClass="button-light" text="Frukt och grönt" wrapText="true" />
+                                    <Button maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="37.0" styleClass="button-light" text="Frukt och grönt" wrapText="true" />
+                                    <Button maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="37.0" styleClass="button-light" text="Frukt och grönt" wrapText="true" />
+                                 </children>
+                              </FlowPane>
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="278.0" prefWidth="502.0" styleClass="list-backdrop">

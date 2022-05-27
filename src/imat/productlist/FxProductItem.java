@@ -42,8 +42,7 @@ public class FxProductItem extends AnchorPane implements Anchorable {
         }
 
         Product product = shoppingItem.getProduct();
-        Image img = new Image("file:" + product.getImageName());
-        productItemImage.setImage(img);
+        productItemImage.setImage(FxRoot.getProductImage(product));
         productItemName.setText(product.getName());
         productItemCost.setText(Double.toString(product.getPrice()) + " kr/kg");
         productItemAmount.setText(Double.toString(shoppingItem.getAmount()));

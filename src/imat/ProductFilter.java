@@ -5,6 +5,7 @@ import org.jetbrains.annotations.Nullable;
 import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ProductCategory;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -20,13 +21,14 @@ public class ProductFilter {
         this.filter = filter.map(HashSet::new);
     }
 
-    static final int bestPossibleMatch = 3;
+    static final int bestPossibleMatch = 4;
     static int howGoodStringMatch(String search, String src){ //this can be improved
-        src = src.toLowerCase();
-        search = search.toLowerCase();
-        if(src.equals(search)) return bestPossibleMatch;
-        if(src.startsWith(search)) return 2;
-        if(src.contains(search)) return 1;
+        String finalSrc = src.toLowerCase();
+        String finalSearch = search.toLowerCase();
+        if(finalSrc.equals(finalSearch)) return bestPossibleMatch;
+        if(finalSrc.startsWith(finalSearch)) return 3;
+        if(Arrays.stream(finalSrc.split(" ")).anyMatch(x -> x.startsWith(finalSearch))) return 2;
+        if(finalSrc.contains(finalSearch)) return 1;
         return -1;
     }
     int howGoodMatch(Product p){
