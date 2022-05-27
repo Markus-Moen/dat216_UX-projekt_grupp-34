@@ -6,20 +6,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import imat.basket.FxBasket;
 import imat.checkout.FxCheckout;
 import imat.productlist.FxProductItem;
-import imat.savedcarts.FxSavedCarts;
 import io.vavr.Tuple2;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Font;
 import org.jetbrains.annotations.Nullable;
 import se.chalmers.cse.dat216.project.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
@@ -27,68 +23,54 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class FxRoot implements Initializable {
-    private static IMatDataHandler imat;
-    private static List<Product> prods;
-    private static HashMap<Integer, FxProductItem> id2prodListItem;
-    private static HashMap<String, Integer> savedCartName2id;
+public class IMatData {
+    private static IMatData INSTANCE;
+    private IMatDataHandler imat;
+    private List<Product> prods;
+    private HashMap<Integer, FxProductItem> id2prodListItem;
+    private HashMap<String, Integer> savedCartName2id;
+    private String cartNamePath;
 
-    public static String cartNamePath;
+    public IMatData(FxBasket fxBasket){
+        if(INSTANCE != null){
+            throw new ExceptionInInitializerError("IMatData already exists");
+        }
 
-    @FXML public AnchorPane basketPane;
-    @FXML public AnchorPane savedBasketsPane;
-    @FXML public AnchorPane checkoutPane;
-    @FXML public AnchorPane historyPane;
-    @FXML public StackPane stackPane;
-
-    public FxBasket fxBasket;
-    public FxCheckout fxCheckout;
-    public FxSavedCarts fxSavedCarts;
-
-    public static ShoppingCart getCart(){
-        return imat.getShoppingCart();
-    }
-    public static List<Product> getAllProducts(){
-        return prods;
-    }
-    public static Collection<FxProductItem> getAllProdListItems(){
-        return id2prodListItem.values();
-    }
-    public static FxProductItem getProdListItem(int i){
-        if(id2prodListItem.containsKey(i) == false)
-            throw new RuntimeException("Item does not exist");
-        return id2prodListItem.get(i);
-    }
-    public static Image getProductImage(Product prod){
-        return imat.getFXImage(prod);
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
         imat = IMatDataHandler.getInstance();
         cartNamePath = imat.imatDirectory()+"/exCartData.json";
         prods = imat.getProducts();
         System.out.println(prods.size()+" products loaded");
         loadCartData();
 
-        System.out.println(basketPane);
-        fxBasket = new FxBasket(this);
-        fxCheckout = new FxCheckout(this);
-        fxSavedCarts = new FxSavedCarts(this);
-        basketPane.getChildren().add(fxBasket.getAnchor());
-        checkoutPane.getChildren().add(fxCheckout.getAnchor());
-        savedBasketsPane.getChildren().add(fxSavedCarts.getAnchor());
-
         id2prodListItem = new HashMap<>();
         for(Product p : getAllProducts()){
             var newSp = new ShoppingItem(p);
             newSp.setAmount(0);
-            FxProductItem fxProductItem = new FxProductItem(newSp, fxBasket);
+            FxProductItem fxProductItem = new FxProductItem(newSp, fxBasket, this);
             id2prodListItem.put(p.getProductId(), fxProductItem);
         }
+
+        INSTANCE = this;
+    }
+    public ShoppingCart getCart(){
+        return imat.getShoppingCart();
+    }
+    public List<Product> getAllProducts(){
+        return prods;
+    }
+    public Collection<FxProductItem> getAllProdListItems(){
+        return id2prodListItem.values();
+    }
+    public FxProductItem getProdListItem(int i){
+        if(id2prodListItem.containsKey(i) == false)
+            throw new RuntimeException("Item does not exist");
+        return id2prodListItem.get(i);
+    }
+    public Image getProductImage(Product prod){
+        return imat.getFXImage(prod);
     }
 
-    public static void saveCartData(){
+    public void saveCartData(){
         File cartDataFile = new File(cartNamePath);
 
         ObjectMapper mapper = new ObjectMapper();
@@ -107,7 +89,7 @@ public class FxRoot implements Initializable {
         }
     }
 
-    public static void loadCartData(){
+    public void loadCartData(){
         Path cartDataFile = new File(cartNamePath).toPath();
         String jsonInput = null;
         try {
@@ -125,7 +107,7 @@ public class FxRoot implements Initializable {
         }
     }
 
-    public static List<Integer> getFilteredProductIds(@Nullable ProductFilter productOrder){
+    public List<Integer> getFilteredProductIds(@Nullable ProductFilter productOrder){
         var matchScoreFunc = new Function<Product, Tuple2<Integer, Product>>(){
             @Override
             public Tuple2<Integer, Product> apply(Product product) {
@@ -161,7 +143,30 @@ public class FxRoot implements Initializable {
         return output;
     }
 
-    public static void shutDown() {
+    public void shutDown() {
         imat.shutDown();
     }
+
+    /*
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        imat = IMatDataHandler.getInstance();
+        cartNamePath = imat.imatDirectory()+"/exCartData.json";
+        prods = imat.getProducts();
+        System.out.println(prods.size()+" products loaded");
+        loadCartData();
+
+        System.out.println(basketPane);
+        fxBasket = new FxBasket(this);
+        basketPane.getChildren().add(fxBasket.getAnchor());
+
+        id2prodListItem = new HashMap<>();
+        for(Product p : getAllProducts()){
+            var newSp = new ShoppingItem(p);
+            newSp.setAmount(0);
+            FxProductItem fxProductItem = new FxProductItem(newSp, fxBasket);
+            id2prodListItem.put(p.getProductId(), fxProductItem);
+        }
+    }*/
+
 }

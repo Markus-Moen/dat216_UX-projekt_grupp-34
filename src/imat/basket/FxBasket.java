@@ -1,18 +1,17 @@
 package imat.basket;
 
-import imat.Anchorable;
-import imat.FxRoot;
+import imat.IMatData;
 import imat.browse.FxBrowse;
+import imat.checkout.FxCheckout;
 import imat.productlist.FxProductItem;
+import imat.savedcarts.FxSavedCarts;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -21,14 +20,23 @@ import se.chalmers.cse.dat216.project.ShoppingItem;
 
 //import imat.ProductItem;
 
-public class FxBasket extends AnchorPane implements Anchorable, Initializable {
-    private AnchorPane anchorPane;
-    public FxRoot parentFx;
-    private FxBrowse browse;
+public class FxBasket implements Initializable {
+    public static FxBasket INSTANCE;
 
-    @FXML public AnchorPane basketPane;
-    @FXML private AnchorPane browseLightBox;
-    @FXML private AnchorPane browsepane;
+    public IMatData iMatData;
+    private FxBrowse fxBrowse;
+    private FxSavedCarts fxSavedCarts;
+    private FxCheckout fxCheckout;
+
+    @FXML private AnchorPane stackBasket;
+    @FXML private AnchorPane stackBrowse;
+    @FXML private AnchorPane stackSavedCarts;
+    @FXML private AnchorPane stackCheckout;
+    @FXML private AnchorPane stackHistory;
+
+    @FXML private AnchorPane browsePaneContent;
+    @FXML private AnchorPane savedCartsPaneContent;
+
     @FXML private Label basketName;
     @FXML private Button newBasketButton;
     @FXML private FlowPane productList;
@@ -43,28 +51,15 @@ public class FxBasket extends AnchorPane implements Anchorable, Initializable {
         apNewBasketSaveWarning.toBack();
     }
 
-    public FxBasket(FxRoot parentFx) {
-        this.parentFx = parentFx;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("basket.fxml"));
-        fxmlLoader.setController(this);
-
-        try {
-            anchorPane = fitAnchor(fxmlLoader.load());
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
-        }
-
-        browse = new FxBrowse(this);
-        browsepane.getChildren().add(browse.getAnchor());
-
-        clearBasket();
+    public void focus(){
+        stackBasket.toFront();
     }
     private void setBasketName(String name){
         basketName.setText(name);
     }
     @FXML private void openBasket(){ // need a name?
         savedBasketLabel.setText("Saved!");
-        FxRoot.getCart();
+        iMatData.getCart();
     }
     @FXML private void saveBasket(){
         savedBasketLabel.setText("Saved!");
@@ -75,50 +70,63 @@ public class FxBasket extends AnchorPane implements Anchorable, Initializable {
     }
     public void addItemToBasket(ShoppingItem item){
         savedBasketLabel.setText("");
-        FxRoot.getCart().addItem(item);
+        iMatData.getCart().addItem(item);
         updateBasket();
     }
     public void removeItemFromBasket(ShoppingItem item){
         savedBasketLabel.setText("");
-        FxRoot.getCart().removeItem(item);
+        iMatData.getCart().removeItem(item);
         updateBasket();
     }
     @FXML private void clearBasket(){
         savedBasketLabel.setText("");
         //checks if user has saved and such
-        FxRoot.getCart().clear();
+        iMatData.getCart().clear();
         setBasketName("Ny varukorg");
     }
     public void updateBasket(){
-        List<ShoppingItem> basketItems = FxRoot.getCart().getItems();
+        List<ShoppingItem> basketItems = iMatData.getCart().getItems();
         System.out.println("UPDATE BASKET:"+basketItems.size());
         productList.getChildren().clear();
         for (ShoppingItem shoppingItem : basketItems) {
             int prodId = shoppingItem.getProduct().getProductId();
-            FxProductItem fxProd = FxRoot.getProdListItem(prodId);
+            FxProductItem fxProd = iMatData.getProdListItem(prodId);
             productList.getChildren().add(fxProd.getAnchor());
         }
     }
 
     @FXML protected void onButtonToCheckout(){
-        parentFx.fxCheckout.openCheckout();
-        parentFx.checkoutPane.toFront();
+        fxCheckout.openCheckout();
+        stackCheckout.toFront();
     }
     @FXML protected void onButtonToSavedCarts(){
-        parentFx.savedBasketsPane.toFront();
+        stackSavedCarts.toFront();
     }
     @FXML protected void onButtonBrowse(){
-        browse.enter();
-        browseLightBox.toFront();
-    }
-
-    @Override
-    public AnchorPane getAnchor() {
-        return anchorPane;
+        fxBrowse.openBrowse();
+        stackBrowse.toFront();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if(INSTANCE != null){
+            throw new ExceptionInInitializerError("FxBasket already exits");
+        }
+        INSTANCE = this;
+        iMatData = new IMatData(this);
 
+        fxBrowse = new FxBrowse(this);
+        browsePaneContent.getChildren().add(fxBrowse.getAnchor());
+        fxSavedCarts = new FxSavedCarts(this);
+        savedCartsPaneContent.getChildren().add(fxSavedCarts.getAnchor());
+        fxCheckout = new FxCheckout(this);
+        stackCheckout.getChildren().add(fxCheckout.getAnchor());
+
+        clearBasket();
+        System.out.println("IS IT DONE?");
+    }
+
+    public void shutDown(){
+        iMatData.shutDown();
     }
 }
