@@ -53,16 +53,21 @@ public class FxProductItem implements Anchorable {
         iMatData.getActiveCart().addShoppingCartListener(cartEvent -> {
             if (cartEvent.getShoppingItem() == null) return;
             if (cartEvent.getShoppingItem().getProduct() == product){
-                double d = shoppingItem.getAmount();
-                if(d > 0){
-                    System.out.println("AMOUNT->HELLO FROM:" + product.getName());
-                    amountPane.toFront();
-                } else {
-                    System.out.println("ADD->HELLO FROM:" + product.getName());
-                    addPane.toFront();
-                }
+                refreshGraphics();
             }
         });
+    }
+
+    public void refreshGraphics(){
+        double d = shoppingItem.getAmount();
+        if(d > 0){
+            System.out.println("AMOUNT->HELLO FROM:" + shoppingItem.getProduct().getName());
+            amountPane.toFront();
+        } else {
+            System.out.println("ADD->HELLO FROM:" + shoppingItem.getProduct().getName());
+            addPane.toFront();
+        }
+        productItemAmount.setText(Double.toString(d));
     }
 
     public ShoppingItem getShoppingItem(){
@@ -79,9 +84,10 @@ public class FxProductItem implements Anchorable {
             Platform.runLater(() -> {
                 fxBasket.iMatData.getActiveCart().removeItem(shoppingItem);
             });
+        } else {
+            shoppingItem.setAmount(newAmount);
         }
-        shoppingItem.setAmount(newAmount);
-        productItemAmount.setText(newAmount.toString());
+        refreshGraphics();
         return newAmount;
     }
     @FXML protected void onButtonRemoveOne(){;

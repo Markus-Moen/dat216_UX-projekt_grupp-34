@@ -38,28 +38,8 @@ public class FxSavedCarts implements Anchorable, Initializable {
         return savedCarts;
     }
 
-    private List<NamedCart> getData(int amount) {
-        List<NamedCart> carts = new ArrayList<>();
-
-        /*
-        for (int i=0; i<amount; i++) {
-            NamedCartExtraData dummyData = new NamedCartExtraData(false, "NEW CART "+i, -i);
-            Order dummyOrder = new Order();
-            dummyOrder.setDate(new Date());
-            NamedCart dummyCart = new NamedCart(dummyOrder, dummyData);
-            carts.add(dummyCart);
-        }*/
-        for(var x : fxBasket.iMatData.getHistoryCarts()){
-            carts.add(x);
-        }
-
-
-        return carts;
-    }
-
     public FxSavedCarts(FxBasket fxBasket){
         this.fxBasket = fxBasket;
-        this.savedCarts = getData(5);
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("savedcarts.fxml"));
         fxmlLoader.setController(this);
@@ -70,7 +50,7 @@ public class FxSavedCarts implements Anchorable, Initializable {
             throw new RuntimeException(exception);
         }
 
-        updateCartList();
+        openSavedCarts();
     }
 
     @FXML protected void onButtonReturn(){
@@ -82,6 +62,14 @@ public class FxSavedCarts implements Anchorable, Initializable {
     @Override
     public AnchorPane getAnchor() {
         return anchorPane;
+    }
+
+    public void openSavedCarts(){
+        savedCarts = new ArrayList<>();
+        for(var x : fxBasket.iMatData.getSavedCarts()){
+            savedCarts.add(x);
+        }
+        updateCartList();
     }
 
     public void removeCart(NamedCart savedCart) {

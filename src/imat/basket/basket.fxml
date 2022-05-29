@@ -28,34 +28,20 @@
             </AnchorPane>
             <AnchorPane fx:id="stackBasket" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                <children>
-                  <StackPane fx:id="spSaveStack" layoutX="-366.0" layoutY="7.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="200.0">
+                  <StackPane fx:id="spSaveStack" layoutX="-366.0" layoutY="7.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                      <children>
                         <AnchorPane fx:id="apNewBasketSaveWarning" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: lightgray;">
                            <children>
-                              <Button layoutX="40.0" layoutY="136.0" mnemonicParsing="false" onMouseClicked="#closeSaveView" prefHeight="50.0" prefWidth="80.0" styleClass="button-light" text="Avbryt" />
-                              <Button layoutX="120.0" layoutY="136.0" mnemonicParsing="false" onAction="#saveAfterWarning" onMouseClicked="#saveBasket" prefHeight="50.0" prefWidth="80.0" styleClass="button-light" text="Ja, Spara" />
-                              <Button layoutX="206.0" layoutY="136.0" mnemonicParsing="false" onAction="#noSaveAfterWarning" onMouseClicked="#closeSaveView" prefHeight="50.0" prefWidth="80.0" styleClass="button-light" text="Spara inte" />
+                              <Button layoutX="40.0" layoutY="136.0" mnemonicParsing="false" onAction="#unsavedChangesCancelButtonPressed" prefHeight="50.0" prefWidth="80.0" styleClass="button-light" text="Avbryt" />
+                              <Button layoutX="120.0" layoutY="136.0" mnemonicParsing="false" onAction="#unsavedChangesSaveButtonPressed" prefHeight="50.0" prefWidth="80.0" styleClass="button-light" text="Ja, Spara" />
+                              <Button layoutX="206.0" layoutY="136.0" mnemonicParsing="false" onAction="#unsavedChangesNoSaveButtonPressed" prefHeight="50.0" prefWidth="80.0" styleClass="button-light" text="Spara inte" />
                               <Label alignment="TOP_LEFT" layoutX="3.0" layoutY="31.0" prefHeight="43.0" prefWidth="280.0" text="ListName har osparade ändringar. Vill du spara ändringar innan du öpnar en tom varukorg?" wrapText="true" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane fx:id="apOverwriteOrSaveBasket" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: white;">
-                           <children>
-                              <Button layoutX="14.0" layoutY="140.0" mnemonicParsing="false" text="Avbryt" />
-                              <Button layoutX="85.0" layoutY="140.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="90.0" text="Skriv över" />
-                              <Button layoutX="192.0" layoutY="140.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="90.0" text="Spara ny" />
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane fx:id="apOverwriteBasket" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: white;">
-                           <children>
-                              <Button layoutX="48.0" layoutY="140.0" mnemonicParsing="false" text="Avbryt" />
-                              <Button layoutX="152.0" layoutY="140.0" mnemonicParsing="false" text="Skriv över" />
-                              <Label layoutX="48.0" layoutY="44.0" prefHeight="37.0" prefWidth="180.0" text="What is this??" />
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="apNameBasket" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: white;">
                            <children>
                               <Button layoutX="45.0" layoutY="140.0" mnemonicParsing="false" text="Avbryt" />
-                              <Button layoutX="185.0" layoutY="140.0" mnemonicParsing="false" onAction="#saveNewBasket" text="Spara" />
+                              <Button layoutX="185.0" layoutY="140.0" mnemonicParsing="false" onAction="#saveAsConfirmButtonPressed" text="Spara" />
                               <TextField fx:id="basketNameInput" layoutX="45.0" layoutY="99.0" />
                               <Label layoutX="45.0" layoutY="32.0" prefHeight="43.0" prefWidth="197.0" text="Namnge varukorg" />
                            </children>
@@ -64,13 +50,13 @@
                   </StackPane>
                 <AnchorPane fx:id="apMainView" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
                      <children>
-                        <SplitPane dividerPositions="0.7663230240549829" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <SplitPane dividerPositions="0.7663230240549829" prefHeight="160.0" prefWidth="200.0" styleClass="list-white" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="list-white">
                                  <children>
                                     <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="list-white" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="500.0">
+                                          <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="500.0" styleClass="list-white">
                                              <children>
                                                 <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="37.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
                                                    <children>
@@ -88,7 +74,7 @@
                                                 </ScrollPane>
                                              </children>
                                           </AnchorPane>
-                                          <AnchorPane mouseTransparent="true" styleClass="text-important-white">
+                                          <AnchorPane mouseTransparent="true" style="-fx-background-color: RGBA(0,0,0,0);">
                                              <children>
                                                 <Label fx:id="savedBasketLabel" alignment="CENTER" layoutX="177.0" layoutY="11.0" mouseTransparent="true" styleClass="text-important-black" text="xxxxxx" textAlignment="CENTER" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                                              </children>

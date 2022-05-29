@@ -44,7 +44,7 @@ public class FxSavedCartItem extends AnchorPane implements Anchorable {
     }
 
     @FXML protected void openButtonPressed() {
-        fxBasket.iMatData.moveSavedCartToActiveCart(namedCart.getId());
+        fxBasket.moveSavedCartToActiveCart(namedCart.getId());
         fxBasket.focus();
     }
 

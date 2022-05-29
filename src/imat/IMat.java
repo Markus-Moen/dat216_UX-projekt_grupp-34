@@ -71,13 +71,6 @@ public class IMat extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-
-        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-            @Override
-            public void run() {
-               FxBasket.INSTANCE.shutDown();
-            }
-        }));
     }
 
 }

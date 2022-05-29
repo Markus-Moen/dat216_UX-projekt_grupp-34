@@ -28,8 +28,6 @@ import se.chalmers.cse.dat216.project.ShoppingItem;
 //import imat.ProductItem;
 
 public class FxBasket implements Initializable {
-    public static FxBasket INSTANCE;
-
     public IMatData iMatData;
     private FxBrowse fxBrowse;
     private FxSavedCarts fxSavedCarts;
@@ -80,63 +78,13 @@ public class FxBasket implements Initializable {
         iMatData.orderAndClearActiveCart();
         iMatData.DEBUG_saveCarts();
     }
-    private void loadSavedBasket(int id){
-        savedBasketLabel.setText("");
-        iMatData.moveSavedCartToActiveCart(id);
-    }
 
     private void unSavedWarning() {
         spSaveStack.toFront();
         apNewBasketSaveWarning.toFront();
     }
 
-    @FXML private void saveBasket(){
-        savedBasketLabel.setText("Saved!");
-        iMatData.saveCurrentyActiveCart();
-        basketIsSaved = true;
-        String name = "hej";
-        setBasketName(name);
-        closeSaveView();
-
-    }
-    @FXML private void saveAfterWarning() {
-        if (basketIsVirgin) {
-            apNameBasket.toFront();
-        }
-        else {
-            saveButtonPressed();
-        }
-        spSaveStack.toBack();
-        iMatData.clearActiveCart();
-        basketName.setText("Ny varukorg");
-        savedBasketLabel.setText("");
-        basketIsVirgin = true;
-        basketIsSaved = false;
-    }
-    @FXML private void noSaveAfterWarning() {
-        spSaveStack.toBack();
-        iMatData.clearActiveCart();
-        basketName.setText("Ny varukorg");
-        savedBasketLabel.setText("");
-        basketIsVirgin = true;
-        basketIsSaved = false;
-    }
-
-    public void saveNewBasket() {
-        String name = basketNameInput.getText();
-        List<ShoppingItem> basketItems = new ArrayList<ShoppingItem>(iMatData.getActiveCart().getItems());
-
-        iMatData.saveActiveCartAsNew(name);
-        setBasketName(name);
-        spSaveStack.toBack();
-
-        System.out.println("New basket is saved!");
-        savedBasketLabel.setText("Saved!");
-        basketIsSaved = true;
-        basketIsVirgin = false;
-    }
-
-    public void loadShoppingItems(int id) {
+    public void moveSavedCartToActiveCart(int id) {
         String name = iMatData.moveSavedCartToActiveCart(id);
         basketName.setText(name);
     }
@@ -159,8 +107,45 @@ public class FxBasket implements Initializable {
             });
         }
     }
+    @FXML private void unsavedChangesCancelButtonPressed() {
+        System.out.println("TODO");
+    }
+    @FXML private void unsavedChangesSaveButtonPressed() {
+        if (basketIsVirgin) {
+            apNameBasket.toFront();
+        }
+        else {
+            saveButtonPressed();
+        }
+        spSaveStack.toBack();
+        iMatData.clearActiveCart();
+        basketName.setText("Ny varukorg");
+        savedBasketLabel.setText("");
+        basketIsVirgin = true;
+        basketIsSaved = false;
+    }
+    @FXML private void unsavedChangesNoSaveButtonPressed() {
+        spSaveStack.toBack();
+        iMatData.clearActiveCart();
+        basketName.setText("Ny varukorg");
+        savedBasketLabel.setText("");
+        basketIsVirgin = true;
+        basketIsSaved = false;
+    }
 
+    @FXML public void saveAsConfirmButtonPressed() {
+        String name = basketNameInput.getText();
+        List<ShoppingItem> basketItems = new ArrayList<ShoppingItem>(iMatData.getActiveCart().getItems());
 
+        iMatData.saveActiveCartAsNew(name, false);
+        setBasketName(name);
+        spSaveStack.toBack();
+
+        System.out.println("New basket is saved!");
+        savedBasketLabel.setText("Saved!");
+        basketIsSaved = true;
+        basketIsVirgin = false;
+    }
     @FXML public void saveButtonPressed() {
         iMatData.saveCurrentyActiveCart();
         System.out.println("Saved!");
@@ -189,6 +174,7 @@ public class FxBasket implements Initializable {
         stackCheckout.toFront();
     }
     @FXML protected void onButtonToSavedCarts(){
+        fxSavedCarts.openSavedCarts();
         stackSavedCarts.toFront();
     }
     @FXML protected void onButtonBrowse(){
@@ -198,11 +184,6 @@ public class FxBasket implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Platform.setImplicitExit(false);
-        if(INSTANCE != null){
-            throw new ExceptionInInitializerError("FxBasket already exits");
-        }
-        INSTANCE = this;
         iMatData = new IMatData(this);
 
         fxBrowse = new FxBrowse(this);
@@ -228,9 +209,12 @@ public class FxBasket implements Initializable {
 
         clearBasket();
         System.out.println("IS IT DONE?");
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> shutDown()));
     }
 
     public void shutDown(){
+        System.out.println("SHUT DOWN 1");
         iMatData.shutDown();
     }
 }
