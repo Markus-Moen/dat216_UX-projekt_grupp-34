@@ -10,6 +10,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,7 +33,7 @@ public class FxSavedCarts implements Anchorable, Initializable {
         SavedCart cart;
 
         for (int i=0; i<amount; i++) {
-            cart = new SavedCart();
+            cart = new SavedCart(null, "");
             cart.setName("Varukorg " + i);
             cart.setDate("18/5-22");
             carts.add(cart);
@@ -78,6 +79,11 @@ public class FxSavedCarts implements Anchorable, Initializable {
         updateCartList();
     }
 
+    public void addNewCart(SavedCart savedCart) {
+        savedCarts.add(savedCart);
+        updateCartList();
+    }
+
     private void clearCartList() {
         grid.getChildren().clear();
     }
@@ -89,7 +95,7 @@ public class FxSavedCarts implements Anchorable, Initializable {
         int row = 1;
         System.out.println("upfatyer " + savedCarts.size());
         for (int i = 0; i < savedCarts.size(); i++) {
-            FxSavedCartItem savedCartItem = new FxSavedCartItem(savedCarts.get(i), this);
+            FxSavedCartItem savedCartItem = new FxSavedCartItem(savedCarts.get(i), this, fxBasket);
             AnchorPane itemAnchorPane = savedCartItem.getAnchor();
 
             if (column == 3) {

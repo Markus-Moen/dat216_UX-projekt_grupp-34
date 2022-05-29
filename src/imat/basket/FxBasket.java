@@ -5,10 +5,12 @@ import imat.browse.FxBrowse;
 import imat.checkout.FxCheckout;
 import imat.productlist.FxProductItem;
 import imat.savedcarts.FxSavedCarts;
+import imat.savedcarts.SavedCart;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 
@@ -16,6 +18,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.scene.layout.StackPane;
 import se.chalmers.cse.dat216.project.ShoppingItem;
 
 //import imat.ProductItem;
@@ -42,7 +45,12 @@ public class FxBasket implements Initializable {
     @FXML private FlowPane productList;
     @FXML private Button mySavedBasketsButton;
     @FXML private Label savedBasketLabel;
+
     @FXML private AnchorPane apNewBasketSaveWarning;
+    @FXML private AnchorPane apNameBasket;
+    @FXML private StackPane spSaveStack;
+
+    @FXML private TextField basketNameInput;
 
     @FXML public void openSaveView () {
         apNewBasketSaveWarning.toFront();
@@ -68,6 +76,36 @@ public class FxBasket implements Initializable {
         closeSaveView();
         //save shoppingcart somehow
     }
+
+    @FXML public void saveAsButtonPressed() {
+        System.out.println("Enter name");
+        spSaveStack.toFront();
+    }
+
+    @FXML public void saveNewBasket() {
+        String name = basketNameInput.getText();
+        List<ShoppingItem> basketItems = iMatData.getCart().getItems();
+        System.out.println(basketItems.size());
+        SavedCart savedCart = new SavedCart(basketItems, name);
+        fxSavedCarts.addNewCart(savedCart);
+        spSaveStack.toBack();
+        System.out.println("New basket is saved!");
+
+    }
+
+    @FXML public void saveButtonPressed() {
+
+    }
+
+    public void loadShoppingItems(SavedCart savedCart) {
+        iMatData.getCart().clear();
+        System.out.println(savedCart.getShoppingItems().size());
+        for (ShoppingItem item : savedCart.getShoppingItems()) {
+            iMatData.getCart().addItem(item);
+        }
+        updateBasket();
+    }
+
     public void addItemToBasket(ShoppingItem item){
         savedBasketLabel.setText("");
         iMatData.getCart().addItem(item);

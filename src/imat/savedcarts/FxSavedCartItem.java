@@ -1,6 +1,7 @@
 package imat.savedcarts;
 
 import imat.Anchorable;
+import imat.basket.FxBasket;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -13,13 +14,14 @@ public class FxSavedCartItem extends AnchorPane implements Anchorable {
     private AnchorPane anchorPane;
     private SavedCart savedCart;
     private FxSavedCarts parentController;
+    private FxBasket fxBasket;
 
     @FXML private Label nameLabel;
     @FXML private Label dateLabel;
     @FXML private Button openButton;
     @FXML private Button removeButton;
 
-    public FxSavedCartItem(SavedCart savedCart, FxSavedCarts parentController) {
+    public FxSavedCartItem(SavedCart savedCart, FxSavedCarts parentController, FxBasket fxBasket) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("savedcartitem.fxml"));
         fxmlLoader.setController(this);
         try {
@@ -29,6 +31,7 @@ public class FxSavedCartItem extends AnchorPane implements Anchorable {
         }
 
         this.savedCart = savedCart;
+        this.fxBasket = fxBasket;
         this.parentController = parentController;
         nameLabel.setText(savedCart.getName());
         dateLabel.setText(savedCart.getDate());
@@ -37,6 +40,11 @@ public class FxSavedCartItem extends AnchorPane implements Anchorable {
     @FXML
     protected void removeButtonPressed() {
         parentController.removeCart(this.savedCart);
+    }
+
+    @FXML protected void openButtonPressed() {
+        fxBasket.loadShoppingItems(this.savedCart);
+        fxBasket.focus();
     }
 
     @Override
