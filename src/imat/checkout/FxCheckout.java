@@ -3,6 +3,7 @@ package imat.checkout;
 import imat.Anchorable;
 import imat.IMatData;
 import imat.basket.FxBasket;
+import imat.history.FxHistory;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -105,6 +106,10 @@ public class FxCheckout extends AnchorPane implements Anchorable, Initializable 
         itemListText.setText(receipt[0]);
         itemCostText.setText(receipt[1]);
         itemTotalText.setText(receipt[2]);
+    }
+
+    private void recieptToHistory(){
+        //FxHistory.newReceipt();
     }
 
     private void fillFields(){
