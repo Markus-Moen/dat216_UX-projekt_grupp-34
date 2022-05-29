@@ -56,7 +56,7 @@ public class FxProductItem implements Anchorable {
     private double setAmount(Double newAmount){
         if(newAmount <= 0){
             addPane.toFront();
-            fxBasket.iMatData.getCart().removeItem(shoppingItem);
+            fxBasket.iMatData.getActiveCart().removeItem(shoppingItem);
             newAmount = 0.0; //Ensures amount is never less than 0
         }
         shoppingItem.setAmount(newAmount);
@@ -72,7 +72,7 @@ public class FxProductItem implements Anchorable {
         setAmount( amount + 1);
     }
     @FXML protected void onButtonAdd(){
-        fxBasket.iMatData.getCart().addItem(shoppingItem);
+        fxBasket.iMatData.getActiveCart().addItem(shoppingItem);
         amountPane.toFront();
         setAmount(1.0);
     }

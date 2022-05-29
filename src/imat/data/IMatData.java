@@ -20,8 +20,7 @@ public class IMatData {
 
     private CartHandler cartHandler;
 
-
-    private @Nullable Integer cartId;
+    private @Nullable Integer openCartId;
 
     public IMatData(FxBasket fxBasket){
         if(INSTANCE != null){
@@ -32,6 +31,7 @@ public class IMatData {
         System.out.println(prods.size()+" products loaded");
 
         cartHandler = new CartHandler(imat.imatDirectory()+"/exCartData.json");
+        cartHandler.load(imat);
 
         id2prodListItem = new HashMap<>();
         for(Product p : getAllProducts()){
@@ -43,7 +43,7 @@ public class IMatData {
 
         INSTANCE = this;
     }
-    public List<NamedCart> getBoughtHistoryCarts(){
+    public List<NamedCart> getHistoryCarts(){
         return cartHandler.getNamedCarts().values()
                 .stream().filter(x -> x.getIsBought() == true).toList();
     }
@@ -51,13 +51,38 @@ public class IMatData {
         return cartHandler.getNamedCarts().values()
                 .stream().filter(x -> x.getIsBought() == false).toList();
     }
-    public void orderAndClear(){
-        cartHandler.orderCart(imat, true, null);
+    public void orderAndClearActiveCart(){
+        NamedCartExtraData namedCartExtraData;
+        if(openCartId == null){
+            namedCartExtraData = new NamedCartExtraData(true, "", null);
+        } else {
+            namedCartExtraData = cartHandler.getNamedCarts().get(openCartId);
+        }
+        cartHandler.orderCart(imat, true, namedCartExtraData);
+        clearActiveCart();
     }
-
-    public ShoppingCart getCart(){
+    public void moveSavedCartToActiveCart(int cartId){
+        NamedCart nc = cartHandler.getNamedCarts().get(cartId);
+        openCartId = nc.getId();
+        imat.getShoppingCart().clear();
+        for (var i : nc.getOrder().getItems()){
+            imat.getShoppingCart().addItem(i);
+        }
+    }
+    public void clearActiveCart(){
+        openCartId = null;
+    }
+    public ShoppingCart getActiveCart(){
         return imat.getShoppingCart();
     }
+
+    public Customer getCustomer(){
+        return imat.getCustomer();
+    }
+    public CreditCard getCreditCard(){
+        return imat.getCreditCard();
+    }
+
     public List<Product> getAllProducts(){
         return prods;
     }
@@ -66,7 +91,7 @@ public class IMatData {
     }
     public FxProductItem getProdListItem(int i){
         if(id2prodListItem.containsKey(i) == false)
-            throw new RuntimeException("Item does not exist");
+            throw new IndexOutOfBoundsException("Item does not exist");
         return id2prodListItem.get(i);
     }
     public Image getProductImage(Product prod){
@@ -97,7 +122,7 @@ public class IMatData {
 
     public String[] receipt(){
         String[] output = new String[] {"", "", ""};
-        ShoppingCart cart = getCart();
+        ShoppingCart cart = getActiveCart();
         List<ShoppingItem> items = cart.getItems();
         for (ShoppingItem item : items){
             output[0] += Math.round(item.getAmount()) + " " + item.getProduct().getName() + "\n";
@@ -109,6 +134,9 @@ public class IMatData {
         return output;
     }
 
+    public void DEBUG_saveCarts(){
+        cartHandler.write();
+    }
     public void shutDown() {
         System.out.println("SHUTTING DOWN");
         imat.shutDown();

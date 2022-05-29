@@ -29,7 +29,6 @@ public class FxCheckout extends AnchorPane implements Anchorable, Initializable 
 
     private int wizardPosition;
     private AnchorPane[] wizardArr;
-    public static IMatDataHandler imat;
     private Customer customer;
     private CreditCard card;
 
@@ -83,9 +82,8 @@ public class FxCheckout extends AnchorPane implements Anchorable, Initializable 
         imgPayment.fitWidthProperty().bind(imgPanePayment.widthProperty());
         imgDone.fitWidthProperty().bind(imgPaneDone.widthProperty());
 
-        imat = IMatDataHandler.getInstance();
-        customer = imat.getCustomer();
-        card = imat.getCreditCard();
+        customer = fxBasket.iMatData.getCustomer();
+        card = fxBasket.iMatData.getCreditCard();
 
         openCheckout();
 
@@ -185,7 +183,7 @@ public class FxCheckout extends AnchorPane implements Anchorable, Initializable 
         if (dateGroup.getSelectedToggle() != null){
             dateGroup.getSelectedToggle().setSelected(false);
         }
-        imat.placeOrder();
+        fxBasket.placeOrder();
     }
 
     @FXML protected void dateSelector(){

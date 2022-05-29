@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -30,36 +31,40 @@ public class CartHandler {
         try {
             jsonInput = Files.readString(cartDataFile);
         } catch (IOException e) {
-            jsonInput = "{}";
+            jsonInput = "[]";
         }
 
         ObjectMapper mapper = new ObjectMapper();
-        TypeReference<List<NamedCartExtraData>> typeRef = new TypeReference<>() {};
+        TypeReference<NamedCartExtraData[]> typeRef = new TypeReference<>() {};
         List<NamedCartExtraData> load;
         try {
-            load = mapper.readValue(jsonInput, typeRef);
+            load = Arrays.stream(mapper.readValue(jsonInput, typeRef)).toList();
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
+        System.out.println("EXDATA/load/src nums=" + load.size());
 
         var orders = imat.getOrders();
         cartMap = new HashMap<Integer, NamedCart>();
         for (var namc: load) {
             int id = namc.getId();
-            var order = namc.getById(orders, id);
+            var order = namc.reverseGetOrder(orders, id);
             cartMap.put(id, new NamedCart(order, namc));
         }
     }
 
     public void write(){
+        System.out.println("EXDATA: write");
         File cartDataFile = new File(exCartPath);
 
         ObjectMapper mapper = new ObjectMapper();
-        String jsonResult = null;
+        String jsonResult;
         try {
-            List<NamedCartExtraData> write = cartMap.values().stream().map(x -> (NamedCartExtraData)x).toList();
+            List<NamedCartExtraData> write = cartMap.values().stream().map(NamedCartExtraData::new).toList();
+            System.out.println("EXDATA/write/src="+write);
             jsonResult = mapper.writerWithDefaultPrettyPrinter()
                     .writeValueAsString(write);
+            System.out.println("EXDATA/write/res=" + jsonResult);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
@@ -77,6 +82,7 @@ public class CartHandler {
         if (exData == null){
             exData = new NamedCartExtraData(false, "", newOrder.getOrderNumber());
         }
+        exData.setId(newOrder.getOrderNumber());
 
         NamedCart nc = new NamedCart(newOrder, exData);
         cartMap.put(newOrder.getOrderNumber(), nc);

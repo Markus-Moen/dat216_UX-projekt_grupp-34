@@ -57,9 +57,14 @@ public class FxBasket implements Initializable {
     private void setBasketName(String name){
         basketName.setText(name);
     }
+    public void placeOrder(){
+        System.out.println("SAVING CART");
+        iMatData.orderAndClearActiveCart();
+        iMatData.DEBUG_saveCarts();
+    }
     @FXML private void openBasket(){ // need a name?
         savedBasketLabel.setText("Saved!");
-        iMatData.getCart();
+        iMatData.getActiveCart();
     }
     @FXML private void saveBasket(){
         savedBasketLabel.setText("Saved!");
@@ -70,22 +75,22 @@ public class FxBasket implements Initializable {
     }
     public void addItemToBasket(ShoppingItem item){
         savedBasketLabel.setText("");
-        iMatData.getCart().addItem(item);
+        iMatData.getActiveCart().addItem(item);
         updateBasket();
     }
     public void removeItemFromBasket(ShoppingItem item){
         savedBasketLabel.setText("");
-        iMatData.getCart().removeItem(item);
+        iMatData.getActiveCart().removeItem(item);
         updateBasket();
     }
     @FXML private void clearBasket(){
         savedBasketLabel.setText("");
         //checks if user has saved and such
-        iMatData.getCart().clear();
+        iMatData.getActiveCart().clear();
         setBasketName("Ny varukorg");
     }
     public void updateBasket(){
-        List<ShoppingItem> basketItems = iMatData.getCart().getItems();
+        List<ShoppingItem> basketItems = iMatData.getActiveCart().getItems();
         System.out.println("UPDATE BASKET:"+basketItems.size());
         productList.getChildren().clear();
         for (ShoppingItem shoppingItem : basketItems) {
