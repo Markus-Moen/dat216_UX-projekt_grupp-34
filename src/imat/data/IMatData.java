@@ -1,8 +1,5 @@
 package imat.data;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import imat.basket.FxBasket;
 import imat.productlist.FxProductItem;
 import io.vavr.Tuple2;
@@ -10,10 +7,6 @@ import javafx.scene.image.Image;
 import org.jetbrains.annotations.Nullable;
 import se.chalmers.cse.dat216.project.*;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -25,10 +18,8 @@ public class IMatData {
     private List<Product> prods;
     private HashMap<Integer, FxProductItem> id2prodListItem;
 
-    private ExCart exCart;
+    private CartHandler cartHandler;
 
-    private List<Order> orderHistory;
-    private List<SavedCart> savedCarts;
 
     private @Nullable Integer cartId;
 
@@ -40,8 +31,7 @@ public class IMatData {
         prods = imat.getProducts();
         System.out.println(prods.size()+" products loaded");
 
-        exCart = new ExCart(imat.imatDirectory()+"/exCartData.json");
-
+        cartHandler = new CartHandler(imat.imatDirectory()+"/exCartData.json");
 
         id2prodListItem = new HashMap<>();
         for(Product p : getAllProducts()){
@@ -53,25 +43,16 @@ public class IMatData {
 
         INSTANCE = this;
     }
-    public List<Order> getOrders(){
-        return imat.getOrders().stream().filter(x -> x.getOrderNumber() >= 0).toList();
+    public List<NamedCart> getBoughtHistoryCarts(){
+        return cartHandler.getNamedCarts().values()
+                .stream().filter(x -> x.getIsBought() == true).toList();
     }
-    public List<Order> getSavedCarts(){
-        return imat.getOrders().stream().filter(x -> x.getOrderNumber() < 0).toList();
+    public List<NamedCart> getSavedCarts(){
+        return cartHandler.getNamedCarts().values()
+                .stream().filter(x -> x.getIsBought() == false).toList();
     }
-    public void orderCart(){
-        imat.placeOrder(true);
-    }
-
-    public void loadCart(int id){ //FORCE REPLACE
-    }
-    public void saveCart(int id){
-        exCart.editSavedCart(id, imat.getOrders());
-    }
-    public int saveActiveCartAs(String name){
-        Order x = exCart.cartAsOrder(imat.getShoppingCart(), name);
-        imat.getOrders().add(x);
-        return x.getOrderNumber();
+    public void orderAndClear(){
+        cartHandler.orderCart(imat, true, null);
     }
 
     public ShoppingCart getCart(){
@@ -131,6 +112,6 @@ public class IMatData {
     public void shutDown() {
         System.out.println("SHUTTING DOWN");
         imat.shutDown();
-        exCart.write();
+        cartHandler.write();
     }
 }
