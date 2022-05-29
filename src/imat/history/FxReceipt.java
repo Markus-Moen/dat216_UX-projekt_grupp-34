@@ -7,17 +7,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 
-public class FxReceipt extends AnchorPane implements Anchorable {
+public class FxReceipt implements Anchorable {
     private AnchorPane anchorPane;
     private FxHistory parentController;
     private Receipt receipt;
 
-    @FXML private Label receiptDateText;
-    @FXML private Label receiptNameText;
-    @FXML private Label receiptPriceText;
+    @FXML private Text receiptDateText;
+    @FXML private Text receiptNameText;
+    @FXML private Text receiptPriceText;
 
 
     public FxReceipt(FxHistory parentController, Receipt receipt) {
@@ -36,6 +37,10 @@ public class FxReceipt extends AnchorPane implements Anchorable {
         receiptDateText.setText(receipt.getReceiptDate());
         receiptNameText.setText(receipt.getReceiptListName());
         receiptPriceText.setText(receipt.getTotal());
+    }
+
+    @FXML void openReceiptView(){
+
     }
 
     @Override
