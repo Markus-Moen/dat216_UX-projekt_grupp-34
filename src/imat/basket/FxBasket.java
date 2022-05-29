@@ -3,6 +3,7 @@ package imat.basket;
 import imat.data.IMatData;
 import imat.browse.FxBrowse;
 import imat.checkout.FxCheckout;
+import imat.history.FxHistory;
 import imat.productlist.FxProductItem;
 import imat.savedcarts.FxSavedCarts;
 import javafx.application.Platform;
@@ -35,6 +36,8 @@ public class FxBasket implements Initializable {
     private ShoppingCartListener shoppingCartListener;
     private boolean basketIsSaved = false;
     private boolean basketIsVirgin = true;
+
+    private FxHistory fxHistory;
 
     @FXML private AnchorPane stackBasket;
     @FXML private AnchorPane stackBrowse;
@@ -181,6 +184,10 @@ public class FxBasket implements Initializable {
         stackBrowse.toFront();
         fxBrowse.openBrowse();
     }
+    @FXML protected void onButtonHistory(){
+        //fxHistory.openHistory();
+        stackHistory.toFront();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -192,6 +199,8 @@ public class FxBasket implements Initializable {
         savedCartsPaneContent.getChildren().add(fxSavedCarts.getAnchor());
         fxCheckout = new FxCheckout(this);
         stackCheckout.getChildren().add(fxCheckout.getAnchor());
+        fxHistory = new FxHistory(this);
+        stackHistory.getChildren().add(fxHistory.getAnchor());
 
         scrollContent.prefWidthProperty().bind(scrollPane.widthProperty());
 
@@ -213,6 +222,9 @@ public class FxBasket implements Initializable {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> shutDown()));
     }
 
+    //protected void addReceiptToHistory(){
+    //    fxHistory.addReceipt();
+    //}
     public void shutDown(){
         System.out.println("SHUT DOWN 1");
         iMatData.shutDown();

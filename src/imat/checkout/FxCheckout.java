@@ -2,6 +2,7 @@ package imat.checkout;
 
 import imat.Anchorable;
 import imat.basket.FxBasket;
+import imat.history.FxHistory;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

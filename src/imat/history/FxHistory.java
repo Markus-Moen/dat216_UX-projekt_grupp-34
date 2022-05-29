@@ -1,47 +1,64 @@
-/*
+
 package imat.history;
 
-
-
 import imat.Anchorable;
-import imat.FxRoot;
+//import imat.FxRoot;
 import imat.basket.FxBasket;
 import javafx.fxml.FXML;
+import imat.basket.FxBasket;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 
 import static io.vavr.API.print;
 
 public class FxHistory implements Anchorable, Initializable {
-    private AnchorPane anchorPane;
-    private FxBasket fxBasket;
+    private final AnchorPane anchorPane;
+    private final FxBasket fxBasket;
 
-    public static IMatDataHandler imat;
+    //public static IMatDataHandler imat;
 
+    @FXML private AnchorPane historyPane;
     @FXML private AnchorPane historyListAP;
-    @FXML private AnchorPane historyRecieptAP;
+    @FXML private AnchorPane historyReceiptAP;
 
     @FXML private Text itemListText;
     @FXML private Text itemCostText;
     @FXML private Text itemTotalText;
     @FXML private TextArea receipt;
 
-    @FXML private FlowPane recieptList;
+    @FXML private Text historyItemListText;
+    @FXML private Text historyItemCostText;
+    @FXML private Text historyItemTotalText;
 
+    @FXML private FlowPane receiptList;
+    @FXML public void openReceiptView() {
+        historyReceiptAP.toFront();
+    }
+    @FXML public void closeReceiptView () {
+        historyListAP.toFront();
+    }
+
+    private List<FxReceipt> receiptArrayList = new ArrayList<>();
 
     public FxHistory(FxBasket fxBasket) {
         this.fxBasket = fxBasket;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("checkout.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("history.fxml"));
         fxmlLoader.setController(this);
 
         try {
@@ -50,131 +67,52 @@ public class FxHistory implements Anchorable, Initializable {
             throw new RuntimeException(exception);
         }
 
-        imgAddress.fitWidthProperty().bind(imgPaneAddress.widthProperty());
-        imgDelivery.fitWidthProperty().bind(imgPaneDelivery.widthProperty());
-        imgPayment.fitWidthProperty().bind(imgPanePayment.widthProperty());
-        imgDone.fitWidthProperty().bind(imgPaneDone.widthProperty());
+        openHistory();
 
-        imat = IMatDataHandler.getInstance();
-        customer = imat.getCustomer();
-        card = imat.getCreditCard();
-
-        openCheckout();
-
-        wizardArr = new AnchorPane[] {addressPane, deliveryPane, paymentPane, donePane};
-
-        //nameField.setText("RuneSlayerF69420");
+    }
+    public void openHistory(){
+        historyPane.toFront();
     }
 
-    public void openCheckout(){
-        fillFields();
-        fillReceipt();
-        wizardPosition = 0;
-        addressPane.toFront();
+    @FXML protected void onButtonReturn(){
+        fxBasket.focus();
     }
 
-    private void fillReceipt(){
-        String[] receipt = fxBasket.receipt();
-        itemListText.setText(receipt[0]);
-        itemCostText.setText(receipt[1]);
-        itemTotalText.setText(receipt[2]);
+    public void addReceipt(){
+        //String[] order, String listName, String listDate
+        Receipt receipt = new Receipt();
+        Date currentDate = new Date();
+        SimpleDateFormat dateFormat= new SimpleDateFormat("dd/MMM/yyyy");
+        String dateOnly = dateFormat.format(currentDate);
+        receipt.setReceiptDate(dateOnly);
+        receipt.setListName("");
+        String[] receiptData = fxBasket.iMatData.receipt();
+        receipt.setStringList(receiptData);
+        FxReceipt listReceipt = new FxReceipt(this, receipt);
+        receiptList.getChildren().add(listReceipt.getAnchor());
+        receiptArrayList.add(listReceipt);
+        historyItemListText.setText(receipt.getProductNames());
+        historyItemCostText.setText(receipt.getCostValues());
+        historyItemTotalText.setText(receipt.getTotal());
+        updateHistoryList();
     }
 
-    private void fillFields(){
-        addressField.setText(customer.getAddress());
-        postCodeField.setText(customer.getPostCode());
-        apartmentNumberField.setText(customer.getPostAddress());
-        phoneNumberField.setText(customer.getPhoneNumber());
-
-        nameField.setText(card.getHoldersName());
-        cardNumberField.setText(card.getCardNumber());
-
-        int temp;
-        temp = card.getValidMonth();
-        if (temp != -1){
-            cardMonthField.setText(Integer.toString(temp));
+    public void updateHistoryList(){
+        System.out.println("Updating HistoryList");
+        receiptList.getChildren().clear();
+        System.out.println("HistoryList cleared");
+        for (FxReceipt receipt : receiptArrayList) {
+            System.out.println("Adding item to flowpane history");
+            receiptList.getChildren().add(receipt.getAnchor());
         }
-
-        temp = card.getValidYear();
-        if (temp != -1){
-            cardYearField.setText(Integer.toString(temp));
-        }
-
-        temp = card.getVerificationCode();
-        if (temp != -1){
-            cardVerificationField.setText(Integer.toString(temp));
-        }
+    }    @FXML protected void onButtonBack(){
+        fxBasket.focus();
     }
 
-    @FXML protected void wizardNext(){
-        switch(wizardPosition) {
-            case 0:
-                customerData();
-                break;
-            case 1:
-                dateSelector();
-                break;
-            case 2:
-                cardData();
-                buy();
-                break;
-            default:
-                // code block
-        }
-        wizardPosition++;
-        wizardArr[wizardPosition].toFront();
-    }
-
-    @FXML protected void wizardBack(){
-        wizardPosition--;
-        wizardArr[wizardPosition].toFront();
-    }
-
-    @FXML private void customerData(){
-        customer.setAddress(addressField.getText());
-        customer.setPostCode(postCodeField.getText());
-        customer.setPostAddress(apartmentNumberField.getText());
-        //customer.setCity(cityField.getText());
-        customer.setPhoneNumber(phoneNumberField.getText());
-    }
-
-    @FXML private void cardData(){
-        card.setHoldersName(nameField.getText());
-        card.setCardNumber(cardNumberField.getText());
-        card.setValidMonth(maybeParseInt(cardMonthField.getText()));
-        card.setValidYear(maybeParseInt(cardYearField.getText()));
-        card.setVerificationCode(maybeParseInt(cardVerificationField.getText()));
-    }
-
-    public static int maybeParseInt(String str) {
-        try {
-            int i = Integer.parseInt(str);
-            return i;
-        } catch(NumberFormatException e){
-            return -1;
-        }
-    }
-
-    @FXML protected void buy(){
-        imat.placeOrder();
-    }
-
-    @FXML protected void dateSelector(){
-        print(dateGroup.getSelectedToggle().getProperties().values().toArray()[0].toString());
-    }
-
-    @FXML protected void onButtonBack(){
-        fxBasket.basketPane.toFront();
-    }
-
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {}
     @Override
     public AnchorPane getAnchor() {
         return anchorPane;
     }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
 }
- */
