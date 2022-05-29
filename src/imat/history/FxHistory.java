@@ -1,16 +1,17 @@
+/*
 package imat.history;
+
+
 
 import imat.Anchorable;
 import imat.FxRoot;
+import imat.basket.FxBasket;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.net.URL;
@@ -18,14 +19,12 @@ import java.util.ResourceBundle;
 
 import javafx.scene.text.Text;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
-import se.chalmers.cse.dat216.project.Customer;
-import se.chalmers.cse.dat216.project.CreditCard;
 
 import static io.vavr.API.print;
 
-public class FxHistory extends AnchorPane implements Anchorable, Initializable {
+public class FxHistory implements Anchorable, Initializable {
     private AnchorPane anchorPane;
-    private FxRoot parentFx;
+    private FxBasket fxBasket;
 
     public static IMatDataHandler imat;
 
@@ -40,8 +39,8 @@ public class FxHistory extends AnchorPane implements Anchorable, Initializable {
     @FXML private FlowPane recieptList;
 
 
-    public FxHistory(FxRoot parentFx) {
-        this.parentFx = parentFx;
+    public FxHistory(FxBasket fxBasket) {
+        this.fxBasket = fxBasket;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("checkout.fxml"));
         fxmlLoader.setController(this);
 
@@ -75,7 +74,7 @@ public class FxHistory extends AnchorPane implements Anchorable, Initializable {
     }
 
     private void fillReceipt(){
-        String[] receipt = parentFx.receipt();
+        String[] receipt = fxBasket.receipt();
         itemListText.setText(receipt[0]);
         itemCostText.setText(receipt[1]);
         itemTotalText.setText(receipt[2]);
@@ -165,7 +164,7 @@ public class FxHistory extends AnchorPane implements Anchorable, Initializable {
     }
 
     @FXML protected void onButtonBack(){
-        parentFx.basketPane.toFront();
+        fxBasket.basketPane.toFront();
     }
 
     @Override
@@ -178,3 +177,4 @@ public class FxHistory extends AnchorPane implements Anchorable, Initializable {
 
     }
 }
+ */

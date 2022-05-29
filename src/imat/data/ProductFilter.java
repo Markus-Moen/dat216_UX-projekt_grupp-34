@@ -1,4 +1,4 @@
-package imat;
+package imat.data;
 
 import io.vavr.control.Either;
 import org.jetbrains.annotations.Nullable;

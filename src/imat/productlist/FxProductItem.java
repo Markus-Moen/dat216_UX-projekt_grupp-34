@@ -1,7 +1,7 @@
 package imat.productlist;
 
 import imat.Anchorable;
-import imat.IMatData;
+import imat.data.IMatData;
 import imat.basket.FxBasket;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

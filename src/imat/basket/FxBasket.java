@@ -1,6 +1,6 @@
 package imat.basket;
 
-import imat.IMatData;
+import imat.data.IMatData;
 import imat.browse.FxBrowse;
 import imat.checkout.FxCheckout;
 import imat.productlist.FxProductItem;

@@ -14,7 +14,7 @@
         </Label>
         <Label layoutX="14.0" layoutY="45.0" prefHeight="17.0" prefWidth="74.0" text="Senast köpt:" />
         <Label fx:id="dateLabel" layoutX="14.0" layoutY="66.0" prefHeight="17.0" prefWidth="64.0" text="Datum" />
-        <Button fx:id="openButton" layoutX="14.0" layoutY="118.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="96.0" text="Öppna" />
-        <Button fx:id="removeButton" layoutX="126.0" layoutY="118.0" mnemonicParsing="false" onAction="#removeButtonPressed" prefHeight="26.0" prefWidth="96.0" styleClass="button-light" text="Ta bort" />
+        <Button fx:id="openButton" layoutX="14.0" layoutY="118.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="96.0" text="Öppna" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+        <Button fx:id="removeButton" layoutX="126.0" layoutY="118.0" mnemonicParsing="false" onAction="#removeButtonPressed" prefHeight="26.0" prefWidth="96.0" styleClass="button-light" text="Ta bort" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
     </children>
 </AnchorPane>

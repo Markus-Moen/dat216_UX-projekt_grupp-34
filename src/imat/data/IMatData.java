@@ -1,16 +1,12 @@
-package imat;
+package imat.data;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import imat.basket.FxBasket;
-import imat.checkout.FxCheckout;
 import imat.productlist.FxProductItem;
 import io.vavr.Tuple2;
-import javafx.fxml.FXML;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
 import org.jetbrains.annotations.Nullable;
 import se.chalmers.cse.dat216.project.*;
 
@@ -28,19 +24,24 @@ public class IMatData {
     private IMatDataHandler imat;
     private List<Product> prods;
     private HashMap<Integer, FxProductItem> id2prodListItem;
-    private HashMap<String, Integer> savedCartName2id;
-    private String cartNamePath;
+
+    private ExCart exCart;
+
+    private List<Order> orderHistory;
+    private List<SavedCart> savedCarts;
+
+    private @Nullable Integer cartId;
 
     public IMatData(FxBasket fxBasket){
         if(INSTANCE != null){
             throw new ExceptionInInitializerError("IMatData already exists");
         }
-
         imat = IMatDataHandler.getInstance();
-        cartNamePath = imat.imatDirectory()+"/exCartData.json";
         prods = imat.getProducts();
         System.out.println(prods.size()+" products loaded");
-        loadCartData();
+
+        exCart = new ExCart(imat.imatDirectory()+"/exCartData.json");
+
 
         id2prodListItem = new HashMap<>();
         for(Product p : getAllProducts()){
@@ -52,6 +53,27 @@ public class IMatData {
 
         INSTANCE = this;
     }
+    public List<Order> getOrders(){
+        return imat.getOrders().stream().filter(x -> x.getOrderNumber() >= 0).toList();
+    }
+    public List<Order> getSavedCarts(){
+        return imat.getOrders().stream().filter(x -> x.getOrderNumber() < 0).toList();
+    }
+    public void orderCart(){
+        imat.placeOrder(true);
+    }
+
+    public void loadCart(int id){ //FORCE REPLACE
+    }
+    public void saveCart(int id){
+        exCart.editSavedCart(id, imat.getOrders());
+    }
+    public int saveActiveCartAs(String name){
+        Order x = exCart.cartAsOrder(imat.getShoppingCart(), name);
+        imat.getOrders().add(x);
+        return x.getOrderNumber();
+    }
+
     public ShoppingCart getCart(){
         return imat.getShoppingCart();
     }
@@ -68,43 +90,6 @@ public class IMatData {
     }
     public Image getProductImage(Product prod){
         return imat.getFXImage(prod);
-    }
-
-    public void saveCartData(){
-        File cartDataFile = new File(cartNamePath);
-
-        ObjectMapper mapper = new ObjectMapper();
-        String jsonResult = null;
-        try {
-            jsonResult = mapper.writerWithDefaultPrettyPrinter()
-                    .writeValueAsString(savedCartName2id);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            cartDataFile.createNewFile();
-            Files.writeString(cartDataFile.toPath(), jsonResult);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void loadCartData(){
-        Path cartDataFile = new File(cartNamePath).toPath();
-        String jsonInput = null;
-        try {
-            jsonInput = Files.readString(cartDataFile);
-        } catch (IOException e) {
-            jsonInput = "{}";
-        }
-
-        ObjectMapper mapper = new ObjectMapper();
-        TypeReference<HashMap<String, Integer>> typeRef = new TypeReference<>() {};
-        try {
-            savedCartName2id = mapper.readValue(jsonInput, typeRef);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public List<Integer> getFilteredProductIds(@Nullable ProductFilter productOrder){
@@ -144,29 +129,8 @@ public class IMatData {
     }
 
     public void shutDown() {
+        System.out.println("SHUTTING DOWN");
         imat.shutDown();
+        exCart.write();
     }
-
-    /*
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        imat = IMatDataHandler.getInstance();
-        cartNamePath = imat.imatDirectory()+"/exCartData.json";
-        prods = imat.getProducts();
-        System.out.println(prods.size()+" products loaded");
-        loadCartData();
-
-        System.out.println(basketPane);
-        fxBasket = new FxBasket(this);
-        basketPane.getChildren().add(fxBasket.getAnchor());
-
-        id2prodListItem = new HashMap<>();
-        for(Product p : getAllProducts()){
-            var newSp = new ShoppingItem(p);
-            newSp.setAmount(0);
-            FxProductItem fxProductItem = new FxProductItem(newSp, fxBasket);
-            id2prodListItem.put(p.getProductId(), fxProductItem);
-        }
-    }*/
-
 }

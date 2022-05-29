@@ -1,17 +1,11 @@
 package imat.browse;
 
 import imat.Anchorable;
-import imat.IMatData;
-import imat.ProductFilter;
+import imat.data.ProductFilter;
 import imat.basket.FxBasket;
 import imat.productlist.FxProductItem;
 import io.vavr.control.Either;
 import javafx.application.Platform;
-import javafx.beans.InvalidationListener;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableIntegerValue;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableIntegerArray;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +15,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
