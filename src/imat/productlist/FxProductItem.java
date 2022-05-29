@@ -3,13 +3,16 @@ package imat.productlist;
 import imat.Anchorable;
 import imat.data.IMatData;
 import imat.basket.FxBasket;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import se.chalmers.cse.dat216.project.CartEvent;
 import se.chalmers.cse.dat216.project.Product;
+import se.chalmers.cse.dat216.project.ShoppingCartListener;
 import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import java.io.IOException;
@@ -44,6 +47,20 @@ public class FxProductItem implements Anchorable {
         productItemName.setText(product.getName());
         productItemCost.setText(product.getPrice() + " kr/kg");
         productItemAmount.setText(Double.toString(shoppingItem.getAmount()));
+
+        iMatData.getActiveCart().addShoppingCartListener(cartEvent -> {
+            if (cartEvent.getShoppingItem() == null) return;
+            if(cartEvent.getShoppingItem().getProduct() == product){
+                double d = shoppingItem.getAmount();
+                if(d > 0){
+                    System.out.println("AMOUNT->HELLO FROM:" + product.getName());
+                    Platform.runLater(() -> amountPane.toFront());
+                } else {
+                    System.out.println("ADD->HELLO FROM:" + product.getName());
+                    Platform.runLater(() -> addPane.toFront());
+                }
+            }
+        });
     }
 
     public ShoppingItem getShoppingItem(){
@@ -55,9 +72,9 @@ public class FxProductItem implements Anchorable {
 
     private double setAmount(Double newAmount){
         if(newAmount <= 0){
-            addPane.toFront();
-            fxBasket.iMatData.getActiveCart().removeItem(shoppingItem);
             newAmount = 0.0; //Ensures amount is never less than 0
+            shoppingItem.setAmount(newAmount);
+            fxBasket.iMatData.getActiveCart().removeItem(shoppingItem);
         }
         shoppingItem.setAmount(newAmount);
         productItemAmount.setText(newAmount.toString());
@@ -69,12 +86,11 @@ public class FxProductItem implements Anchorable {
     }
     @FXML protected void onButtonAddOne(){
         double amount = shoppingItem.getAmount();
-        setAmount( amount + 1);
+        setAmount(amount + 1);
     }
     @FXML protected void onButtonAdd(){
-        fxBasket.iMatData.getActiveCart().addItem(shoppingItem);
-        amountPane.toFront();
         setAmount(1.0);
+        fxBasket.iMatData.getActiveCart().addItem(shoppingItem);
     }
 
     @Override

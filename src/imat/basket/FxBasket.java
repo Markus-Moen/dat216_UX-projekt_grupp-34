@@ -154,7 +154,9 @@ public class FxBasket implements Initializable {
         for (ShoppingItem shoppingItem : basketItems) {
             int prodId = shoppingItem.getProduct().getProductId();
             FxProductItem fxProd = iMatData.getProdListItem(prodId);
-            productList.getChildren().add(fxProd.getAnchor());
+            Platform.runLater(() -> {
+                productList.getChildren().add(fxProd.getAnchor());
+            });
         }
     }
 

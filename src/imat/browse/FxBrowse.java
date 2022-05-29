@@ -89,7 +89,6 @@ public class FxBrowse implements Anchorable, Initializable {
         flowAppenderTask = new Task() {
             @Override protected Void call() throws Exception {
                 var ids = fxBasket.iMatData.getFilteredProductIds(productFilter);
-                System.out.println("FOUND:"+ids.size());
 
                 for(Integer i : ids) {
                     FxProductItem productListItem = fxBasket.iMatData.getProdListItem(i);
@@ -115,7 +114,6 @@ public class FxBrowse implements Anchorable, Initializable {
     }
     @FXML protected void onTextEdit(){
         String search = searchTextBox.getText();
-        System.out.println("SEARCH:"+search);
         if (search == null || search.length() == 0) {
             updateProductList(null);
         }
