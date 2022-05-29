@@ -1,10 +1,8 @@
-/*
+
 package imat.history;
 
-
-
 import imat.Anchorable;
-import imat.FxRoot;
+//import imat.FxRoot;
 import imat.basket.FxBasket;
 import javafx.fxml.FXML;
 import imat.basket.FxBasket;
@@ -118,4 +116,3 @@ public class FxHistory implements Anchorable, Initializable {
         return anchorPane;
     }
 }
- */
