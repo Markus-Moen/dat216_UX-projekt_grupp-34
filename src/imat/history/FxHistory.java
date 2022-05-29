@@ -97,7 +97,7 @@ public class FxHistory implements Anchorable, Initializable {
         receipt.setStringList(lista);
         FxReceipt listReceipt = new FxReceipt(this, receipt);
         AnchorPane receiptAnchorPane = listReceipt.getAnchor();
-        recieptList.getChildren().add(listReceipt);
+        recieptList.getChildren().add(listReceipt.getAnchor());
     }
 
     @FXML protected void onButtonBack(){
