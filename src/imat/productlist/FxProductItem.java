@@ -61,13 +61,6 @@ public class FxProductItem implements Anchorable {
                     System.out.println("ADD->HELLO FROM:" + product.getName());
                     addPane.toFront();
                 }
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        IMat.stage.hide();
-                        IMat.stage.show();
-                    }
-                });
             }
         });
     }
