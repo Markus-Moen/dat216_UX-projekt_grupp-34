@@ -108,10 +108,6 @@ public class FxCheckout extends AnchorPane implements Anchorable, Initializable 
         itemTotalText.setText(receipt[2]);
     }
 
-    private void recieptToHistory(){
-        //FxHistory.newReceipt();
-    }
-
     private void fillFields(){
         addressField.setText(customer.getAddress());
         postCodeField.setText(customer.getPostCode());

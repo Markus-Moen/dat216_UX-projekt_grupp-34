@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane onMouseClicked="#openReceiptView" prefHeight="100.0" prefWidth="486.0" styleClass="list-blue" stylesheets="@../imat.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="50.0" minWidth="486.0" onMouseClicked="#openReceipt" styleClass="list-blue" stylesheets="@../imat.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="322.0" layoutY="42.0" maxHeight="50.0" maxWidth="150.0" minHeight="50.0" minWidth="150.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Öppna kvitto" />
+      <Button layoutX="336.0" layoutY="41.0" maxHeight="50.0" maxWidth="150.0" minHeight="50.0" minWidth="150.0" mnemonicParsing="false" onMouseClicked="#openReceipt" prefHeight="50.0" prefWidth="150.0" text="Öppna kvitto" />
       <Text fx:id="receiptDateText" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-important-black" text="25/05/2022" wrappingWidth="208.78125" />
       <Text fx:id="receiptNameText" layoutX="14.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-important-black" text="-Rune fest" wrappingWidth="208.78125" />
       <Text fx:id="receiptPriceText" layoutX="322.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-important-black" text="Totalt pris: 573 kr" wrappingWidth="150.0" />

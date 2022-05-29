@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import imat.basket.FxBasket;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
@@ -20,10 +21,13 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Customer;
@@ -34,29 +38,32 @@ import static io.vavr.API.print;
 
 public class FxHistory implements Anchorable, Initializable {
     private final AnchorPane anchorPane;
-    //private IMat imat;
     private final FxBasket fxBasket;
 
     //public static IMatDataHandler imat;
 
     @FXML private AnchorPane historyPane;
     @FXML private AnchorPane historyListAP;
-    @FXML private AnchorPane historyRecieptAP;
+    @FXML private AnchorPane historyReceiptAP;
 
     @FXML private Text itemListText;
     @FXML private Text itemCostText;
     @FXML private Text itemTotalText;
     @FXML private TextArea receipt;
 
-    @FXML private FlowPane recieptList;
-    @FXML public void openReceiptView () {
-        historyRecieptAP.toFront();
+    @FXML private Text historyItemListText;
+    @FXML private Text historyItemCostText;
+    @FXML private Text historyItemTotalText;
+
+    @FXML private FlowPane receiptList;
+    @FXML public void openReceiptView() {
+        historyReceiptAP.toFront();
     }
     @FXML public void closeReceiptView () {
         historyListAP.toFront();
     }
 
-    private List<Receipt> receipts = new ArrayList<>();
+    private List<FxReceipt> receiptArrayList = new ArrayList<>();
 
     public FxHistory(FxBasket fxBasket) {
         this.fxBasket = fxBasket;
@@ -69,13 +76,8 @@ public class FxHistory implements Anchorable, Initializable {
             throw new RuntimeException(exception);
         }
 
-
-        //imat = IMatDataHandler.getInstance();
-        //customer = imat.getCustomer();
-        //card = imat.getCreditCard();
-
         openHistory();
-        addReceipt();
+
     }
     public void openHistory(){
         historyPane.toFront();
@@ -85,29 +87,39 @@ public class FxHistory implements Anchorable, Initializable {
         fxBasket.focus();
     }
 
-    private void addReceipt(){
+    public void addReceipt(){
         //String[] order, String listName, String listDate
         Receipt receipt = new Receipt();
-        receipt.setReceiptDate("20/20");
-        receipt.setListName("Hejsan");
-        String[] lista = new String[3];
-        lista[0] = "melon";
-        lista[1] = "20";
-        lista[2] = "200";
-        receipt.setStringList(lista);
+        Date currentDate = new Date();
+        SimpleDateFormat dateFormat= new SimpleDateFormat("dd/MMM/yyyy");
+        String dateOnly = dateFormat.format(currentDate);
+        receipt.setReceiptDate(dateOnly);
+        receipt.setListName("");
+        String[] receiptData = fxBasket.iMatData.receipt();
+        receipt.setStringList(receiptData);
         FxReceipt listReceipt = new FxReceipt(this, receipt);
-        AnchorPane receiptAnchorPane = listReceipt.getAnchor();
-        recieptList.getChildren().add(listReceipt.getAnchor());
+        receiptList.getChildren().add(listReceipt.getAnchor());
+        receiptArrayList.add(listReceipt);
+        historyItemListText.setText(receipt.getProductNames());
+        historyItemCostText.setText(receipt.getCostValues());
+        historyItemTotalText.setText(receipt.getTotal());
+        updateHistoryList();
     }
 
-    @FXML protected void onButtonBack(){
+    public void updateHistoryList(){
+        System.out.println("Updating HistoryList");
+        receiptList.getChildren().clear();
+        System.out.println("HistoryList cleared");
+        for (FxReceipt receipt : receiptArrayList) {
+            System.out.println("Adding item to flowpane history");
+            receiptList.getChildren().add(receipt.getAnchor());
+        }
+    }    @FXML protected void onButtonBack(){
         fxBasket.focus();
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
+    public void initialize(URL url, ResourceBundle resourceBundle) {}
     @Override
     public AnchorPane getAnchor() {
         return anchorPane;

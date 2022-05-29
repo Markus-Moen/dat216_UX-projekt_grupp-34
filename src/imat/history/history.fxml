@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="566.0" prefWidth="875.0" stylesheets="@../imat.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="historyPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="566.0" prefWidth="875.0" stylesheets="@../imat.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <StackPane layoutX="366.0" layoutY="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane fx:id="historyPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: lightgray;">
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseEntered="#addReceipt" style="-fx-background-color: lightgray;">
                <children>
                 <AnchorPane maxHeight="85.0" minHeight="85.0" minWidth="0.0" prefHeight="85.0" prefWidth="160.0" styleClass="header" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
@@ -23,19 +23,19 @@
                         <Button layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#onButtonReturn" prefHeight="65.0" prefWidth="150.0" styleClass="button-light" text="Tillbaka till&#10;varukorg" />
                      </children>
                   </AnchorPane>
-                  <StackPane layoutX="195.0" layoutY="95.0" prefHeight="460.0" prefWidth="486.0">
+                  <StackPane layoutX="195.0" layoutY="95.0" prefWidth="486.0" AnchorPane.bottomAnchor="11.0" AnchorPane.topAnchor="95.0">
                      <children>
-                        <AnchorPane fx:id="historyRecieptAP" styleClass="list-backdrop-blue">
+                        <AnchorPane fx:id="historyReceiptAP" styleClass="list-white">
                            <children>
                               <VBox layoutX="-1.0" layoutY="1.0" prefHeight="460.0" prefWidth="486.0" spacing="30.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
                                  <children>
                                     <AnchorPane prefHeight="321.0" prefWidth="386.0">
                                        <children>
-                                          <Text fx:id="itemListText" layoutX="14.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-important-black" text="1 Galiamelon" wrappingWidth="208.78125" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="97.0" />
-                                          <Text fx:id="itemCostText" layoutX="317.0" layoutY="115.265625" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-important-black" text="29.95" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="98.0" />
-                                          <ImageView fx:id="productItemRemove" fitHeight="15.0" fitWidth="15.0" layoutX="465.0" layoutY="6.0" onMouseClicked="#closeReceiptView" pickOnBounds="true" preserveRatio="true">
+                                          <Text fx:id="historyItemListText" layoutX="14.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-important-black" text="1 Galiamelon" wrappingWidth="208.78125" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="97.0" />
+                                          <Text fx:id="historyItemCostText" layoutX="317.0" layoutY="115.265625" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-important-black" text="29.95" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="98.0" />
+                                          <ImageView fx:id="productItemRemove" fitHeight="25.0" fitWidth="25.0" layoutX="454.0" layoutY="7.0" onMouseClicked="#closeReceiptView" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../resources/close.png" />
+                                                <Image url="@../resources/delete.png" />
                                              </image>
                                           </ImageView>
                                        </children>
@@ -44,7 +44,7 @@
                                     <AnchorPane prefHeight="61.0" prefWidth="386.0">
                                        <children>
                                           <Text layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-important-black" text="Totalt" AnchorPane.leftAnchor="14.0" />
-                                          <Text fx:id="itemTotalText" layoutX="318.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-important-black" text="29.95" AnchorPane.rightAnchor="14.5703125" />
+                                          <Text fx:id="historyItemTotalText" layoutX="318.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-important-black" text="29.95" AnchorPane.rightAnchor="14.5703125" />
                                        </children>
                                     </AnchorPane>
                                  </children>
@@ -53,7 +53,7 @@
                         </AnchorPane>
                         <AnchorPane fx:id="historyListAP" prefHeight="200.0" prefWidth="200.0" styleClass="list-white">
                            <children>
-                              <FlowPane fx:id="recieptList" prefHeight="460.0" prefWidth="486.0" styleClass="list-white" />
+                              <FlowPane fx:id="receiptList" prefHeight="460.0" prefWidth="486.0" styleClass="list-white" />
                            </children>
                         </AnchorPane>
                      </children>

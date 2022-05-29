@@ -21,6 +21,7 @@ public class FxReceipt implements Anchorable {
     @FXML private Text receiptPriceText;
 
 
+
     public FxReceipt(FxHistory parentController, Receipt receipt) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("receiptItem.fxml"));
         fxmlLoader.setController(this);
@@ -31,6 +32,7 @@ public class FxReceipt implements Anchorable {
         }
         this.receipt = receipt;
         this.parentController = parentController;
+
         //System.out.println(receipt.getReceiptDate());
         //System.out.println(receipt.getReceiptListName());
         //System.out.println(receipt.getTotal());
@@ -39,8 +41,11 @@ public class FxReceipt implements Anchorable {
         receiptPriceText.setText(receipt.getTotal());
     }
 
-    @FXML void openReceiptView(){
-
+    @FXML public void openReceipt(){
+        parentController.openReceiptView();
+    }
+    @FXML public void closeReceipt(){
+        parentController.closeReceiptView();
     }
 
     @Override

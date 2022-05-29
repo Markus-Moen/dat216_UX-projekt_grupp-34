@@ -135,10 +135,10 @@ public class IMatData {
         List<ShoppingItem> items = cart.getItems();
         for (ShoppingItem item : items){
             output[0] += Math.round(item.getAmount()) + " " + item.getProduct().getName() + "\n";
-            output[1] += item.getTotal() + "\n";
+            output[1] += item.getTotal() + " kr" + "\n";
         }
 
-        output[2] = Double.toString(cart.getTotal());
+        output[2] = Double.toString(cart.getTotal()) + " kr";
 
         return output;
     }

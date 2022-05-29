@@ -81,6 +81,7 @@ public class FxBasket implements Initializable {
         iMatData.getCart().removeItem(item);
         updateBasket();
     }
+
     @FXML private void clearBasket(){
         savedBasketLabel.setText("");
         //checks if user has saved and such
@@ -135,6 +136,9 @@ public class FxBasket implements Initializable {
         System.out.println("IS IT DONE?");
     }
 
+    //protected void addReceiptToHistory(){
+    //    fxHistory.addReceipt();
+    //}
     public void shutDown(){
         iMatData.shutDown();
     }

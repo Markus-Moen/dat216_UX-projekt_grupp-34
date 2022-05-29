@@ -151,44 +151,6 @@
                                           </AnchorPane>
                                        </children>
                                     </AnchorPane>
-                                    <AnchorPane fx:id="donePane" style="-fx-background-color: ffffff;">
-                                       <children>
-                                          <AnchorPane fx:id="imgPaneDone" layoutX="10.0" layoutY="117.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-100.0">
-                                             <children>
-                                                <ImageView fitHeight="652.0" fitWidth="1180.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-100.0">
-                                                   <image>
-                                                      <Image url="@../resources/wizardBar-fourthStep.png" />
-                                                   </image>
-                                                </ImageView>
-                                                <HBox prefHeight="40.0" prefWidth="594.0" spacing="263.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="320.0">
-                                                   <children>
-                                                      <Label styleClass="text-important-black" text="Adress" />
-                                                      <Label styleClass="text-important-black" text="Leverans" />
-                                                      <Label styleClass="text-important-black" text="Betalning" />
-                                                      <Label styleClass="text-important-black" text="Klar" />
-                                                   </children>
-                                                   <padding>
-                                                      <Insets left="70.0" right="29.0" top="5.0" />
-                                                   </padding>
-                                                </HBox>
-                                             </children>
-                                          </AnchorPane>
-                                          <AnchorPane layoutX="10.0" layoutY="-100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="280.0">
-                                             <children>
-                                                <Button layoutX="376.0" layoutY="713.0" mnemonicParsing="false" onAction="#onButtonBack" prefHeight="83.0" prefWidth="218.0" text="Tillbaka till varukorgen" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-                                                <ImageView fx:id="imgDone" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
-                                                   <image>
-                                                      <Image url="@../resources/thumbs-up-icon.png" />
-                                                   </image>
-                                                </ImageView>
-                                                <Label alignment="CENTER_RIGHT" layoutX="112.0" layoutY="39.0" prefHeight="100.0" prefWidth="150.0" styleClass="text-important-black" text="Klar" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="10.0" />
-                                                <Label layoutX="441.0" layoutY="39.0" prefHeight="100.0" styleClass="text-important-black" text="Steg 4 av 4" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="10.0" />
-                                                <TextArea fx:id="doneText" layoutX="419.0" layoutY="252.0" prefHeight="107.0" prefWidth="363.0" styleClass="text-body" text="Tack för din beställning!&#10;Dina kassar anländer måndag 11:30.&#10;Vi ringer en halvtimme innan leverans." />
-                                                <Button layoutX="244.0" layoutY="605.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="218.0" styleClass="button-light" text="Skriv ut kvitto" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="238.0" />
-                                             </children>
-                                          </AnchorPane>
-                                       </children>
-                                    </AnchorPane>
                                     <AnchorPane fx:id="deliveryPane" style="-fx-background-color: ffffff;">
                                        <children>
                                           <AnchorPane fx:id="imgPaneDelivery" layoutX="10.0" layoutY="-100.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-100.0">
@@ -290,6 +252,44 @@
                                                       <ToggleButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="77.0" styleClass="button" text="12:00" toggleGroup="$dateGroup" GridPane.columnIndex="6" GridPane.rowIndex="5" />
                                                    </children>
                                                 </GridPane>
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane fx:id="donePane" style="-fx-background-color: ffffff;">
+                                       <children>
+                                          <AnchorPane fx:id="imgPaneDone" layoutX="10.0" layoutY="117.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-100.0">
+                                             <children>
+                                                <ImageView fitHeight="652.0" fitWidth="1180.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-100.0">
+                                                   <image>
+                                                      <Image url="@../resources/wizardBar-fourthStep.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <HBox prefHeight="40.0" prefWidth="594.0" spacing="263.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="320.0">
+                                                   <children>
+                                                      <Label styleClass="text-important-black" text="Adress" />
+                                                      <Label styleClass="text-important-black" text="Leverans" />
+                                                      <Label styleClass="text-important-black" text="Betalning" />
+                                                      <Label styleClass="text-important-black" text="Klar" />
+                                                   </children>
+                                                   <padding>
+                                                      <Insets left="70.0" right="29.0" top="5.0" />
+                                                   </padding>
+                                                </HBox>
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane layoutX="10.0" layoutY="-100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="280.0">
+                                             <children>
+                                                <Button layoutX="376.0" layoutY="713.0" mnemonicParsing="false" onAction="#onButtonBack" prefHeight="83.0" prefWidth="218.0" text="Tillbaka till varukorgen" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+                                                <ImageView fx:id="imgDone" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                                   <image>
+                                                      <Image url="@../resources/thumbs-up-icon.png" />
+                                                   </image>
+                                                </ImageView>
+                                                <Label alignment="CENTER_RIGHT" layoutX="112.0" layoutY="39.0" prefHeight="100.0" prefWidth="150.0" styleClass="text-important-black" text="Klar" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="10.0" />
+                                                <Label layoutX="441.0" layoutY="39.0" prefHeight="100.0" styleClass="text-important-black" text="Steg 4 av 4" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="10.0" />
+                                                <TextArea fx:id="doneText" layoutX="419.0" layoutY="252.0" prefHeight="107.0" prefWidth="363.0" styleClass="text-body" text="Tack för din beställning!&#10;Dina kassar anländer måndag 11:30.&#10;Vi ringer en halvtimme innan leverans." />
+                                                <Button layoutX="244.0" layoutY="605.0" mnemonicParsing="false" prefHeight="83.0" prefWidth="218.0" styleClass="button-light" text="Skriv ut kvitto" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="238.0" />
                                              </children>
                                           </AnchorPane>
                                        </children>
