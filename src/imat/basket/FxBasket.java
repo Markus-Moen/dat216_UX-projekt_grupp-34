@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -57,6 +58,8 @@ public class FxBasket implements Initializable {
     @FXML private StackPane spSaveStack;
 
     @FXML private TextField basketNameInput;
+    @FXML private ScrollPane scrollPane;
+    @FXML private AnchorPane scrollContent;
 
     @FXML public void openSaveView () {
         apNewBasketSaveWarning.toFront();
@@ -105,7 +108,6 @@ public class FxBasket implements Initializable {
         }
         spSaveStack.toBack();
         iMatData.clearActiveCart();
-        updateBasket();
         basketName.setText("Ny varukorg");
         savedBasketLabel.setText("");
         basketIsVirgin = true;
@@ -114,7 +116,6 @@ public class FxBasket implements Initializable {
     @FXML private void noSaveAfterWarning() {
         spSaveStack.toBack();
         iMatData.clearActiveCart();
-        updateBasket();
         basketName.setText("Ny varukorg");
         savedBasketLabel.setText("");
         basketIsVirgin = true;
@@ -137,7 +138,6 @@ public class FxBasket implements Initializable {
 
     public void loadShoppingItems(int id) {
         String name = iMatData.moveSavedCartToActiveCart(id);
-        updateBasket();
         basketName.setText(name);
     }
     private void clearBasket(){
@@ -175,7 +175,6 @@ public class FxBasket implements Initializable {
         if (basketIsSaved) {
             spSaveStack.toBack();
             iMatData.clearActiveCart();
-            updateBasket();
             basketName.setText("Ny varukorg");
             savedBasketLabel.setText("");
             basketIsVirgin = true;
@@ -193,12 +192,13 @@ public class FxBasket implements Initializable {
         stackSavedCarts.toFront();
     }
     @FXML protected void onButtonBrowse(){
-        fxBrowse.openBrowse();
         stackBrowse.toFront();
+        fxBrowse.openBrowse();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Platform.setImplicitExit(false);
         if(INSTANCE != null){
             throw new ExceptionInInitializerError("FxBasket already exits");
         }
@@ -211,6 +211,8 @@ public class FxBasket implements Initializable {
         savedCartsPaneContent.getChildren().add(fxSavedCarts.getAnchor());
         fxCheckout = new FxCheckout(this);
         stackCheckout.getChildren().add(fxCheckout.getAnchor());
+
+        scrollContent.prefWidthProperty().bind(scrollPane.widthProperty());
 
         basketIsSaved = true;
         basketIsVirgin = true;

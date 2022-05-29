@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
+import java.util.Stack;
 
 import imat.basket.FxBasket;
 import javafx.scene.text.Font;
@@ -25,6 +26,7 @@ import javafx.stage.Stage;
  */
 public class IMat extends Application {
 
+    public static Stage stage;
     @Override
     public void start(Stage stage) throws Exception {
         ResourceBundle bundle = java.util.ResourceBundle.getBundle("imat/resources/IMat");
@@ -46,6 +48,8 @@ public class IMat extends Application {
         stage.setTitle(bundle.getString("application.name"));
         stage.setScene(scene);
         stage.show();
+
+        this.stage = stage;
     }
 
     public void maybeInitializeDB() throws IOException {

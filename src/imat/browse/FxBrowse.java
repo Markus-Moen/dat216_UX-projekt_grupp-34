@@ -113,6 +113,7 @@ public class FxBrowse implements Anchorable, Initializable {
         fxBasket.focus();
     }
     @FXML protected void onTextEdit(){
+        System.out.println("TEXEDIT");
         String search = searchTextBox.getText();
         if (search == null || search.length() == 0) {
             updateProductList(null);

@@ -3,6 +3,7 @@ package imat.data;
 import imat.basket.FxBasket;
 import imat.productlist.FxProductItem;
 import io.vavr.Tuple2;
+import javafx.application.Platform;
 import javafx.scene.image.Image;
 import org.jetbrains.annotations.Nullable;
 import se.chalmers.cse.dat216.project.*;

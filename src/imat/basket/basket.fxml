@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -67,17 +68,29 @@
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="list-white">
                                  <children>
-                                    <StackPane prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="list-white" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <FlowPane fx:id="productList" prefHeight="358.0" prefWidth="720.0" styleClass="list-backdrop" />
-                                          <AnchorPane styleClass="text-important-white">
+                                          <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="500.0">
                                              <children>
                                                 <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="37.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
                                                    <children>
                                                       <Button fx:id="browseProductsButton" alignment="CENTER" maxWidth="400.0" mnemonicParsing="false" onMouseClicked="#onButtonBrowse" prefWidth="400.0" text="Sök bland alla varor" />
                                                    </children>
                                                 </HBox>
-                                                <Label fx:id="savedBasketLabel" alignment="CENTER" layoutX="177.0" layoutY="11.0" styleClass="text-important-black" text="xxxxxx" textAlignment="CENTER" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                                <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" styleClass="list-white" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                                                   <content>
+                                                      <AnchorPane fx:id="scrollContent" styleClass="list-white">
+                                                         <children>
+                                                            <FlowPane fx:id="productList" alignment="TOP_CENTER" hgap="10.0" prefHeight="358.0" prefWidth="720.0" rowValignment="TOP" styleClass="list-white" vgap="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                         </children>
+                                                      </AnchorPane>
+                                                   </content>
+                                                </ScrollPane>
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane mouseTransparent="true" styleClass="text-important-white">
+                                             <children>
+                                                <Label fx:id="savedBasketLabel" alignment="CENTER" layoutX="177.0" layoutY="11.0" mouseTransparent="true" styleClass="text-important-black" text="xxxxxx" textAlignment="CENTER" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                                              </children>
                                           </AnchorPane>
                                        </children>
@@ -102,6 +115,7 @@
                      <children>
                         <Label fx:id="basketName" alignment="CENTER" layoutX="-85.0" layoutY="10.0" styleClass="header-text" text="Ny Varukorg" textAlignment="CENTER" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="200.0" />
                         <Button fx:id="shopingHistoryButton" layoutX="666.0" layoutY="10.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" styleClass="button-light" text="Inköpshistorik" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                        <Button layoutX="14.0" layoutY="11.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="120.0" text="RESET STATE" />
                      </children>
                   </AnchorPane>
                </children>
