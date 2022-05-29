@@ -79,7 +79,7 @@ public class FxBrowse implements Anchorable, Initializable {
             flowAppenderTask.cancel();
             flowAppenderThread.interrupt();
             try {
-                Thread.sleep(10);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -111,7 +111,6 @@ public class FxBrowse implements Anchorable, Initializable {
     }
 
     @FXML protected void onButtonReturn(){
-        fxBasket.updateBasket();
         fxBasket.focus();
     }
     @FXML protected void onTextEdit(){

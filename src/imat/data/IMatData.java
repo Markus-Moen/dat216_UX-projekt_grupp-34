@@ -43,6 +43,8 @@ public class IMatData {
 
         INSTANCE = this;
     }
+
+    // CART METHODS
     public List<NamedCart> getHistoryCarts(){
         return cartHandler.getNamedCarts().values()
                 .stream().filter(x -> x.getIsBought() == true).toList();
@@ -50,6 +52,14 @@ public class IMatData {
     public List<NamedCart> getSavedCarts(){
         return cartHandler.getNamedCarts().values()
                 .stream().filter(x -> x.getIsBought() == false).toList();
+    }
+    public void saveCart(int id){
+        NamedCart nc = cartHandler.getNamedCarts().get(id);
+        List<ShoppingItem> newShopList = new ArrayList<>();
+        for (ShoppingItem si : getActiveCart().getItems()){
+            newShopList.add(new ShoppingItem(si.getProduct(), si.getAmount()));
+        }
+        nc.getOrder().setItems(newShopList);
     }
     public void orderAndClearActiveCart(){
         NamedCartExtraData namedCartExtraData;
@@ -71,18 +81,34 @@ public class IMatData {
     }
     public void clearActiveCart(){
         openCartId = null;
+        imat.getShoppingCart().clear();
     }
     public ShoppingCart getActiveCart(){
         return imat.getShoppingCart();
     }
+    public void saveCurrentyActiveCart(){
+        if(openCartId == null ){
+            throw new RuntimeException("IMPOSSIBLE ERROR, CAN NOT SAVE UNACTIVE CART");
+        }
+        NamedCart nc = cartHandler.getNamedCarts().get(openCartId);
+        imat.getShoppingCart().clear();
+        for (var i : nc.getOrder().getItems()){
+            imat.getShoppingCart().addItem(i);
+        }
+    }
 
+    // IMATDATA GETTERS
     public Customer getCustomer(){
         return imat.getCustomer();
     }
     public CreditCard getCreditCard(){
         return imat.getCreditCard();
     }
+    public Image getProductImage(Product prod){
+        return imat.getFXImage(prod);
+    }
 
+    // IMATDATA GETTERS
     public List<Product> getAllProducts(){
         return prods;
     }
@@ -94,10 +120,8 @@ public class IMatData {
             throw new IndexOutOfBoundsException("Item does not exist");
         return id2prodListItem.get(i);
     }
-    public Image getProductImage(Product prod){
-        return imat.getFXImage(prod);
-    }
 
+    // FILTERING
     public List<Integer> getFilteredProductIds(@Nullable ProductFilter productOrder){
         var matchScoreFunc = new Function<Product, Tuple2<Integer, Product>>(){
             @Override

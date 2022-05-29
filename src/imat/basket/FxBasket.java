@@ -16,6 +16,8 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import se.chalmers.cse.dat216.project.CartEvent;
+import se.chalmers.cse.dat216.project.ShoppingCartListener;
 import se.chalmers.cse.dat216.project.ShoppingItem;
 
 //import imat.ProductItem;
@@ -27,6 +29,8 @@ public class FxBasket implements Initializable {
     private FxBrowse fxBrowse;
     private FxSavedCarts fxSavedCarts;
     private FxCheckout fxCheckout;
+    private ShoppingCartListener shoppingCartListener;
+    private boolean hasUnsavedChanges;
 
     @FXML private AnchorPane stackBasket;
     @FXML private AnchorPane stackBrowse;
@@ -62,33 +66,23 @@ public class FxBasket implements Initializable {
         iMatData.orderAndClearActiveCart();
         iMatData.DEBUG_saveCarts();
     }
-    @FXML private void openBasket(){ // need a name?
-        savedBasketLabel.setText("Saved!");
-        iMatData.getActiveCart();
+    @FXML private void loadSavedBasket(int id){
+        savedBasketLabel.setText("");
+        iMatData.moveSavedCartToActiveCart(id);
     }
     @FXML private void saveBasket(){
         savedBasketLabel.setText("Saved!");
-        String name = "hej";
-        setBasketName(name);
+        iMatData.saveCurrentyActiveCart();
         closeSaveView();
         //save shoppingcart somehow
-    }
-    public void addItemToBasket(ShoppingItem item){
-        savedBasketLabel.setText("");
-        iMatData.getActiveCart().addItem(item);
-        updateBasket();
-    }
-    public void removeItemFromBasket(ShoppingItem item){
-        savedBasketLabel.setText("");
-        iMatData.getActiveCart().removeItem(item);
-        updateBasket();
     }
     @FXML private void clearBasket(){
         savedBasketLabel.setText("");
         //checks if user has saved and such
-        iMatData.getActiveCart().clear();
+        iMatData.clearActiveCart();
         setBasketName("Ny varukorg");
     }
+
     public void updateBasket(){
         List<ShoppingItem> basketItems = iMatData.getActiveCart().getItems();
         System.out.println("UPDATE BASKET:"+basketItems.size());
@@ -126,6 +120,16 @@ public class FxBasket implements Initializable {
         savedCartsPaneContent.getChildren().add(fxSavedCarts.getAnchor());
         fxCheckout = new FxCheckout(this);
         stackCheckout.getChildren().add(fxCheckout.getAnchor());
+
+        hasUnsavedChanges = false;
+        iMatData.getActiveCart().addShoppingCartListener(new ShoppingCartListener() {
+            @Override
+            public void shoppingCartChanged(CartEvent cartEvent) {
+                updateBasket();
+                hasUnsavedChanges = true;
+                savedBasketLabel.setText("");
+            }
+        });
 
         clearBasket();
         System.out.println("IS IT DONE?");
