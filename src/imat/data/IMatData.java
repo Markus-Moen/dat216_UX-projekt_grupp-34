@@ -53,31 +53,33 @@ public class IMatData {
         return cartHandler.getNamedCarts().values()
                 .stream().filter(x -> x.getIsBought() == false).toList();
     }
-    public void saveCart(int id){
-        NamedCart nc = cartHandler.getNamedCarts().get(id);
-        List<ShoppingItem> newShopList = new ArrayList<>();
-        for (ShoppingItem si : getActiveCart().getItems()){
-            newShopList.add(new ShoppingItem(si.getProduct(), si.getAmount()));
-        }
-        nc.getOrder().setItems(newShopList);
-    }
-    public void orderAndClearActiveCart(){
+    public void saveActiveCartAsNew(String name){
         NamedCartExtraData namedCartExtraData;
         if(openCartId == null){
-            namedCartExtraData = new NamedCartExtraData(true, "", null);
+            namedCartExtraData = new NamedCartExtraData(true, name, null);
         } else {
             namedCartExtraData = cartHandler.getNamedCarts().get(openCartId);
         }
         cartHandler.orderCart(imat, true, namedCartExtraData);
+    }
+    public void orderAndClearActiveCart(){
+        String newName;
+        if(openCartId == null){
+            newName = "Köp "+new Date();
+        } else {
+            newName = cartHandler.getNamedCarts().get(openCartId).getName();
+        }
+        saveActiveCartAsNew(newName);
         clearActiveCart();
     }
-    public void moveSavedCartToActiveCart(int cartId){
+    public String moveSavedCartToActiveCart(int cartId){
         NamedCart nc = cartHandler.getNamedCarts().get(cartId);
         openCartId = nc.getId();
         imat.getShoppingCart().clear();
         for (var i : nc.getOrder().getItems()){
             imat.getShoppingCart().addItem(i);
         }
+        return nc.getName();
     }
     public void clearActiveCart(){
         openCartId = null;

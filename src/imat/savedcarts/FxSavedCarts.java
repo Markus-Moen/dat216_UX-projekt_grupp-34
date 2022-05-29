@@ -2,6 +2,8 @@ package imat.savedcarts;
 
 import imat.Anchorable;
 import imat.basket.FxBasket;
+import imat.data.NamedCart;
+import imat.data.NamedCartExtraData;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,10 +12,13 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import se.chalmers.cse.dat216.project.Order;
+import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -22,21 +27,31 @@ public class FxSavedCarts implements Anchorable, Initializable {
     FxBasket fxBasket;
 
     @FXML private GridPane grid;
-
     @FXML private ScrollPane scroll;
 
-    private List<SavedCart> savedCarts = new ArrayList<>();
+    private List<NamedCart> savedCarts = new ArrayList<>();
+    public void setSavedCarts(List<NamedCart> savedCarts) {
+        this.savedCarts = savedCarts;
+    }
 
-    private List<SavedCart> getData(int amount) {
-        List<SavedCart> carts = new ArrayList<>();
-        SavedCart cart;
+    public List<NamedCart> getSavedCarts() {
+        return savedCarts;
+    }
+
+    private List<NamedCart> getData(int amount) {
+        List<NamedCart> carts = new ArrayList<>();
 
         for (int i=0; i<amount; i++) {
-            cart = new SavedCart();
-            cart.setName("Varukorg " + i);
-            cart.setDate("18/5-22");
-            carts.add(cart);
+            NamedCartExtraData dummyData = new NamedCartExtraData(false, "NEW CART "+i, -i);
+            Order dummyOrder = new Order();
+            dummyOrder.setDate(new Date());
+            NamedCart dummyCart = new NamedCart(dummyOrder, dummyData);
+            carts.add(dummyCart);
         }
+        for(var x : fxBasket.iMatData.getHistoryCarts()){
+            carts.add(x);
+        }
+
 
         return carts;
     }
@@ -68,13 +83,18 @@ public class FxSavedCarts implements Anchorable, Initializable {
         return anchorPane;
     }
 
-    public void removeCart(SavedCart savedCart) {
+    public void removeCart(NamedCart savedCart) {
         clearCartList();
 
         System.out.println("Before: " + savedCarts.size());
         this.savedCarts.remove(savedCart);
         System.out.println("After: " + savedCarts.size());
 
+        updateCartList();
+    }
+
+    public void addNewCart(NamedCart savedCart) {
+        savedCarts.add(savedCart);
         updateCartList();
     }
 
@@ -89,7 +109,7 @@ public class FxSavedCarts implements Anchorable, Initializable {
         int row = 1;
         System.out.println("upfatyer " + savedCarts.size());
         for (int i = 0; i < savedCarts.size(); i++) {
-            FxSavedCartItem savedCartItem = new FxSavedCartItem(savedCarts.get(i), this);
+            FxSavedCartItem savedCartItem = new FxSavedCartItem(savedCarts.get(i), this, fxBasket);
             AnchorPane itemAnchorPane = savedCartItem.getAnchor();
 
             if (column == 3) {

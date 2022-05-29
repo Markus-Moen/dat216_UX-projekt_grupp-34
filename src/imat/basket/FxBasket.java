@@ -9,15 +9,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import se.chalmers.cse.dat216.project.CartEvent;
 import se.chalmers.cse.dat216.project.ShoppingCartListener;
+import javafx.scene.layout.StackPane;
 import se.chalmers.cse.dat216.project.ShoppingItem;
 
 //import imat.ProductItem;
@@ -30,7 +33,8 @@ public class FxBasket implements Initializable {
     private FxSavedCarts fxSavedCarts;
     private FxCheckout fxCheckout;
     private ShoppingCartListener shoppingCartListener;
-    private boolean hasUnsavedChanges;
+    private boolean basketIsSaved = false;
+    private boolean basketIsVirgin = true;
 
     @FXML private AnchorPane stackBasket;
     @FXML private AnchorPane stackBrowse;
@@ -46,7 +50,12 @@ public class FxBasket implements Initializable {
     @FXML private FlowPane productList;
     @FXML private Button mySavedBasketsButton;
     @FXML private Label savedBasketLabel;
+
     @FXML private AnchorPane apNewBasketSaveWarning;
+    @FXML private AnchorPane apNameBasket;
+    @FXML private StackPane spSaveStack;
+
+    @FXML private TextField basketNameInput;
 
     @FXML public void openSaveView () {
         apNewBasketSaveWarning.toFront();
@@ -58,6 +67,7 @@ public class FxBasket implements Initializable {
     public void focus(){
         stackBasket.toFront();
     }
+
     private void setBasketName(String name){
         basketName.setText(name);
     }
@@ -73,8 +83,90 @@ public class FxBasket implements Initializable {
     @FXML private void saveBasket(){
         savedBasketLabel.setText("Saved!");
         iMatData.saveCurrentyActiveCart();
+        basketIsSaved = true;
+        String name = "hej";
+        setBasketName(name);
         closeSaveView();
-        //save shoppingcart somehow
+
+    }
+
+    @FXML public void saveAsButtonPressed() {
+        System.out.println("Enter name");
+        spSaveStack.toFront();
+        apNameBasket.toFront();
+    }
+
+    @FXML public void newCartButtonPressed() {
+        if (basketIsSaved) {
+            spSaveStack.toBack();
+            iMatData.clearActiveCart();
+            updateBasket();
+            basketName.setText("Ny varukorg");
+            savedBasketLabel.setText("");
+            basketIsVirgin = true;
+            basketIsSaved = false;
+        }
+
+        else {
+            unSavedWarning();
+        }
+    }
+
+    private void unSavedWarning() {
+        spSaveStack.toFront();
+        apNewBasketSaveWarning.toFront();
+    }
+
+    @FXML protected void saveAfterWarning() {
+        if (basketIsVirgin) {
+            apNameBasket.toFront();
+        }
+        else {
+            saveButtonPressed();
+        }
+        spSaveStack.toBack();
+        iMatData.clearActiveCart();
+        updateBasket();
+        basketName.setText("Ny varukorg");
+        savedBasketLabel.setText("");
+        basketIsVirgin = true;
+        basketIsSaved = false;
+    }
+
+    @FXML protected void noSaveAfterWarning() {
+        spSaveStack.toBack();
+        iMatData.clearActiveCart();
+        updateBasket();
+        basketName.setText("Ny varukorg");
+        savedBasketLabel.setText("");
+        basketIsVirgin = true;
+        basketIsSaved = false;
+    }
+
+    @FXML public void saveNewBasket() {
+        String name = basketNameInput.getText();
+        List<ShoppingItem> basketItems = new ArrayList<ShoppingItem>(iMatData.getActiveCart().getItems());
+
+        iMatData.saveActiveCartAsNew(name);
+        setBasketName(name);
+        spSaveStack.toBack();
+
+        System.out.println("New basket is saved!");
+        savedBasketLabel.setText("Saved!");
+        basketIsSaved = true;
+        basketIsVirgin = false;
+    }
+
+    @FXML public void saveButtonPressed() {
+        iMatData.saveCurrentyActiveCart();
+        System.out.println("Saved!");
+        savedBasketLabel.setText("Saved!");
+    }
+
+    public void loadShoppingItems(int id) {
+        String name = iMatData.moveSavedCartToActiveCart(id);
+        updateBasket();
+        basketName.setText(name);
     }
     @FXML private void clearBasket(){
         savedBasketLabel.setText("");
@@ -121,12 +213,14 @@ public class FxBasket implements Initializable {
         fxCheckout = new FxCheckout(this);
         stackCheckout.getChildren().add(fxCheckout.getAnchor());
 
-        hasUnsavedChanges = false;
+        basketIsSaved = true;
+        basketIsVirgin = true;
         iMatData.getActiveCart().addShoppingCartListener(new ShoppingCartListener() {
             @Override
             public void shoppingCartChanged(CartEvent cartEvent) {
                 updateBasket();
-                hasUnsavedChanges = true;
+                basketIsSaved = false;
+                basketIsVirgin = false;
                 savedBasketLabel.setText("");
             }
         });
