@@ -41,13 +41,14 @@ public class FxSavedCarts implements Anchorable, Initializable {
     private List<NamedCart> getData(int amount) {
         List<NamedCart> carts = new ArrayList<>();
 
+        /*
         for (int i=0; i<amount; i++) {
             NamedCartExtraData dummyData = new NamedCartExtraData(false, "NEW CART "+i, -i);
             Order dummyOrder = new Order();
             dummyOrder.setDate(new Date());
             NamedCart dummyCart = new NamedCart(dummyOrder, dummyData);
             carts.add(dummyCart);
-        }
+        }*/
         for(var x : fxBasket.iMatData.getHistoryCarts()){
             carts.add(x);
         }
@@ -103,8 +104,6 @@ public class FxSavedCarts implements Anchorable, Initializable {
     }
 
     public void updateCartList() {
-
-
         int column = 0;
         int row = 1;
         System.out.println("upfatyer " + savedCarts.size());
