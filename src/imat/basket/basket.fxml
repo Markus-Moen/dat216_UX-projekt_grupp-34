@@ -114,7 +114,7 @@
                 <AnchorPane maxHeight="85.0" minHeight="85.0" minWidth="0.0" prefHeight="85.0" prefWidth="160.0" styleClass="header" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Label fx:id="basketName" alignment="CENTER" layoutX="-85.0" layoutY="10.0" styleClass="header-text" text="Ny Varukorg" textAlignment="CENTER" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="200.0" />
-                        <Button fx:id="shopingHistoryButton" layoutX="666.0" layoutY="10.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" styleClass="button-light" text="Inköpshistorik" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                        <Button fx:id="shopingHistoryButton" layoutX="666.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#onButtonHistory" prefHeight="50.0" prefWidth="130.0" styleClass="button-light" text="Inköpshistorik" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                         <Button layoutX="14.0" layoutY="11.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="120.0" text="RESET STATE" />
                      </children>
                   </AnchorPane>
