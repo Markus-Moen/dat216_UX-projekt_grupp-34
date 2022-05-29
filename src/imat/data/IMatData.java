@@ -60,7 +60,8 @@ public class IMatData {
         } else {
             namedCartExtraData = cartHandler.getNamedCarts().get(openCartId);
         }
-        cartHandler.orderCart(imat, true, namedCartExtraData);
+        NamedCart o = cartHandler.orderCart(imat, true, namedCartExtraData);
+        openCartId = o.getId();
     }
     public void orderAndClearActiveCart(){
         String newName;
@@ -78,6 +79,10 @@ public class IMatData {
         imat.getShoppingCart().clear();
         for (var i : nc.getOrder().getItems()){
             imat.getShoppingCart().addItem(i);
+        }
+        for (var x : imat.getShoppingCart().getItems()) {
+            var getFxProdItem = id2prodListItem.get(x.getProduct().getProductId());
+            getFxProdItem.getShoppingItem().setAmount(x.getAmount());
         }
         return nc.getName();
     }

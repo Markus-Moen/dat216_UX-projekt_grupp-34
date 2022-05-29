@@ -215,12 +215,10 @@ public class FxBasket implements Initializable {
         iMatData.getActiveCart().addShoppingCartListener(new ShoppingCartListener() {
             @Override
             public void shoppingCartChanged(CartEvent cartEvent) {
-                Platform.runLater(() -> {
-                    updateBasket();
-                    basketIsSaved = false;
-                    basketIsVirgin = false;
-                    savedBasketLabel.setText("");
-                });
+                basketIsSaved = false;
+                basketIsVirgin = false;
+                savedBasketLabel.setText("");
+                updateBasket();
             }
         });
 

@@ -37,7 +37,12 @@ public class IMat extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("basket/basket.fxml"), bundle);
 
-        Scene scene = new Scene(root, 800, 500);
+        Scene scene = new Scene(root, 1850, 1000);
+        stage.setMinHeight(900);
+        stage.setMaxHeight(1080);
+        stage.setMinWidth(1850);
+        stage.setMaxWidth(1920);
+        stage.setMaximized(true);
         stage.setTitle(bundle.getString("application.name"));
         stage.setScene(scene);
         stage.show();
