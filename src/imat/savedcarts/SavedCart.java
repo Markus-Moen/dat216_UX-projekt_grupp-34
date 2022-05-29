@@ -16,6 +16,7 @@ public class SavedCart extends AnchorPane {
     }
 
     public List<ShoppingItem> getShoppingItems() {
+
         return shoppingItems;
     }
 

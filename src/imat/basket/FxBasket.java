@@ -15,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -84,11 +85,12 @@ public class FxBasket implements Initializable {
 
     @FXML public void saveNewBasket() {
         String name = basketNameInput.getText();
-        List<ShoppingItem> basketItems = iMatData.getCart().getItems();
-        System.out.println(basketItems.size());
+        List<ShoppingItem> basketItems = new ArrayList<ShoppingItem>(iMatData.getCart().getItems());
+
         SavedCart savedCart = new SavedCart(basketItems, name);
         fxSavedCarts.addNewCart(savedCart);
         spSaveStack.toBack();
+
         System.out.println("New basket is saved!");
 
     }
@@ -99,7 +101,7 @@ public class FxBasket implements Initializable {
 
     public void loadShoppingItems(SavedCart savedCart) {
         iMatData.getCart().clear();
-        System.out.println(savedCart.getShoppingItems().size());
+
         for (ShoppingItem item : savedCart.getShoppingItems()) {
             iMatData.getCart().addItem(item);
         }
