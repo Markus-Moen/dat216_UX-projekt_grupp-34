@@ -31,6 +31,9 @@ public class FxBasket implements Initializable {
     private FxBrowse fxBrowse;
     private FxSavedCarts fxSavedCarts;
     private FxCheckout fxCheckout;
+    private SavedCart currentCart = null;
+    private boolean basketIsSaved = false;
+    private boolean basketIsVirgin = true;
 
     @FXML private AnchorPane stackBasket;
     @FXML private AnchorPane stackBrowse;
@@ -63,24 +66,75 @@ public class FxBasket implements Initializable {
     public void focus(){
         stackBasket.toFront();
     }
+
     private void setBasketName(String name){
         basketName.setText(name);
     }
-    @FXML private void openBasket(){ // need a name?
-        savedBasketLabel.setText("Saved!");
-        iMatData.getCart();
-    }
+
+//    @FXML private void openBasket(){ // need a name?
+//        savedBasketLabel.setText("Saved!");
+//        iMatData.getCart();
+//    }
     @FXML private void saveBasket(){
         savedBasketLabel.setText("Saved!");
+        basketIsSaved = true;
         String name = "hej";
         setBasketName(name);
         closeSaveView();
-        //save shoppingcart somehow
+
     }
 
     @FXML public void saveAsButtonPressed() {
         System.out.println("Enter name");
         spSaveStack.toFront();
+        apNameBasket.toFront();
+    }
+
+    @FXML public void newCartButtonPressed() {
+        if (basketIsSaved) {
+            spSaveStack.toBack();
+            iMatData.getCart().clear();
+            updateBasket();
+            basketName.setText("Ny varukorg");
+            savedBasketLabel.setText("");
+            basketIsVirgin = true;
+            basketIsSaved = false;
+        }
+
+        else {
+            unSavedWarning();
+        }
+    }
+
+    private void unSavedWarning() {
+        spSaveStack.toFront();
+        apNewBasketSaveWarning.toFront();
+    }
+
+    @FXML protected void saveAfterWarning() {
+        if (basketIsVirgin) {
+            apNameBasket.toFront();
+        }
+        else {
+            saveButtonPressed();
+        }
+        spSaveStack.toBack();
+        iMatData.getCart().clear();
+        updateBasket();
+        basketName.setText("Ny varukorg");
+        savedBasketLabel.setText("");
+        basketIsVirgin = true;
+        basketIsSaved = false;
+    }
+
+    @FXML protected void noSaveAfterWarning() {
+        spSaveStack.toBack();
+        iMatData.getCart().clear();
+        updateBasket();
+        basketName.setText("Ny varukorg");
+        savedBasketLabel.setText("");
+        basketIsVirgin = true;
+        basketIsSaved = false;
     }
 
     @FXML public void saveNewBasket() {
@@ -88,15 +142,25 @@ public class FxBasket implements Initializable {
         List<ShoppingItem> basketItems = new ArrayList<ShoppingItem>(iMatData.getCart().getItems());
 
         SavedCart savedCart = new SavedCart(basketItems, name);
-        fxSavedCarts.addNewCart(savedCart);
+        currentCart = savedCart;
+
+        fxSavedCarts.addNewCart(currentCart);
+        setBasketName(name);
         spSaveStack.toBack();
 
         System.out.println("New basket is saved!");
+        savedBasketLabel.setText("Saved!");
+        basketIsSaved = true;
+        basketIsVirgin = false;
+
 
     }
 
     @FXML public void saveButtonPressed() {
-
+        List<ShoppingItem> basketItems = new ArrayList<ShoppingItem>(iMatData.getCart().getItems());
+        currentCart.setShoppingItems(basketItems);
+        System.out.println("Saved!");
+        savedBasketLabel.setText("Saved!");
     }
 
     public void loadShoppingItems(SavedCart savedCart) {
@@ -106,15 +170,19 @@ public class FxBasket implements Initializable {
             iMatData.getCart().addItem(item);
         }
         updateBasket();
+        basketName.setText(savedCart.getName());
     }
 
     public void addItemToBasket(ShoppingItem item){
         savedBasketLabel.setText("");
+        basketIsSaved = false;
         iMatData.getCart().addItem(item);
+
         updateBasket();
     }
     public void removeItemFromBasket(ShoppingItem item){
         savedBasketLabel.setText("");
+        basketIsSaved = false;
         iMatData.getCart().removeItem(item);
         updateBasket();
     }

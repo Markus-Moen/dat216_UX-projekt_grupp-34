@@ -32,8 +32,8 @@
                         <AnchorPane fx:id="apNewBasketSaveWarning" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: lightgray;">
                            <children>
                               <Button layoutX="40.0" layoutY="136.0" mnemonicParsing="false" onMouseClicked="#closeSaveView" prefHeight="50.0" prefWidth="80.0" styleClass="button-light" text="Avbryt" />
-                              <Button layoutX="120.0" layoutY="136.0" mnemonicParsing="false" onMouseClicked="#saveBasket" prefHeight="50.0" prefWidth="80.0" styleClass="button-light" text="Ja, Spara" />
-                              <Button layoutX="206.0" layoutY="136.0" mnemonicParsing="false" onMouseClicked="#closeSaveView" prefHeight="50.0" prefWidth="80.0" styleClass="button-light" text="Spara inte" />
+                              <Button layoutX="120.0" layoutY="136.0" mnemonicParsing="false" onAction="#saveAfterWarning" onMouseClicked="#saveBasket" prefHeight="50.0" prefWidth="80.0" styleClass="button-light" text="Ja, Spara" />
+                              <Button layoutX="206.0" layoutY="136.0" mnemonicParsing="false" onAction="#noSaveAfterWarning" onMouseClicked="#closeSaveView" prefHeight="50.0" prefWidth="80.0" styleClass="button-light" text="Spara inte" />
                               <Label alignment="TOP_LEFT" layoutX="3.0" layoutY="31.0" prefHeight="43.0" prefWidth="280.0" text="ListName har osparade ändringar. Vill du spara ändringar innan du öpnar en tom varukorg?" wrapText="true" />
                            </children>
                         </AnchorPane>
@@ -87,7 +87,7 @@
                               <AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" styleClass="list-blue">
                                  <children>
                                     <Button fx:id="toCheckoutButton" mnemonicParsing="false" onMouseClicked="#onButtonToCheckout" prefHeight="100.0" prefWidth="180.0" text="Till kassan" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-                                    <Button fx:id="newBasketButton" layoutX="42.0" layoutY="138.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="120.0" styleClass="button-light" text="Ny varukorg" wrapText="true" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="30.0" />
+                                    <Button fx:id="newBasketButton" layoutX="42.0" layoutY="138.0" mnemonicParsing="false" onAction="#newCartButtonPressed" prefHeight="37.0" prefWidth="120.0" styleClass="button-light" text="Ny varukorg" wrapText="true" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="30.0" />
                                     <Button fx:id="saveBasketButton" layoutX="42.0" layoutY="64.0" mnemonicParsing="false" onAction="#saveButtonPressed" prefHeight="35.0" prefWidth="120.0" styleClass="button-light" text="Spara" wrapText="true" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="170.0" />
                                     <Button fx:id="saveBasketButton1" layoutX="42.0" layoutY="101.0" mnemonicParsing="false" onAction="#saveAsButtonPressed" prefHeight="37.0" prefWidth="120.0" styleClass="button-light" text="Spara som..." wrapText="true" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="130.0" />
                                     <Button fx:id="saveBasketButton2" layoutX="42.0" layoutY="27.0" mnemonicParsing="false" onAction="#onButtonToSavedCarts" onMouseClicked="#openSaveView" prefHeight="35.0" prefWidth="120.0" styleClass="button-light" text="Öppna..." wrapText="true" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="80.0" />

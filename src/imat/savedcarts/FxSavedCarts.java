@@ -28,6 +28,15 @@ public class FxSavedCarts implements Anchorable, Initializable {
 
     private List<SavedCart> savedCarts = new ArrayList<>();
 
+    public void setSavedCarts(List<SavedCart> savedCarts) {
+        this.savedCarts = savedCarts;
+    }
+
+    public List<SavedCart> getSavedCarts() {
+        return savedCarts;
+    }
+
+
     private List<SavedCart> getData(int amount) {
         List<SavedCart> carts = new ArrayList<>();
         SavedCart cart;

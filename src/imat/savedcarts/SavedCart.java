@@ -15,6 +15,10 @@ public class SavedCart extends AnchorPane {
         this.shoppingItems = shoppingItems;
     }
 
+    public void setShoppingItems(List<ShoppingItem> shoppingItems) {
+        this.shoppingItems = shoppingItems;
+    }
+
     public List<ShoppingItem> getShoppingItems() {
 
         return shoppingItems;
