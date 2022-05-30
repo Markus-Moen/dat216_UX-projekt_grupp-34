@@ -44,9 +44,18 @@ public class FxSavedCartItem extends AnchorPane implements Anchorable {
     }
 
     @FXML protected void openButtonPressed() {
-        fxBasket.moveSavedCartToActiveCart(namedCart.getId());
-        fxBasket.focus();
+        if (fxBasket.isBasketSaved()) {
+            fxBasket.moveSavedCartToActiveCart(namedCart.getId());
+            fxBasket.focus();
+            System.out.println("basket is saved, open new cart allowed");
+        }
+
+        else {
+            fxBasket.unSavedWarning();
+        }
     }
+
+
 
     @Override
     public AnchorPane getAnchor() {
