@@ -164,6 +164,21 @@ public class IMatData {
         return output;
     }
 
+    public String[] receiptHistory(Order order){
+        String[] output = new String[] {"", "", ""};
+        List<ShoppingItem> items = order.getItems();
+        int totalPrice = 0;
+        for (ShoppingItem item : items){
+            output[0] += Math.round(item.getAmount()) + " " + item.getProduct().getName() + "\n";
+            totalPrice += item.getTotal();
+            output[1] += item.getTotal() + " kr" + "\n";
+        }
+
+        output[2] = Double.toString(totalPrice) + " kr";
+
+        return output;
+    }
+
     public void DEBUG_saveCarts(){
         cartHandler.write();
     }

@@ -4,6 +4,7 @@ package imat.history;
 import imat.Anchorable;
 //import imat.FxRoot;
 import imat.basket.FxBasket;
+import imat.data.NamedCart;
 import javafx.fxml.FXML;
 import imat.basket.FxBasket;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +25,9 @@ import java.util.ResourceBundle;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
+import se.chalmers.cse.dat216.project.Order;
+import se.chalmers.cse.dat216.project.ShoppingCart;
+import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import static io.vavr.API.print;
 
@@ -54,7 +58,7 @@ public class FxHistory implements Anchorable, Initializable {
         historyListAP.toFront();
     }
 
-    private List<FxReceipt> receiptArrayList = new ArrayList<>();
+    //private List<FxReceipt> receiptArrayList = new ArrayList<>();
 
     public FxHistory(FxBasket fxBasket) {
         this.fxBasket = fxBasket;
@@ -68,43 +72,57 @@ public class FxHistory implements Anchorable, Initializable {
         }
 
         openHistory();
-
+        //addReceiptToList();
     }
     public void openHistory(){
         historyPane.toFront();
+        addReceiptToList();
     }
 
     @FXML protected void onButtonReturn(){
         fxBasket.focus();
     }
 
-    public void addReceipt(){
+    public void addReceiptToList(){
+        receiptList.getChildren().clear();
+        List<NamedCart> receiptData = fxBasket.iMatData.getHistoryCarts();
+        for (NamedCart cart : receiptData) {
+            String name = cart.getName();
+            addReceipt(cart, name);
+        }
+    }
+
+    public void addReceipt(NamedCart cart, String name){
         //String[] order, String listName, String listDate
         Receipt receipt = new Receipt();
+
         Date currentDate = new Date();
         SimpleDateFormat dateFormat= new SimpleDateFormat("dd/MMM/yyyy");
         String dateOnly = dateFormat.format(currentDate);
-        receipt.setReceiptDate(dateOnly);
-        receipt.setListName("");
-        String[] receiptData = fxBasket.iMatData.receipt();
-        receipt.setStringList(receiptData);
+        //receipt.setReceiptDate(dateOnly);
+
+        receipt.setListName(name);
+
+        Order order = cart.getOrder();
+        //List<ShoppingItem> items = order.getItems();
+        receipt.setReceiptDate(dateFormat.format(order.getDate()));
+        receipt.setStringList(fxBasket.iMatData.receiptHistory(order));
+        System.out.println(fxBasket.iMatData.receiptHistory(order)[0]);
         FxReceipt listReceipt = new FxReceipt(this, receipt);
         receiptList.getChildren().add(listReceipt.getAnchor());
-        receiptArrayList.add(listReceipt);
+
+        //receiptArrayList.add(listReceipt);
         historyItemListText.setText(receipt.getProductNames());
         historyItemCostText.setText(receipt.getCostValues());
         historyItemTotalText.setText(receipt.getTotal());
-        updateHistoryList();
+        //updateHistoryList();
     }
 
     public void updateHistoryList(){
-        System.out.println("Updating HistoryList");
-        receiptList.getChildren().clear();
-        System.out.println("HistoryList cleared");
-        for (FxReceipt receipt : receiptArrayList) {
-            System.out.println("Adding item to flowpane history");
-            receiptList.getChildren().add(receipt.getAnchor());
-        }
+        //receiptList.getChildren().clear();
+        //for (FxReceipt receipt : receiptArrayList) {
+        //    receiptList.getChildren().add(receipt.getAnchor());
+        //}
     }    @FXML protected void onButtonBack(){
         fxBasket.focus();
     }

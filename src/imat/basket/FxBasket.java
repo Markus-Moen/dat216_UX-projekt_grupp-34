@@ -185,7 +185,7 @@ public class FxBasket implements Initializable {
         fxBrowse.openBrowse();
     }
     @FXML protected void onButtonHistory(){
-        //fxHistory.openHistory();
+        fxHistory.openHistory();
         stackHistory.toFront();
     }
 
