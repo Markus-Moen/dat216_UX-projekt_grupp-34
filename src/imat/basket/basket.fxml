@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
@@ -13,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="566.0" prefWidth="875.0" stylesheets="@../imat.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imat.basket.FxBasket">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="566.0" prefWidth="875.0" stylesheets="@../imat.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imat.basket.FxBasket">
    <children>
       <StackPane layoutX="366.0" layoutY="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -29,10 +25,18 @@
                   <AnchorPane fx:id="browsePaneContent" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #DDDDDD;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="20.0" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="stackBasket" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" StackPane.alignment="CENTER">
+            <AnchorPane fx:id="stackBasket" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                <children>
-                  <StackPane fx:id="spSaveStack" layoutX="189.0" layoutY="227.0" prefHeight="107.0" prefWidth="97.0">
+                  <StackPane fx:id="spSaveStack" layoutX="-366.0" layoutY="7.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="200.0">
                      <children>
+                        <AnchorPane fx:id="apNewBasketSaveWarning" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: lightgray;">
+                           <children>
+                              <Button layoutX="40.0" layoutY="136.0" mnemonicParsing="false" onMouseClicked="#closeSaveView" prefHeight="50.0" prefWidth="80.0" styleClass="button-light" text="Avbryt" />
+                              <Button layoutX="120.0" layoutY="136.0" mnemonicParsing="false" onAction="#saveAfterWarning" onMouseClicked="#saveBasket" prefHeight="50.0" prefWidth="80.0" styleClass="button-light" text="Ja, Spara" />
+                              <Button layoutX="206.0" layoutY="136.0" mnemonicParsing="false" onAction="#noSaveAfterWarning" onMouseClicked="#closeSaveView" prefHeight="50.0" prefWidth="80.0" styleClass="button-light" text="Spara inte" />
+                              <Label alignment="TOP_LEFT" layoutX="3.0" layoutY="31.0" prefHeight="43.0" prefWidth="280.0" text="ListName har osparade ändringar. Vill du spara ändringar innan du öpnar en tom varukorg?" wrapText="true" />
+                           </children>
+                        </AnchorPane>
                         <AnchorPane fx:id="apOverwriteOrSaveBasket" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: white;">
                            <children>
                               <Button layoutX="14.0" layoutY="140.0" mnemonicParsing="false" text="Avbryt" />
@@ -47,27 +51,12 @@
                               <Label layoutX="48.0" layoutY="44.0" prefHeight="37.0" prefWidth="180.0" text="What is this??" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="apNameBasket" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: lightgrey;">
+                        <AnchorPane fx:id="apNameBasket" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: white;">
                            <children>
-                              <Button layoutX="45.0" layoutY="132.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="73.0" text="Avbryt" />
-                              <Button layoutX="185.0" layoutY="132.0" mnemonicParsing="false" onAction="#saveNewBasket" prefHeight="37.0" prefWidth="64.0" text="Spara" />
-                              <TextField fx:id="basketNameInput" layoutX="29.0" layoutY="79.0" prefHeight="43.0" prefWidth="227.0" />
-                              <Label layoutX="22.0" layoutY="23.0" prefHeight="45.0" prefWidth="234.0" styleClass="text-important" text="Namnge varukorg">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font></Label>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane fx:id="apNewBasketSaveWarning" prefHeight="200.0" prefWidth="300.0" style="-fx-background-color: lightgray;">
-                           <children>
-                              <Button layoutX="14.0" layoutY="130.0" mnemonicParsing="false" onMouseClicked="#closeSaveView" prefHeight="37.0" prefWidth="64.0" text="Avbryt" />
-                              <Button layoutX="84.0" layoutY="128.0" mnemonicParsing="false" onAction="#saveAfterWarning" onMouseClicked="#saveBasket" prefHeight="37.0" prefWidth="90.0" text="Ja, Spara" />
-                              <Button layoutX="182.0" layoutY="128.0" mnemonicParsing="false" onAction="#noSaveAfterWarning" onMouseClicked="#closeSaveView" prefHeight="37.0" prefWidth="88.0" text="Spara inte" />
-                              <Label alignment="TOP_LEFT" layoutX="13.0" layoutY="19.0" prefHeight="65.0" prefWidth="255.0" styleClass="text-important-black" text="ListName har osparade ändringar. Vill du spara ändringar innan du öpnar en tom varukorg?" wrapText="true">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Label>
+                              <Button layoutX="45.0" layoutY="140.0" mnemonicParsing="false" text="Avbryt" />
+                              <Button layoutX="185.0" layoutY="140.0" mnemonicParsing="false" onAction="#saveNewBasket" text="Spara" />
+                              <TextField fx:id="basketNameInput" layoutX="45.0" layoutY="99.0" />
+                              <Label layoutX="45.0" layoutY="32.0" prefHeight="43.0" prefWidth="197.0" text="Namnge varukorg" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -80,6 +69,7 @@
                                  <children>
                                     <StackPane prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
+                                          <FlowPane fx:id="productList" prefHeight="358.0" prefWidth="720.0" styleClass="list-backdrop" />
                                           <AnchorPane styleClass="text-important-white">
                                              <children>
                                                 <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="37.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
@@ -87,16 +77,7 @@
                                                       <Button fx:id="browseProductsButton" alignment="CENTER" maxWidth="400.0" mnemonicParsing="false" onMouseClicked="#onButtonBrowse" prefWidth="400.0" text="Sök bland alla varor" />
                                                    </children>
                                                 </HBox>
-                                                <HBox alignment="CENTER" layoutX="34.0" layoutY="61.0" prefHeight="371.0" prefWidth="671.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                                   <children>
-                                                      <FlowPane fx:id="productList" alignment="CENTER" columnHalignment="CENTER" prefHeight="330.0" prefWidth="454.0" styleClass="list-backdrop" />
-                                                   </children>
-                                                </HBox>
-                                                <HBox alignment="CENTER" layoutX="2.0" layoutY="439.0" prefHeight="43.0" prefWidth="420.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                                   <children>
-                                                      <Label fx:id="savedBasketLabel" alignment="CENTER" styleClass="text-important-black" text="xxxxxx" textAlignment="CENTER" />
-                                                   </children>
-                                                </HBox>
+                                                <Label fx:id="savedBasketLabel" alignment="CENTER" layoutX="177.0" layoutY="11.0" styleClass="text-important-black" text="xxxxxx" textAlignment="CENTER" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                                              </children>
                                           </AnchorPane>
                                        </children>

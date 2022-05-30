@@ -166,13 +166,11 @@ public class FxBasket implements Initializable {
         System.out.println("Saved!");
         savedBasketLabel.setText("Saved!");
     }
-
     @FXML public void saveAsButtonPressed() {
         System.out.println("Enter name");
         spSaveStack.toFront();
         apNameBasket.toFront();
     }
-
     @FXML public void newCartButtonPressed() {
         if (basketIsSaved) {
             spSaveStack.toBack();
