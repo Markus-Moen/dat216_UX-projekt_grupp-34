@@ -74,17 +74,13 @@ public class IMatData {
         NamedCart nc = cartHandler.getNamedCarts().get(cartId);
         openCartId = nc.getId();
         imat.getShoppingCart().clear();
-        for (var x : nc.getOrder().getItems()) {
-            var getFxProdItem = id2prodListItem.get(x.getProduct().getProductId());
-            getFxProdItem.getShoppingItem().setAmount(x.getAmount());
-            imat.getShoppingCart().addItem(getFxProdItem.getShoppingItem());
-            getFxProdItem.refreshGraphics();
-        }
+        refreshFxProduct(nc);
         return nc.getName();
     }
     public void clearActiveCart(){
         openCartId = null;
         imat.getShoppingCart().clear();
+        setZeroFxProduct();
     }
     public ShoppingCart getActiveCart(){
         return imat.getShoppingCart();
@@ -95,12 +91,26 @@ public class IMatData {
         }
         NamedCart nc = cartHandler.getNamedCarts().get(openCartId);
 
-        List<ShoppingItem> shoppingItems = new ArrayList<>();
-        for (var e : imat.getShoppingCart().getItems()){
-            shoppingItems.add(e);
-        }
+        List<ShoppingItem> shoppingItems = new ArrayList<>(imat.getShoppingCart().getItems());
         nc.getOrder().setItems(shoppingItems);
         nc.getOrder().setDate(new Date());
+    }
+
+    //
+    public void setZeroFxProduct(){
+        for (var x : id2prodListItem.values()) {
+            x.getShoppingItem().setAmount(0);
+            x.refreshGraphics();
+        }
+    }
+    public void refreshFxProduct(NamedCart nc){
+        setZeroFxProduct();
+        for (var x : nc.getOrder().getItems()) {
+            var getFxProdItem = id2prodListItem.get(x.getProduct().getProductId());
+            getFxProdItem.getShoppingItem().setAmount(x.getAmount());
+            imat.getShoppingCart().addItem(getFxProdItem.getShoppingItem());
+            getFxProdItem.refreshGraphics();;
+        }
     }
 
     // IMATDATA GETTERS

@@ -9,22 +9,19 @@ import imat.savedcarts.FxSavedCarts;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.scene.layout.HBox;
 import se.chalmers.cse.dat216.project.CartEvent;
 import se.chalmers.cse.dat216.project.ShoppingCartListener;
-import javafx.scene.layout.StackPane;
 import se.chalmers.cse.dat216.project.ShoppingItem;
 
 //import imat.ProductItem;
@@ -37,9 +34,8 @@ public class FxBasket implements Initializable {
     private ShoppingCartListener shoppingCartListener;
 
 
-
-    private boolean basketSaved = false;
-    private boolean basketIsVirgin = true;
+    private boolean basketHasUnsavedChanges;
+    private boolean basketShouldPromptBeforeBeingOverwritten;
 
     private FxHistory fxHistory;
 
@@ -73,14 +69,6 @@ public class FxBasket implements Initializable {
         apNewBasketSaveWarning.toBack();
     }
 
-    public boolean isBasketSaved() {
-        return basketSaved;
-    }
-
-    public boolean isBasketIsVirgin() {
-        return basketIsVirgin;
-    }
-
     public void focus(){
         stackBasket.toFront();
     }
@@ -99,16 +87,69 @@ public class FxBasket implements Initializable {
         hBoxSaveStack.toFront();
     }
 
-    public void moveSavedCartToActiveCart(int id) {
-        String name = iMatData.moveSavedCartToActiveCart(id);
-        basketName.setText(name);
+    public enum IgnoreLocalChanges{
+        YES, NO, CANCEL;
+    }
+    public IgnoreLocalChanges ignoreLocalChangesPrompt(){
+        if(basketHasUnsavedChanges && basketShouldPromptBeforeBeingOverwritten){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Du har osparade ändringar");
+            alert.setHeaderText("Du har osparade ändringar");
+            alert.setContentText("Din varukorg har osparade ändringar, Vill du spara dessa?");
+
+            ButtonType buttonTypeSave = new ButtonType("Ja, Spara");
+            ButtonType buttonTypeNoSave = new ButtonType("Nej, Spara Inte");
+            ButtonType buttonTypeCancel = new ButtonType("Avbryt", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+            alert.getButtonTypes().setAll(buttonTypeSave, buttonTypeNoSave, buttonTypeCancel);
+
+            Optional<ButtonType> option = alert.showAndWait();
+            if(option.isEmpty()) return IgnoreLocalChanges.CANCEL;
+            ButtonType bt = option.get();
+            if(bt == buttonTypeCancel) return IgnoreLocalChanges.CANCEL;
+            if(bt == buttonTypeNoSave) return IgnoreLocalChanges.YES;
+            if(bt == buttonTypeSave) return IgnoreLocalChanges.NO;
+        }
+        return IgnoreLocalChanges.YES;
     }
 
-    private void clearBasket(){
-        savedBasketLabel.setText("");
-        //checks if user has saved and such
+    public void moveSavedCartToActiveCart(int id) {
+        switch (ignoreLocalChangesPrompt()) {
+            case YES -> {
+            }
+            case NO -> {
+                saveButtonPressed();
+            }
+            case CANCEL -> {
+                return;
+            }
+        }
+
+        String name = iMatData.moveSavedCartToActiveCart(id);
+        basketName.setText(name);
+
+        basketHasUnsavedChanges = false;
+        basketShouldPromptBeforeBeingOverwritten = true;
+    }
+    private void clearAndCreateNewBasket() {
+        switch (ignoreLocalChangesPrompt()) {
+            case YES -> {
+            }
+            case NO -> {
+                saveButtonPressed();
+            }
+            case CANCEL -> {
+                return;
+            }
+        }
+
+        hBoxSaveStack.toBack();
         iMatData.clearActiveCart();
-        setBasketName("Ny varukorg");
+        basketName.setText("Ny varukorg");
+        savedBasketLabel.setText("");
+
+        basketHasUnsavedChanges = false;
+        basketShouldPromptBeforeBeingOverwritten = false;
     }
 
     public void updateBasket(){
@@ -127,27 +168,17 @@ public class FxBasket implements Initializable {
         hBoxSaveStack.toBack();
     }
     @FXML private void warning_SaveButtonPressed() {
-        if (basketIsVirgin) {
+        if (basketHasUnsavedChanges) {
             apNameBasket.toFront();
         }
         else {
             saveButtonPressed();
         }
-        createNewBasket();
+        clearAndCreateNewBasket();
 
     }
-
     @FXML private void warning_NoSaveButtonPressed() {
-        createNewBasket();
-    }
-
-    private void createNewBasket() {
-        hBoxSaveStack.toBack();
-        iMatData.clearActiveCart();
-        basketName.setText("Ny varukorg");
-        savedBasketLabel.setText("");
-        basketIsVirgin = true;
-        basketSaved = false;
+        clearAndCreateNewBasket();
     }
 
     @FXML public void saveAsConfirmButtonPressed() {
@@ -160,8 +191,8 @@ public class FxBasket implements Initializable {
 
         System.out.println("New basket is saved!");
         savedBasketLabel.setText("Saved!");
-        basketSaved = true;
-        basketIsVirgin = false;
+        basketHasUnsavedChanges = false;
+        basketShouldPromptBeforeBeingOverwritten = true;
     }
     @FXML public void saveButtonPressed() {
         iMatData.saveCurrentyActiveCart();
@@ -174,12 +205,7 @@ public class FxBasket implements Initializable {
         apNameBasket.toFront();
     }
     @FXML public void newCartButtonPressed() {
-        if (basketSaved) {
-            createNewBasket();
-        }
-        else {
-            unSavedWarning();
-        }
+        clearAndCreateNewBasket();
     }
     @FXML protected void onButtonToCheckout(){
         fxCheckout.openCheckout();
@@ -213,19 +239,16 @@ public class FxBasket implements Initializable {
 
         scrollContent.prefWidthProperty().bind(scrollPane.widthProperty());
 
-        basketSaved = true;
-        basketIsVirgin = true;
         iMatData.getActiveCart().addShoppingCartListener(new ShoppingCartListener() {
             @Override
             public void shoppingCartChanged(CartEvent cartEvent) {
-                basketSaved = false;
-                basketIsVirgin = false;
+                basketHasUnsavedChanges = true;
                 savedBasketLabel.setText("");
                 updateBasket();
             }
         });
 
-        clearBasket();
+        clearAndCreateNewBasket();
         System.out.println("IS IT DONE?");
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> shutDown()));
