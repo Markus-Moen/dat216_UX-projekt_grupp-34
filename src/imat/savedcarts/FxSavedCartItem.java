@@ -48,6 +48,8 @@ public class FxSavedCartItem extends AnchorPane implements Anchorable {
         fxBasket.focus();
     }
 
+
+
     @Override
     public AnchorPane getAnchor() {
         return anchorPane;
