@@ -16,7 +16,7 @@ public class ProductFilter {
     public ProductFilter(Either<String, List<ProductCategory>> filter) {
         this(filter, null);
     }
-    ProductFilter(Either<String, List<ProductCategory>> filter, @Nullable ProductFilter then) {
+    public ProductFilter(Either<String, List<ProductCategory>> filter, @Nullable ProductFilter then) {
         this.then = then;
         this.filter = filter.map(HashSet::new);
     }
