@@ -3,6 +3,7 @@ package imat.data;
 import imat.basket.FxBasket;
 import imat.productlist.FxProductItem;
 import io.vavr.Tuple2;
+import javafx.application.Platform;
 import javafx.scene.image.Image;
 import org.jetbrains.annotations.Nullable;
 import se.chalmers.cse.dat216.project.*;
@@ -53,14 +54,10 @@ public class IMatData {
         return cartHandler.getNamedCarts().values()
                 .stream().filter(x -> x.getIsBought() == false).toList();
     }
-    public void saveActiveCartAsNew(String name){
-        NamedCartExtraData namedCartExtraData;
-        if(openCartId == null){
-            namedCartExtraData = new NamedCartExtraData(true, name, null);
-        } else {
-            namedCartExtraData = cartHandler.getNamedCarts().get(openCartId);
-        }
-        NamedCart o = cartHandler.orderCart(imat, true, namedCartExtraData);
+    public void saveActiveCartAsNew(String name, boolean isBuy){
+        NamedCartExtraData namedCartExtraData = new NamedCartExtraData(isBuy, name, null);
+        boolean doClearCart = isBuy;
+        NamedCart o = cartHandler.orderCart(imat, doClearCart, namedCartExtraData);
         openCartId = o.getId();
     }
     public void orderAndClearActiveCart(){
@@ -70,19 +67,18 @@ public class IMatData {
         } else {
             newName = cartHandler.getNamedCarts().get(openCartId).getName();
         }
-        saveActiveCartAsNew(newName);
+        saveActiveCartAsNew(newName, true);
         clearActiveCart();
     }
     public String moveSavedCartToActiveCart(int cartId){
         NamedCart nc = cartHandler.getNamedCarts().get(cartId);
         openCartId = nc.getId();
         imat.getShoppingCart().clear();
-        for (var i : nc.getOrder().getItems()){
-            imat.getShoppingCart().addItem(i);
-        }
-        for (var x : imat.getShoppingCart().getItems()) {
+        for (var x : nc.getOrder().getItems()) {
             var getFxProdItem = id2prodListItem.get(x.getProduct().getProductId());
             getFxProdItem.getShoppingItem().setAmount(x.getAmount());
+            imat.getShoppingCart().addItem(getFxProdItem.getShoppingItem());
+            getFxProdItem.refreshGraphics();
         }
         return nc.getName();
     }
@@ -98,10 +94,13 @@ public class IMatData {
             throw new RuntimeException("IMPOSSIBLE ERROR, CAN NOT SAVE UNACTIVE CART");
         }
         NamedCart nc = cartHandler.getNamedCarts().get(openCartId);
-        imat.getShoppingCart().clear();
-        for (var i : nc.getOrder().getItems()){
-            imat.getShoppingCart().addItem(i);
+
+        List<ShoppingItem> shoppingItems = new ArrayList<>();
+        for (var e : imat.getShoppingCart().getItems()){
+            shoppingItems.add(e);
         }
+        nc.getOrder().setItems(shoppingItems);
+        nc.getOrder().setDate(new Date());
     }
 
     // IMATDATA GETTERS
@@ -157,10 +156,10 @@ public class IMatData {
         List<ShoppingItem> items = cart.getItems();
         for (ShoppingItem item : items){
             output[0] += Math.round(item.getAmount()) + " " + item.getProduct().getName() + "\n";
-            output[1] += item.getTotal() + "\n";
+            output[1] += item.getTotal() + " kr" + "\n";
         }
 
-        output[2] = Double.toString(cart.getTotal());
+        output[2] = Double.toString(cart.getTotal()) + " kr";
 
         return output;
     }
@@ -170,7 +169,7 @@ public class IMatData {
     }
     public void shutDown() {
         System.out.println("SHUTTING DOWN");
-        imat.shutDown();
         cartHandler.write();
+        imat.shutDown();
     }
 }
