@@ -33,7 +33,7 @@
                               <FlowPane alignment="TOP_CENTER" columnHalignment="CENTER" prefHeight="200.0" prefWidth="200.0" vgap="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                                  <children>
                                     <Label styleClass="text-important" text="Kategori" underline="true" />
-                                    <ToggleButton alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="126.0" text="Bröd" wrapText="true">
+                                    <ToggleButton fx:id="togBread" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="126.0" text="Bröd" wrapText="true">
                                        <styleClass>
                                           <String fx:value="button-light" />
                                           <String fx:value="button" />
@@ -42,49 +42,49 @@
                                           <ToggleGroup fx:id="category" />
                                        </toggleGroup>
                                     </ToggleButton>
-                                    <ToggleButton alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="126.0" text="Dryck" toggleGroup="$category" wrapText="true">
+                                    <ToggleButton fx:id="togDrink" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="126.0" text="Dryck" toggleGroup="$category" wrapText="true">
                                        <styleClass>
                                           <String fx:value="button-light" />
                                           <String fx:value="button" />
                                        </styleClass>
                                     </ToggleButton>
-                                    <ToggleButton alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="126.0" text="Fisk" toggleGroup="$category" wrapText="true">
+                                    <ToggleButton fx:id="togFish" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="126.0" text="Fisk" toggleGroup="$category" wrapText="true">
                                        <styleClass>
                                           <String fx:value="button-light" />
                                           <String fx:value="button" />
                                        </styleClass>
                                     </ToggleButton>
-                                    <ToggleButton alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="126.0" text="Frukter &amp; Bär" toggleGroup="$category" wrapText="true">
+                                    <ToggleButton fx:id="togFruit" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="126.0" text="Frukter &amp; Bär" toggleGroup="$category" wrapText="true">
                                        <styleClass>
                                           <String fx:value="button-light" />
                                           <String fx:value="button" />
                                        </styleClass>
                                     </ToggleButton>
-                                    <ToggleButton alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="126.0" text="Grönsaker" toggleGroup="$category" wrapText="true">
+                                    <ToggleButton fx:id="togGreens" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="126.0" text="Grönsaker" toggleGroup="$category" wrapText="true">
                                        <styleClass>
                                           <String fx:value="button-light" />
                                           <String fx:value="button" />
                                        </styleClass>
                                     </ToggleButton>
-                                    <ToggleButton alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="126.0" text="Kött" toggleGroup="$category" wrapText="true">
+                                    <ToggleButton fx:id="togMeat" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="126.0" text="Kött" toggleGroup="$category" wrapText="true">
                                        <styleClass>
                                           <String fx:value="button-light" />
                                           <String fx:value="button" />
                                        </styleClass>
                                     </ToggleButton>
-                                    <ToggleButton alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="126.0" text="Mejeri" toggleGroup="$category" wrapText="true">
+                                    <ToggleButton fx:id="togMilk" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="126.0" text="Mejeri" toggleGroup="$category" wrapText="true">
                                        <styleClass>
                                           <String fx:value="button-light" />
                                           <String fx:value="button" />
                                        </styleClass>
                                     </ToggleButton>
-                                    <ToggleButton alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="126.0" text="Sötsaker" toggleGroup="$category" wrapText="true">
+                                    <ToggleButton fx:id="togSweet" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="126.0" text="Sötsaker" toggleGroup="$category" wrapText="true">
                                        <styleClass>
                                           <String fx:value="button-light" />
                                           <String fx:value="button" />
                                        </styleClass>
                                     </ToggleButton>
-                                    <ToggleButton alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="126.0" text="Torrvaror" toggleGroup="$category" wrapText="true">
+                                    <ToggleButton fx:id="togDry" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="38.0" prefWidth="126.0" text="Torrvaror" toggleGroup="$category" wrapText="true">
                                        <styleClass>
                                           <String fx:value="button-light" />
                                           <String fx:value="button" />
